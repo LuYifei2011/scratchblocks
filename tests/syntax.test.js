@@ -189,6 +189,28 @@ describe("escaping and stringifying", () => {
     const expected = String.raw`say [[)v]`
     expect(parseBlock(input).stringify()).toBe(expected)
   })
+
+  test("#576: colon escaping", () => {
+    const code = String.raw`test :\: test`
+    expect(parseBlock(code).stringify()).toBe(code)
+  })
+
+  test("#576: colon escaping 2", () => {
+    const code = String.raw`test :\:\: test`
+    expect(parseBlock(code).stringify()).toBe(code)
+  })
+
+  test("#576: backslash shoud not be escaped outside string input", () => {
+    const code = String.raw`test \\ test`
+    expect(parseBlock(code).stringify()).toBe(code)
+  })
+})
+
+describe("overrides", () => {
+  test("#570: stringifying with shape override", () => {
+    const code = "forever :: stack"
+    expect(parseBlock(code).stringify()).toEqual(code)
+  })
 })
 
 describe("color literals", () => {
@@ -612,6 +634,21 @@ describe("c blocks", () => {
     expect(parseBlock("else").info.shape).toBe("stack")
     expect(parseBlock("end").info.shape).toBe("stack")
   })
+
+  test("#567: comments", () => {
+    const script = "if <> then // comment\nend"
+    expect(parseScript(script).stringify()).toEqual(script)
+  })
+
+  test("#567: comments cannot be attached to end", () => {
+    const script = "if <> then\nend // comment"
+    expect(parseScript(script).stringify()).toEqual("if <> then\nend")
+  })
+
+  test("#567: comments cannot be attached to else", () => {
+    const script = "if <> then\nelse //comment\nend"
+    expect(parseScript(script).stringify()).toEqual("if <> then\n\nelse\nend")
+  })
 })
 
 describe("comparison ops: < and > ", () => {
@@ -764,6 +801,20 @@ describe("translate", () => {
     b.translate(allLanguages.ja)
     // Note: currently we don't translate dropdown menu contents.
     expect(b.stringify()).toEqual("[all v]")
+  })
+
+  test("#549: comments are translated no-op", () => {
+    const c = "// hello"
+    const s = parseScript(c)
+    s.translate(allLanguages.ja)
+    expect(s.stringify()).toEqual(c)
+  })
+
+  test("custom blocks (see also #552, #566)", () => {
+    const doc = parse("Definiere (答え) と言う\nsage (答え)\n\n(answer) と言う\n", optionsFor("de"))
+    doc.scripts.forEach(s => s.translate(allLanguages.ja))
+    expect(doc.scripts[0].stringify()).toEqual("定義 (答え :: custom-arg) と言う\n(答え :: custom-arg) と言う")
+    expect(doc.scripts[1].stringify()).toEqual("(答え) と言う :: custom")
   })
 
   // TODO translate end
