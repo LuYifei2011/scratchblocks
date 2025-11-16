@@ -240,6 +240,18 @@ export const english = {
   // Language name is needed for the English locale as well
   name: "English",
 
+  // Valid arguments to "go to" face sensing dropdown, for resolving ambiguous situations
+  faceParts: [
+    "nose",
+    "mouth",
+    "left eye",
+    "right eye",
+    "between eyes",
+    "left ear",
+    "right ear",
+    "top of head",
+  ],
+
   // Valid arguments to "sound effect" dropdown, for resolving ambiguous situations
   soundEffects: ["pitch", "pan left/right"],
 
@@ -643,6 +655,21 @@ disambig("pen.setColor", "pen.setHue", (children, _lang) => {
   return (last.isInput && last.isColor) || last.isBlock
 })
 
+disambig("facesensing.goToPart", "MOTION_GOTO", (children, lang) => {
+  // Face sensing if face part, otherwise default to motion block
+  for (const child of children) {
+    if (child.shape === "dropdown") {
+      const name = child.value
+      for (const effect of lang.faceParts) {
+        if (minifyHash(effect) === minifyHash(name)) {
+          return true
+        }
+      }
+    }
+  }
+  return false
+})
+
 disambig("microbit.whenGesture", "gdxfor.whenGesture", (children, lang) => {
   for (const child of children) {
     if (child.shape === "dropdown") {
@@ -870,10 +897,14 @@ export function applyOverrides(info, overrides) {
       info.categoryIsDefault = false
     } else if (overrideShapes.includes(name)) {
       info.shape = name
+      info.shapeIsDefault = false
     } else if (name === "loop") {
       info.hasLoopArrow = true
     } else if (name === "+" || name === "-") {
       info.diff = name
+    } else if (name === "reset") {
+      info.categoryIsDefault = false
+      info.isReset = true
     }
   }
 }
