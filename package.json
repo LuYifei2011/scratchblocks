@@ -48,11 +48,11 @@
     "lint-staged": "^16.2.6",
     "prettier": "^3.6.2",
     "prettier-package-json": "^2.8.0",
-    "puppeteer": "^24.29.1",
-    "rollup": "^4.53.1",
+    "puppeteer": "^24.30.0",
+    "rollup": "^4.53.2",
     "rollup-plugin-license": "^3.6.0",
     "rollup-plugin-serve": "^3.0.0",
-    "scratch-l10n": "^6.1.15"
+    "scratch-l10n": "^6.1.23"
   },
   "keywords": [
     "scratch"
