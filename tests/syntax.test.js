@@ -811,9 +811,14 @@ describe("translate", () => {
   })
 
   test("custom blocks (see also #552, #566)", () => {
-    const doc = parse("Definiere (答え) と言う\nsage (答え)\n\n(answer) と言う\n", optionsFor("de"))
+    const doc = parse(
+      "Definiere (答え) と言う\nsage (答え)\n\n(answer) と言う\n",
+      optionsFor("de"),
+    )
     doc.scripts.forEach(s => s.translate(allLanguages.ja))
-    expect(doc.scripts[0].stringify()).toEqual("定義 (答え :: custom-arg) と言う\n(答え :: custom-arg) と言う")
+    expect(doc.scripts[0].stringify()).toEqual(
+      "定義 (答え :: custom-arg) と言う\n(答え :: custom-arg) と言う",
+    )
     expect(doc.scripts[1].stringify()).toEqual("(答え) と言う :: custom")
   })
 
