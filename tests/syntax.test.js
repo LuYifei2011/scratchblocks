@@ -727,7 +727,7 @@ describe("translate", () => {
     const b = parseBlock("forever\nmove (10) steps\nend")
     b.translate(allLanguages.de)
     expect(b.stringify()).toEqual(
-      "wiederhole fortlaufend \n  gehe (10) er Schritt\nEnde",
+      "wiederhole fortlaufend\n  gehe (10) er Schritt\nEnde",
     )
   })
 
@@ -735,7 +735,7 @@ describe("translate", () => {
     const b = parseBlock("if <> then\n  stamp\nelse\n  clear\nend")
     b.translate(allLanguages.de)
     expect(b.stringify()).toEqual(
-      "falls <> , dann \n  hinterlasse Abdruck\nsonst \n  lösche alles\nEnde",
+      "falls <> , dann\n  hinterlasse Abdruck\nsonst\n  lösche alles\nEnde",
     )
   })
 
