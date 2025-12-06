@@ -224,15 +224,15 @@ export interface LanguageData {
  */
 export interface ScratchblocksAPI {
   // Languages
-  readonly allLanguages: string[]
-  loadLanguages(languages: string[]): Promise<void>
+  readonly allLanguages: Record<string, LanguageData>
+  loadLanguages(languages: Record<string, LanguageData>): void
 
   // Parsing and rendering
   parse(code: string, options?: RenderOptions): Document
   stringify(doc: Document): string
   newView(doc: Document, options?: RenderOptions): DocumentView
   render(doc: Document, options?: RenderOptions): SVGElement
-  renderMatching(selector: string, options?: RenderOptions): void
+  renderMatching(selector?: string, options?: RenderOptions): void
 
   // Reading and replacing
   read(el: HTMLElement, options?: { inline?: boolean }): string
@@ -247,7 +247,6 @@ export interface ScratchblocksAPI {
   Input: typeof Input
   Block: typeof Block
   Comment: typeof Comment
-  Glow: typeof Glow
   Script: typeof Script
   Document: typeof Document
 
