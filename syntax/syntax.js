@@ -1159,6 +1159,55 @@ function assignSourceRanges(doc, code) {
   }
 
   /**
+   * Check if a block contains a multi-line matrix and return the number of lines it spans.
+   * Matrix format: ({digits,\n  digits,\n  digits} v)
+   */
+  function countMatrixLines(block, startLineNum) {
+    const actualBlock = block.isGlow ? block.child : block
+    if (!actualBlock.isBlock) return 1
+
+    // Check if any child input contains a matrix
+    for (const child of actualBlock.children) {
+      if (child.isInput && child.value && typeof child.value === "object" && child.value.isMatrix) {
+        // Found a matrix input. Check if it spans multiple lines.
+        // Look for the pattern ({...} v) across multiple lines
+        let lineNum = startLineNum
+        let foundStart = false
+        let braceDepth = 0
+        
+        // Scan forward to find the matrix closing
+        while (lineNum <= lines.length) {
+          const line = lines[lineNum - 1] || ""
+          
+          for (let i = 0; i < line.length; i++) {
+            const ch = line[i]
+            if (ch === '\\') {
+              i++ // skip escaped char
+              continue
+            }
+            if (ch === '{') {
+              braceDepth++
+              foundStart = true
+            } else if (ch === '}') {
+              braceDepth--
+              if (foundStart && braceDepth === 0) {
+                // Found the closing brace, check if followed by ' v)'
+                const remaining = line.slice(i)
+                if (remaining.match(/^\}\s*v\s*\)/)) {
+                  // Matrix ends on this line
+                  return lineNum - startLineNum + 1
+                }
+              }
+            }
+          }
+          lineNum++
+        }
+      }
+    }
+    return 1
+  }
+
+  /**
    * Process a block and its C-block children recursively, tracking line numbers correctly.
    * @param {Block} block - The block to process
    * @param {number} lineNum - The 1-based line number of this block
@@ -1177,6 +1226,20 @@ function assignSourceRanges(doc, code) {
     assignBlockRangeRecursive(actualBlock, lineContent, lineNum, start, lineContent.length + 1, bracketRanges)
 
     let nextLine = lineNum + 1
+    
+    // Check if this block contains a multi-line matrix
+    const matrixLineCount = countMatrixLines(actualBlock, lineNum)
+    if (matrixLineCount > 1) {
+      // Update the block's source range to span all matrix lines
+      const endLineNum = lineNum + matrixLineCount - 1
+      const endLineContent = lines[endLineNum - 1] || ""
+      actualBlock.sourceRange = {
+        start: { line: lineNum, column: start },
+        end: { line: endLineNum, column: endLineContent.length + 1 },
+      }
+      nextLine = lineNum + matrixLineCount
+      return nextLine
+    }
     
     // Check if this block has any Script children (C-blocks or stack inputs like {})
     const scriptChildren = actualBlock.children.filter(child => child.isScript)

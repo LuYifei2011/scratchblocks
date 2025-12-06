@@ -221,12 +221,12 @@ export class Input {
 
   translate(lang) {
     if (this.hasArrow) {
-      if (value && typeof value === "object" && value.isMatrix) {
+      // Don't create label for Matrix values
+      if (this.value && typeof this.value === "object" && this.value.isMatrix) {
         return
       }
       if (this.menu) {
-        // Don't create label for Matrix values
-      this.value = lang.dropdowns[this.menu].value
+        this.value = lang.dropdowns[this.menu].value
       }
       this.label = new Label(this.value, `literal-${this.shape}`)
     }

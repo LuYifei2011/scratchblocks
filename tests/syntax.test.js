@@ -981,6 +981,30 @@ end`)
     expect(block).toBeDefined()
     expect(block.blockPath).toBe("1.1.1.1") // show block
   })
+
+  test("returns block for cursor inside matrix literal", () => {
+    const doc = parse(`display ({010,
+          101,
+          010} v)
+move (10) steps`)
+    // All lines of the matrix should match the display block
+    const block1 = doc.getBlockAtCursor(1, 12) // "0" inside matrix row on first line
+    expect(block1).toBeDefined()
+    expect(block1.blockPath).toBe("1.1")
+    
+    const block2 = doc.getBlockAtCursor(2, 11) // "1" inside matrix row on second line
+    expect(block2).toBeDefined()
+    expect(block2.blockPath).toBe("1.1")
+    
+    const block3 = doc.getBlockAtCursor(3, 15) // "0" inside matrix row on third line
+    expect(block3).toBeDefined()
+    expect(block3.blockPath).toBe("1.1")
+    
+    // Next block should not be affected
+    const block4 = doc.getBlockAtCursor(4, 1) // "m" of move
+    expect(block4).toBeDefined()
+    expect(block4.blockPath).toBe("1.2")
+  })
 })
 
 describe("getBlockByPath", () => {
