@@ -101,6 +101,19 @@ export class Comment {
 }
 
 /**
+ * A glow effect (highlight) wrapper for blocks
+ */
+export class Glow {
+  constructor(child: Block | Script)
+  child: Block | Script
+  shape: string
+  info?: any
+  readonly isGlow: true
+  stringify(): string
+  translate(lang: any): void
+}
+
+/**
  * A script (sequence of blocks)
  */
 export class Script {
@@ -139,7 +152,7 @@ export interface DocumentView {
  * Options for rendering
  */
 export interface RenderOptions {
-  style?: "scratch2" | "scratch3" | string
+  style?: "scratch2" | "scratch3" | "scratch3-high-contrast" | string
   inline?: boolean
   languages?: string[]
   scale?: number
@@ -177,6 +190,7 @@ export interface ScratchblocksAPI {
   Input: typeof Input
   Block: typeof Block
   Comment: typeof Comment
+  Glow: typeof Glow
   Script: typeof Script
   Document: typeof Document
 
