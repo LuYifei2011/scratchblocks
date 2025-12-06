@@ -1061,6 +1061,16 @@ function assignSourceRanges(doc, code) {
    * @returns {number} - The next line number after this block and all its children
    */
   function processBlockWithChildren(block, lineNum) {
+    // Glow wrappers can contain a Script with the actual blocks; unwrap them so
+    // nested blocks still receive source ranges and cursor mapping works.
+    if (block.isGlow && block.child && block.child.isScript) {
+      let nextLine = lineNum
+      for (const innerBlock of block.child.blocks) {
+        nextLine = processBlockWithChildren(innerBlock, nextLine)
+      }
+      return nextLine
+    }
+
     const actualBlock = block.isGlow ? block.child : block
     if (!actualBlock.isBlock) return lineNum
 
