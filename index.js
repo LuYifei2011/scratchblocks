@@ -62,6 +62,90 @@ export default function (window) {
 
   /*****************************************************************************/
 
+  /*** Highlight API ***/
+
+  /**
+   * Highlight a block by its path
+   * @param {DocumentView} view - The rendered view from newView()
+   * @param {string} path - Block path (e.g., "S1.2.1")
+   * @param {Object} options - { blink: boolean } - If blink is true, the block will flash 3 times
+   * @returns {boolean} - Whether the block was found and highlighted
+   */
+  function highlightBlock(view, path, options = {}) {
+    if (view && typeof view.highlightBlock === "function") {
+      return view.highlightBlock(path, options)
+    }
+    return false
+  }
+
+  /**
+   * Highlight the block at a cursor position
+   * @param {DocumentView} view - The rendered view from newView()
+   * @param {number} line - 1-based line number
+   * @param {number} column - 1-based column number
+   * @param {Object} options - { blink: boolean }
+   * @returns {string|null} - The path of the highlighted block, or null if not found
+   */
+  function highlightBlockAtCursor(view, line, column, options = {}) {
+    if (view && typeof view.highlightBlockAtCursor === "function") {
+      return view.highlightBlockAtCursor(line, column, options)
+    }
+    return null
+  }
+
+  /**
+   * Clear highlight from a block or all blocks
+   * @param {DocumentView} view - The rendered view from newView()
+   * @param {string|null} path - Block path to clear, or null to clear all highlights
+   */
+  function clearHighlight(view, path = null) {
+    if (view && typeof view.clearHighlight === "function") {
+      view.clearHighlight(path)
+    }
+  }
+
+  /**
+   * Get a block by its path from the parsed document
+   * @param {Document} doc - The parsed document from parse()
+   * @param {string} path - Block path (e.g., "S1.2.1")
+   * @returns {Block|null}
+   */
+  function getBlockByPath(doc, path) {
+    if (doc && typeof doc.getBlockByPath === "function") {
+      return doc.getBlockByPath(path)
+    }
+    return null
+  }
+
+  /**
+   * Get the block at cursor position from the parsed document
+   * @param {Document} doc - The parsed document from parse()
+   * @param {number} line - 1-based line number
+   * @param {number} column - 1-based column number
+   * @returns {Block|null}
+   */
+  function getBlockAtCursor(doc, line, column) {
+    if (doc && typeof doc.getBlockAtCursor === "function") {
+      return doc.getBlockAtCursor(line, column)
+    }
+    return null
+  }
+
+  /**
+   * Get the SVG element for a block by its path
+   * @param {DocumentView} view - The rendered view from newView()
+   * @param {string} path - Block path (e.g., "S1.2.1")
+   * @returns {SVGElement|null}
+   */
+  function getElementByPath(view, path) {
+    if (view && typeof view.getElementByPath === "function") {
+      return view.getElementByPath(path)
+    }
+    return null
+  }
+
+  /*****************************************************************************/
+
   /*** Render ***/
 
   // read code from a DOM element
@@ -164,5 +248,13 @@ export default function (window) {
     renderMatching: renderMatching,
 
     appendStyles: appendStyles,
+
+    // Highlight API
+    highlightBlock: highlightBlock,
+    highlightBlockAtCursor: highlightBlockAtCursor,
+    clearHighlight: clearHighlight,
+    getBlockByPath: getBlockByPath,
+    getBlockAtCursor: getBlockAtCursor,
+    getElementByPath: getElementByPath,
   }
 }

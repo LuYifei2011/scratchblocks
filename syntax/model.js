@@ -13,6 +13,23 @@ function indent(text) {
     .join("\n")
 }
 
+// Compute display width of a string, counting common CJK / fullwidth
+// characters as width 2 so alignment in mixed-language text looks correct.
+function displayWidth(str) {
+  if (!str) {
+    return 0
+  }
+  str = String(str)
+  let w = 0
+  // Rough classification: common CJK ranges and fullwidth block
+  const wideRe =
+    /[\u2E80-\u2EFF\u2F00-\u2FDF\u3000-\u303F\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF\uFF00-\uFFEF]/u
+  for (const ch of str) {
+    w += wideRe.test(ch) ? 2 : 1
+  }
+  return w
+}
+
 import {
   parseSpec,
   inputPat,
@@ -39,7 +56,9 @@ export class Label {
     if (this.value === "<" || this.value === ">") {
       return this.value
     }
-    return this.value.replace(/([<>[\](){}])/g, "\\$1")
+    return this.value
+      .replace(/([<>[\](){}\\])/g, "\\$1")
+      .replace(/:{2,}/g, m => ":" + "\\:".repeat(m.length - 1))
   }
 }
 
@@ -72,6 +91,42 @@ export class Icon {
   }
 }
 
+export class Matrix {
+  constructor(rows) {
+    // rows should already be 2D array of booleans from parsing
+    const inputRows = Array.isArray(rows) ? rows : []
+    // Make shallow copies and coerce non-array entries into arrays
+    this.rows = inputRows.map(row => (Array.isArray(row) ? row.slice() : [row]))
+
+    // Determine maximum row length
+    const maxLen = this.rows.reduce((m, r) => Math.max(m, r.length), 0)
+
+    // Pad short rows with false to make all rows the same length
+    for (let i = 0; i < this.rows.length; i++) {
+      const r = this.rows[i]
+      while (r.length < maxLen) {
+        r.push(false)
+      }
+    }
+  }
+
+  get isMatrix() {
+    return true
+  }
+
+  stringify() {
+    // Format as {row1,row2,row3,...} where each cell is 0 or 1
+    const rowStrings = this.rows.map(row =>
+      row.map(cell => (cell ? "1" : "0")).join(""),
+    )
+    return `{${rowStrings.join(",")}}`
+  }
+
+  translate() {
+    // Matrix doesn't need translation
+  }
+}
+
 export class Input {
   constructor(shape, value) {
     this.shape = shape
@@ -83,13 +138,22 @@ export class Input {
     this.isInset =
       shape === "boolean" || shape === "stack" || shape === "reporter"
     this.isColor = shape === "color"
+    this.isMatrix = shape === "matrix"
     this.hasArrow = shape === "dropdown" || shape === "number-dropdown"
     this.isDarker =
       shape === "boolean" || shape === "stack" || shape === "dropdown"
     this.isSquare =
       shape === "string" || shape === "color" || shape === "dropdown"
 
-    this.hasLabel = !(this.isColor || this.isInset)
+    // Check if value is a Matrix object
+    const isMatrixValue = value && typeof value === "object" && value.isMatrix
+
+    this.hasLabel = !(
+      this.isColor ||
+      this.isInset ||
+      this.isMatrix ||
+      isMatrixValue
+    )
     this.label = this.hasLabel
       ? new Label(value, `literal-${this.shape}`)
       : null
@@ -103,11 +167,39 @@ export class Input {
     this.menu = value
   }
 
-  stringify() {
+  setMenu(value) {
+    this.menu = value
+  }
+
+  stringify(parentPrefix = "") {
     if (this.isColor) {
       assert(this.value[0] === "#")
       return `[${this.value}]`
     }
+
+    // Handle Matrix values
+    if (this.value && typeof this.value === "object" && this.value.isMatrix) {
+      const matrixStr = this.value.stringify()
+      // Calculate the indentation needed for alignment
+      // parentPrefix is the text before this input on the same line
+      // We need to account for: parentPrefix + "(" + "{"
+      const indentSpaces = Math.max(0, displayWidth(parentPrefix) + 2)
+      const indent = " ".repeat(indentSpaces)
+
+      // Split matrix string and add indentation to each line after the first
+      const parts = matrixStr.slice(1, -1).split(",") // Remove outer braces and split by comma
+      const formattedMatrix = parts
+        .map((part, index) => {
+          if (index === 0) {
+            return part
+          }
+          return `\n${indent}${part}`
+        })
+        .join(",")
+
+      return `({${formattedMatrix}} v)`
+    }
+
     // Order sensitive; see #439
     let text = (this.value ? String(this.value) : "")
       .replace(/([\]\\])/g, "\\$1")
@@ -129,6 +221,10 @@ export class Input {
 
   translate(lang) {
     if (this.hasArrow) {
+      // Don't create label for Matrix values
+      if (this.value && typeof this.value === "object" && this.value.isMatrix) {
+        return
+      }
       if (this.menu) {
         this.value = lang.dropdowns[this.menu].value
       }
@@ -144,6 +240,11 @@ export class Block {
     this.children = children
     this.comment = comment || null
     this.diff = null
+
+    // Block path for identification (e.g., "1.2.1" = Script 1, Block 2, Child 1)
+    this.blockPath = null
+    // Source code range for cursor-based highlighting
+    this.sourceRange = null
 
     const shape = this.info.shape
     this.isHat = shape === "hat" || shape === "cat" || shape === "define-hat"
@@ -171,21 +272,41 @@ export class Block {
   stringify(extras) {
     let firstInput = null
     let checkAlias = false
-    let text = this.children
-      .map(child => {
-        if (child.isIcon) {
-          checkAlias = true
+    let currentLinePrefix = ""
+    const parts = []
+
+    for (const child of this.children) {
+      if (child.isIcon) {
+        checkAlias = true
+      }
+      if (!firstInput && !(child.isLabel || child.isIcon)) {
+        firstInput = child
+      }
+
+      if (child.isScript) {
+        parts.push(`\n${indent(child.stringify())}\n`)
+        currentLinePrefix = ""
+      } else {
+        // Pass the current line prefix to child's stringify for alignment
+        const childStr = child.isInput
+          ? child.stringify(currentLinePrefix)
+          : child.stringify()
+
+        const trimmed = childStr.trim()
+        parts.push(trimmed)
+
+        // Update prefix for next child
+        if (!childStr.includes("\n")) {
+          currentLinePrefix += trimmed + " "
+        } else {
+          // If there's a newline, extract the last line as new prefix
+          const lines = childStr.split("\n")
+          currentLinePrefix = lines[lines.length - 1].trim() + " "
         }
-        if (!firstInput && !(child.isLabel || child.isIcon)) {
-          firstInput = child
-        }
-        return child.isScript
-          ? `\n${indent(child.stringify())}\n`
-          : child.stringify().trim() + " "
-      })
-      .join("")
-      .trim()
-      .replace(/ +\n/g, "\n")
+      }
+    }
+
+    let text = parts.join(" ").trim().replace(/ +\n/g, "\n")
 
     const lang = this.info.language
     if (checkAlias && lang && this.info.selector) {
@@ -376,6 +497,8 @@ export class Script {
     this.blocks = blocks
     this.isEmpty = !blocks.length
     this.isFinal = !this.isEmpty && blocks[blocks.length - 1].isFinal
+    // Script index for block path generation
+    this.scriptIndex = null
   }
   get isScript() {
     return true
@@ -415,6 +538,8 @@ export class Script {
 export class Document {
   constructor(scripts) {
     this.scripts = scripts
+    // Map of blockPath -> Block for quick lookup
+    this.blockMap = new Map()
   }
 
   stringify() {
@@ -423,5 +548,89 @@ export class Document {
 
   translate(lang) {
     this.scripts.forEach(script => script.translate(lang))
+  }
+
+  /**
+   * Get a block by its path (e.g., "1.2.1")
+   * @param {string} path - The block path
+   * @returns {Block|null}
+   */
+  getBlockByPath(path) {
+    return this.blockMap.get(path) || null
+  }
+
+  /**
+   * Get the block at the given cursor position
+   * @param {number} line - 1-based line number
+   * @param {number} column - 1-based column number
+   * @returns {Block|null} - The most precisely matching block at the cursor position.
+   *   If cursor is within a nested block's brackets, returns the nested block.
+   *   If cursor is outside all nested blocks but within the parent, returns the parent.
+   */
+  getBlockAtCursor(line, column) {
+    let bestMatch = null
+    let smallestSpan = Infinity
+    let blockOnSameLine = null // Track if there's a block whose range starts on this line
+
+    for (const [_path, block] of this.blockMap) {
+      const range = block.sourceRange
+      if (!range) {
+        continue
+      }
+
+      const { start, end } = range
+
+      // Track blocks that start on the same line (for handling leading whitespace)
+      if (start.line === line && end.line === line) {
+        // Single-line block on the cursor's line
+        if (
+          !blockOnSameLine ||
+          end.column - start.column <
+            blockOnSameLine.sourceRange.end.column -
+              blockOnSameLine.sourceRange.start.column
+        ) {
+          blockOnSameLine = block
+        }
+      }
+
+      // Check if cursor is within this block's range
+      const afterStart =
+        line > start.line || (line === start.line && column >= start.column)
+      const beforeEnd =
+        line < end.line || (line === end.line && column <= end.column)
+
+      if (afterStart && beforeEnd) {
+        // Calculate the span of this block (smaller span = more precise match)
+        let span
+        if (start.line === end.line) {
+          span = end.column - start.column
+        } else {
+          // For multi-line blocks, use a large span
+          span = (end.line - start.line) * 10000 + (end.column - start.column)
+        }
+
+        // Select the block with the smallest span (most precise match)
+        if (span < smallestSpan) {
+          smallestSpan = span
+          bestMatch = block
+        }
+      }
+    }
+
+    // If cursor is in leading whitespace (before any block on this line),
+    // prefer the block on the same line over a parent multi-line block
+    if (blockOnSameLine && bestMatch) {
+      const bestRange = bestMatch.sourceRange
+      // If bestMatch is a multi-line block and cursor is before the single-line block on this line
+      if (
+        bestRange.start.line !== bestRange.end.line &&
+        blockOnSameLine.sourceRange.start.line === line &&
+        column < blockOnSameLine.sourceRange.start.column
+      ) {
+        return blockOnSameLine
+      }
+    }
+
+    return bestMatch
   }
 }

@@ -137,8 +137,7 @@ export class LineView {
 
   measure() {}
 
-  draw(_iconStyle, parent) {
-    const category = parent.info.category
+  draw(_iconStyle, _parent) {
     return SVG.el("line", {
       class: `sb3-extension-line`,
       "stroke-linecap": "round",
@@ -150,11 +149,93 @@ export class LineView {
   }
 }
 
+export class MatrixView {
+  constructor(matrix) {
+    Object.assign(this, matrix)
+    this.x = 0
+
+    if (this.rows && this.rows.length > 0) {
+      const numRows = this.rows.length
+      const numCols = this.rows[0].length
+
+      // Calculate cell size based on target height and number of rows
+      const cellSpacing = 1
+      const targetHeight = 26 // Target height for matrix display
+      const availableHeight = targetHeight - (numRows - 1) * cellSpacing
+      this.cellSize = Math.max(1, Math.floor(availableHeight / numRows))
+
+      // Calculate actual rendered dimensions
+      this.width = numCols * (this.cellSize + cellSpacing) - cellSpacing
+      this.height = numRows * (this.cellSize + cellSpacing) - cellSpacing
+    } else {
+      this.width = 0
+      this.height = 0
+      this.cellSize = 0
+    }
+  }
+
+  get isMatrix() {
+    return true
+  }
+
+  measure() {
+    // Already measured in constructor
+  }
+
+  draw(iconStyle, parent) {
+    if (!this.rows || this.rows.length === 0) {
+      return SVG.group([])
+    }
+
+    const cellSize = this.cellSize
+    const cellSpacing = 1
+    const totalCellSize = cellSize + cellSpacing
+    const elements = []
+
+    // Draw matrix cells
+    for (let rowIdx = 0; rowIdx < this.rows.length; rowIdx++) {
+      const row = this.rows[rowIdx]
+      for (let colIdx = 0; colIdx < row.length; colIdx++) {
+        const cell = row[colIdx]
+        const x = colIdx * totalCellSize
+        const y = rowIdx * totalCellSize
+
+        const isFilled = cell === true
+
+        // Use custom color or category-based styling
+        const rect = SVG.el("rect", {
+          x: x,
+          y: y,
+          width: cellSize,
+          height: cellSize,
+          rx: 1,
+          ry: 1,
+          "stroke-width": 0,
+        })
+
+        if (isFilled) {
+          rect.setAttribute("fill", "#FFFFFF")
+        } else {
+          rect.classList.add(`sb3-${parent.info.category}`)
+        }
+
+        elements.push(rect)
+      }
+    }
+
+    return SVG.group(elements)
+  }
+}
+
 export class InputView {
   constructor(input) {
     Object.assign(this, input)
     if (input.label) {
       this.label = newView(input.label)
+    }
+    // Create MatrixView if value is a Matrix
+    if (input.value && input.value.isMatrix) {
+      this.matrixView = new MatrixView(input.value)
     }
     this.isBoolean = this.shape === "boolean"
     this.isDropdown = this.shape === "dropdown"
@@ -170,6 +251,9 @@ export class InputView {
   measure() {
     if (this.hasLabel) {
       this.label.measure()
+    }
+    if (this.matrixView) {
+      this.matrixView.measure()
     }
   }
 
@@ -191,7 +275,17 @@ export class InputView {
     let w
     let label
     let px
-    if (this.isBoolean) {
+
+    // Check if this has a matrix view
+    const hasMatrix = !!this.matrixView
+
+    if (hasMatrix) {
+      // Use same padding as text dropdowns for consistency
+      px = 11
+      const matrixWidth = this.matrixView.width
+      w = matrixWidth + px + 31 // Same calculation as text dropdown with arrow
+      this.height = 32 // Fixed height for consistency with other inputs
+    } else if (this.isBoolean) {
       w = 48
     } else if (this.isColor) {
       w = 40
@@ -212,7 +306,8 @@ export class InputView {
     }
     this.width = w
 
-    const h = (this.height = 32)
+    const h = this.height || 32
+    this.height = h
 
     const el = InputView.shapes[this.shape](w, h)
     SVG.setProps(el, {
@@ -256,6 +351,17 @@ export class InputView {
     }
 
     const result = SVG.group([el])
+
+    // Render matrix content using MatrixView
+    if (hasMatrix) {
+      // Use same left margin as text dropdowns (px is already set to 11)
+      const matrixStartX = px
+      const matrixStartY = (h - this.matrixView.height) / 2
+
+      const matrixEl = this.matrixView.draw(iconStyle, parent)
+      result.appendChild(SVG.move(matrixStartX, matrixStartY, matrixEl))
+    }
+
     if (this.hasLabel) {
       result.appendChild(label)
     }
@@ -263,7 +369,7 @@ export class InputView {
       result.appendChild(
         SVG.move(
           w - 24,
-          12.8505114083, // (12 - ((12 / 12.71) * 8.79)) / 2 + 11
+          h === 32 ? 12.8505114083 : (h - 32) / 2 + 12.8505114083,
           SVG.symbol(
             iconStyle === "high-contrast"
               ? "#sb3-dropdownArrow-high-contrast"
@@ -283,6 +389,9 @@ class BlockView {
     this.children = block.children.map(newView)
     this.comment = this.comment ? newView(this.comment) : null
     this.isRound = this.isReporter
+
+    // Store the original block for path reference
+    this.block = block
 
     // Avoid accidental mutation
     this.info = { ...block.info }
@@ -618,7 +727,16 @@ class BlockView {
       })
     }
 
-    return SVG.group(objects)
+    const group = SVG.group(objects)
+
+    // Add data-block-path attribute for highlighting support
+    if (this.block && this.block.blockPath) {
+      SVG.setProps(group, {
+        "data-block-path": this.block.blockPath,
+      })
+    }
+
+    return group
   }
 }
 
@@ -777,12 +895,18 @@ class DocumentView {
     Object.assign(this, doc)
     this.scripts = doc.scripts.map(newView)
 
+    // Store reference to original document for block lookup
+    this.doc = doc
+
     this.width = null
     this.height = null
     this.el = null
     this.defs = null
     this.scale = options.scale
     this.iconStyle = options.style.replace("scratch3-", "")
+
+    // Map of blockPath -> { el, rect } for highlighting
+    this.elementMap = new Map()
   }
 
   measure() {
@@ -834,7 +958,118 @@ class DocumentView {
       }),
     )
     this.el = svg
+
+    // Build element map after rendering
+    this._buildElementMap()
+
     return svg
+  }
+
+  /**
+   * Build the element map by finding all elements with data-block-path
+   */
+  _buildElementMap() {
+    if (!this.el) return
+
+    this.elementMap.clear()
+    const blocks = this.el.querySelectorAll("[data-block-path]")
+    blocks.forEach(el => {
+      const path = el.getAttribute("data-block-path")
+      if (path) {
+        this.elementMap.set(path, { el })
+      }
+    })
+  }
+
+  /**
+   * Get the SVG element for a block by its path
+   * @param {string} path - Block path (e.g., "1.2.1")
+   * @returns {SVGElement|null}
+   */
+  getElementByPath(path) {
+    const entry = this.elementMap.get(path)
+    return entry ? entry.el : null
+  }
+
+  /**
+   * Highlight a block by its path
+   * @param {string} path - Block path
+   * @param {Object} options - { blink: boolean, colorShift: boolean }
+   *   - blink: if true, the block will blink
+   *   - colorShift: if true, uses alternate style colors instead of yellow
+   */
+  highlightBlock(path, options = {}) {
+    const el = this.getElementByPath(path)
+    if (!el) return false
+
+    // Add highlight class to the first child (the shape element)
+    const shapeEl = el.firstElementChild
+    if (shapeEl) {
+      // Clear any existing highlight classes first
+      shapeEl.classList.remove(
+        "sb3-highlight",
+        "sb3-highlight-colorShift",
+        "sb3-blink",
+      )
+      // Force browser reflow to reset animation (note: path element does not have offsetWidth)
+      void shapeEl.getBBox()
+
+      // Now add the new highlight classes
+      shapeEl.classList.add("sb3-highlight")
+      if (options.colorShift) {
+        shapeEl.classList.add("sb3-highlight-colorShift")
+      }
+      if (options.blink) {
+        shapeEl.classList.add("sb3-blink")
+      }
+    }
+    return true
+  }
+
+  /**
+   * Clear highlight from a block
+   * @param {string} path - Block path, or null to clear all
+   */
+  clearHighlight(path = null) {
+    if (path) {
+      const el = this.getElementByPath(path)
+      if (el) {
+        const shapeEl = el.firstElementChild
+        if (shapeEl) {
+          shapeEl.classList.remove(
+            "sb3-highlight",
+            "sb3-highlight-colorShift",
+            "sb3-blink",
+          )
+        }
+      }
+    } else {
+      // Clear all highlights
+      const highlighted = this.el.querySelectorAll(".sb3-highlight")
+      highlighted.forEach(el => {
+        el.classList.remove(
+          "sb3-highlight",
+          "sb3-highlight-colorShift",
+          "sb3-blink",
+        )
+      })
+    }
+  }
+
+  /**
+   * Highlight block at cursor position
+   * @param {number} line - 1-based line number
+   * @param {number} column - 1-based column number
+   * @param {Object} options - { blink: boolean, colorShift: boolean }
+   * @returns {string|null} - The path of the highlighted block, or null
+   */
+  highlightBlockAtCursor(line, column, options = {}) {
+    const block = this.doc.getBlockAtCursor(line, column)
+    if (block && block.blockPath) {
+      this.highlightBlock(block.blockPath, options)
+      return block.blockPath
+    }
+    return null
   }
 
   /* Export SVG image as XML string */
