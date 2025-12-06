@@ -26,13 +26,34 @@ export class Icon {
 }
 
 /**
+ * Block information object
+ */
+export interface BlockInfo {
+  id?: string
+  spec?: string
+  parts?: string[]
+  selector?: string
+  inputs?: string[]
+  shape: string
+  category: string
+  categoryIsDefault?: boolean
+  hasLoopArrow?: boolean
+  argument?: "boolean" | "number" | "string"
+  call?: string
+  names?: string[]
+  language?: LanguageData
+  isRTL?: boolean
+  [key: string]: any
+}
+
+/**
  * An input element in a block (text input, dropdown, etc.)
  */
 export class Input {
-  constructor(shape: string, value: any)
+  constructor(shape: string, value: string | number | boolean | Matrix | null)
   shape: string
-  value: any
-  menu?: any
+  value: string | number | boolean | Matrix | null
+  menu?: string
   label: Label | null
   x: number
   readonly isInput: true
@@ -46,9 +67,9 @@ export class Input {
   isDarker: boolean
   isSquare: boolean
   hasLabel: boolean
-  setMenu(value: any): void
+  setMenu(value: string): void
   stringify(parentPrefix?: string): string
-  translate(lang: any): void
+  translate(lang: LanguageData): void
 }
 
 /**
@@ -59,16 +80,16 @@ export class Matrix {
   rows: boolean[][]
   readonly isMatrix: true
   stringify(): string
-  translate(): void
+  translate(lang?: LanguageData): void
 }
 
 /**
  * A block definition
  */
 export class Block {
-  constructor(info: any, children: any[], comment?: Comment | null)
-  info: any
-  children: any[]
+  constructor(info: BlockInfo, children: (Label | Icon | Input | Block | Script | Comment | Glow)[], comment?: Comment | null)
+  info: BlockInfo
+  children: (Label | Icon | Input | Block | Script | Comment | Glow)[]
   comment: Comment | null
   diff: any | null
   blockPath: string | null
@@ -86,15 +107,17 @@ export class Block {
   isElse: boolean
   isEnd: boolean
   stringify(extras?: any): string
-  translate(lang: any): void
+  translate(lang: LanguageData): void
 }
 
 /**
  * A comment element
  */
 export class Comment {
-  constructor(text: string)
-  text: string
+  constructor(value: string, hasBlock?: boolean)
+  label: Label
+  width: number | null
+  hasBlock?: boolean
   readonly isComment: true
   stringify(): string
   translate(): void
@@ -107,10 +130,10 @@ export class Glow {
   constructor(child: Block | Script)
   child: Block | Script
   shape: string
-  info?: any
+  info?: BlockInfo
   readonly isGlow: true
   stringify(): string
-  translate(lang: any): void
+  translate(lang: LanguageData): void
 }
 
 /**
@@ -120,9 +143,11 @@ export class Script {
   constructor(blocks: Block[])
   blocks: Block[]
   isEmpty: boolean
+  isFinal: boolean
+  scriptIndex: number | null
   readonly isScript: true
   stringify(): string
-  translate(lang: any): void
+  translate(lang: LanguageData): void
 }
 
 /**
@@ -131,21 +156,36 @@ export class Script {
 export class Document {
   constructor(scripts: Script[])
   scripts: Script[]
+  blockMap: Map<string, Block>
   getBlockByPath(path: string): Block | null
   getBlockAtCursor(line: number, column: number): Block | null
   stringify(): string
-  translate(lang: any): void
+  translate(lang: LanguageData): void
 }
 
 /**
  * A view of a rendered document
  */
 export interface DocumentView {
+  scripts: any[]
+  doc: Document
+  width: number | null
+  height: number | null
+  el: SVGElement | null
+  defs: SVGDefsElement | null
+  scale: number
+  elementMap: Map<string, { el: SVGElement }>
+  
+  measure(): void
   render(): SVGElement
   highlightBlock(path: string, options?: { blink?: boolean }): boolean
   highlightBlockAtCursor(line: number, column: number, options?: { blink?: boolean }): string | null
   clearHighlight(path?: string | null): void
   getElementByPath(path: string): SVGElement | null
+  exportSVGString(): string
+  exportSVG(): string
+  toCanvas(cb: (canvas: HTMLCanvasElement) => void, exportScale?: number): void
+  exportPNG(cb: (url: string) => void, scale?: number): void
 }
 
 /**
@@ -160,6 +200,15 @@ export interface RenderOptions {
   parse?: (code: string, options: RenderOptions) => Document
   render?: (doc: Document, options: RenderOptions) => SVGElement
   replace?: (el: HTMLElement, svg: SVGElement, doc: Document, options: RenderOptions) => void
+}
+
+/**
+ * Language data object containing dropdowns and block information
+ */
+export interface LanguageData {
+  dropdowns: Record<string, { value: string }>
+  categories?: Record<string, string>
+  [key: string]: any
 }
 
 /**
