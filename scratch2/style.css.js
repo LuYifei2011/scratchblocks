@@ -123,4 +123,26 @@ export default `
 .sb-diff-del {
   stroke-width: 3px;
 }
+
+/* Block highlight styles */
+.sb-highlight:not(.sb-blink) {
+  fill: #FBF883 !important;
+}
+
+/* Blinking animation for jump-to-block */
+.sb-blink {
+  animation: sb-blink-animation 0.5s 3;
+}
+
+@keyframes sb-blink-animation {
+  0% {
+    fill: #FBF883;
+  }
+  50% {
+    fill: #FBF883;
+    animation-timing-function: step-start;
+  }
+  100% {
+  }
+}
 `

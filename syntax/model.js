@@ -147,6 +147,11 @@ export class Block {
     this.comment = comment || null
     this.diff = null
 
+    // Block path for identification (e.g., "1.2.1" = Script 1, Block 2, Child 1)
+    this.blockPath = null
+    // Source code range for cursor-based highlighting
+    this.sourceRange = null
+
     const shape = this.info.shape
     this.isHat = shape === "hat" || shape === "cat" || shape === "define-hat"
     this.hasPuzzle =
@@ -378,6 +383,8 @@ export class Script {
     this.blocks = blocks
     this.isEmpty = !blocks.length
     this.isFinal = !this.isEmpty && blocks[blocks.length - 1].isFinal
+    // Script index for block path generation
+    this.scriptIndex = null
   }
   get isScript() {
     return true
@@ -417,6 +424,8 @@ export class Script {
 export class Document {
   constructor(scripts) {
     this.scripts = scripts
+    // Map of blockPath -> Block for quick lookup
+    this.blockMap = new Map()
   }
 
   stringify() {
@@ -425,5 +434,80 @@ export class Document {
 
   translate(lang) {
     this.scripts.forEach(script => script.translate(lang))
+  }
+
+  /**
+   * Get a block by its path (e.g., "1.2.1")
+   * @param {string} path - The block path
+   * @returns {Block|null}
+   */
+  getBlockByPath(path) {
+    return this.blockMap.get(path) || null
+  }
+
+  /**
+   * Get the block at the given cursor position
+   * @param {number} line - 1-based line number
+   * @param {number} column - 1-based column number
+   * @returns {Block|null} - The most precisely matching block at the cursor position.
+   *   If cursor is within a nested block's brackets, returns the nested block.
+   *   If cursor is outside all nested blocks but within the parent, returns the parent.
+   */
+  getBlockAtCursor(line, column) {
+    let bestMatch = null
+    let smallestSpan = Infinity
+    let blockOnSameLine = null // Track if there's a block whose range starts on this line
+
+    for (const [_path, block] of this.blockMap) {
+      const range = block.sourceRange
+      if (!range) {
+        continue
+      }
+
+      const { start, end } = range
+      
+      // Track blocks that start on the same line (for handling leading whitespace)
+      if (start.line === line && end.line === line) {
+        // Single-line block on the cursor's line
+        if (!blockOnSameLine || (end.column - start.column) < (blockOnSameLine.sourceRange.end.column - blockOnSameLine.sourceRange.start.column)) {
+          blockOnSameLine = block
+        }
+      }
+      
+      // Check if cursor is within this block's range
+      const afterStart = line > start.line || (line === start.line && column >= start.column)
+      const beforeEnd = line < end.line || (line === end.line && column <= end.column)
+
+      if (afterStart && beforeEnd) {
+        // Calculate the span of this block (smaller span = more precise match)
+        let span
+        if (start.line === end.line) {
+          span = end.column - start.column
+        } else {
+          // For multi-line blocks, use a large span
+          span = (end.line - start.line) * 10000 + (end.column - start.column)
+        }
+
+        // Select the block with the smallest span (most precise match)
+        if (span < smallestSpan) {
+          smallestSpan = span
+          bestMatch = block
+        }
+      }
+    }
+
+    // If cursor is in leading whitespace (before any block on this line),
+    // prefer the block on the same line over a parent multi-line block
+    if (blockOnSameLine && bestMatch) {
+      const bestRange = bestMatch.sourceRange
+      // If bestMatch is a multi-line block and cursor is before the single-line block on this line
+      if (bestRange.start.line !== bestRange.end.line && 
+          blockOnSameLine.sourceRange.start.line === line &&
+          column < blockOnSameLine.sourceRange.start.column) {
+        return blockOnSameLine
+      }
+    }
+
+    return bestMatch
   }
 }

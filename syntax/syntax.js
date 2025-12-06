@@ -867,6 +867,335 @@ function recogniseStuff(scripts) {
   })
 }
 
+/**
+ * Assign block paths and build the block map for a document.
+ * Path format: {scriptIndex}.{blockIndex}[.{childIndex}]*
+ * Example: 1.2.1 = Script 1, Block 2, Child Block 1
+ */
+function assignBlockPaths(doc) {
+  function processBlock(block, basePath, blockMap) {
+    if (!block || !block.isBlock) return
+
+    block.blockPath = basePath
+    blockMap.set(basePath, block)
+
+    // Process nested blocks in children
+    let childBlockIndex = 0
+    for (const child of block.children) {
+      if (child.isBlock) {
+        childBlockIndex++
+        processBlock(child, `${basePath}.${childBlockIndex}`, blockMap)
+      } else if (child.isScript) {
+        // Handle C-block mouths (if/else/repeat bodies)
+        childBlockIndex++
+        let innerBlockIndex = 0
+        for (const innerBlock of child.blocks) {
+          innerBlockIndex++
+          if (innerBlock.isBlock) {
+            processBlock(innerBlock, `${basePath}.${childBlockIndex}.${innerBlockIndex}`, blockMap)
+          } else if (innerBlock.isGlow) {
+            processGlow(innerBlock, `${basePath}.${childBlockIndex}.${innerBlockIndex}`, blockMap)
+          }
+        }
+      } else if (child.isGlow) {
+        childBlockIndex++
+        processGlow(child, `${basePath}.${childBlockIndex}`, blockMap)
+      }
+    }
+  }
+
+  function processGlow(glow, basePath, blockMap) {
+    if (!glow || !glow.isGlow) return
+
+    const child = glow.child
+    if (child.isBlock) {
+      processBlock(child, basePath, blockMap)
+    } else if (child.isScript) {
+      let innerBlockIndex = 0
+      for (const innerBlock of child.blocks) {
+        innerBlockIndex++
+        if (innerBlock.isBlock) {
+          processBlock(innerBlock, `${basePath}.${innerBlockIndex}`, blockMap)
+        } else if (innerBlock.isGlow) {
+          processGlow(innerBlock, `${basePath}.${innerBlockIndex}`, blockMap)
+        }
+      }
+    }
+  }
+
+  doc.scripts.forEach((script, scriptIdx) => {
+    script.scriptIndex = scriptIdx + 1
+    let blockIndex = 0
+
+    for (const block of script.blocks) {
+      blockIndex++
+      const basePath = `${scriptIdx + 1}.${blockIndex}`
+
+      if (block.isBlock) {
+        processBlock(block, basePath, doc.blockMap)
+      } else if (block.isGlow) {
+        processGlow(block, basePath, doc.blockMap)
+      }
+    }
+  })
+}
+
+/**
+ * Assign source ranges to blocks based on precise character positions.
+ * This version tracks exact column positions for nested blocks to enable
+ * precise cursor-based highlighting.
+ */
+function assignSourceRanges(doc, code) {
+  const lines = code.split("\n")
+
+  /**
+   * Find all bracket ranges in a line, sorted by start position.
+   * Returns an array of {start, end, type, depth} objects.
+   */
+  function findAllBracketRanges(lineContent) {
+    const ranges = []
+    const stack = []
+
+    for (let i = 0; i < lineContent.length; i++) {
+      const ch = lineContent[i]
+      // Handle escape character
+      if (ch === "\\") {
+        i++ // Skip next character
+        continue
+      }
+
+      if (ch === "(" || ch === "<" || ch === "[" || ch === "{") {
+        stack.push({ char: ch, pos: i, depth: stack.length })
+      } else if (ch === ")" || ch === ">" || ch === "]" || ch === "}") {
+        const matching = { "(": ")", "<": ">", "[": "]", "{": "}" }
+        // Find matching opener
+        for (let j = stack.length - 1; j >= 0; j--) {
+          if (matching[stack[j].char] === ch) {
+            const opener = stack.splice(j, 1)[0]
+            ranges.push({
+              start: opener.pos,
+              end: i,
+              type: opener.char,
+              depth: opener.depth,
+            })
+            break
+          }
+        }
+      }
+    }
+    // Sort by start position
+    ranges.sort((a, b) => a.start - b.start)
+    return ranges
+  }
+
+  /**
+   * Find the bracket range that starts at the given position.
+   */
+  function findBracketAt(ranges, pos) {
+    return ranges.find(r => r.start === pos)
+  }
+
+  /**
+   * Recursively assign source ranges to a block and its nested children on a single line.
+   * @param {Block} block - The block to process
+   * @param {string} lineContent - The content of the current line
+   * @param {number} lineNum - The 1-based line number
+   * @param {number} startCol - The 1-based starting column of the block
+   * @param {number} endCol - The 1-based ending column of the block
+   * @param {Array} bracketRanges - Pre-computed bracket ranges for the line
+   */
+  function assignBlockRangeRecursive(block, lineContent, lineNum, startCol, endCol, bracketRanges) {
+    const actualBlock = block.isGlow ? block.child : block
+    if (!actualBlock.isBlock) return
+
+    actualBlock.sourceRange = {
+      start: { line: lineNum, column: startCol },
+      end: { line: lineNum, column: endCol },
+    }
+
+    // Find all block children (excluding Script children which are on different lines)
+    const blockChildren = actualBlock.children.filter(c => c.isBlock)
+    
+    // For each child block, find its position in the source
+    // searchStart is 0-based index into lineContent
+    // Start searching from inside the current block (after the opening bracket if any)
+    let searchStart = startCol // 0-based position, skipping opening bracket
+    // searchEnd is also 0-based, exclude the closing bracket
+    const searchEnd = endCol - 2
+    
+    for (const child of blockChildren) {
+      if (child.isOutline) {
+        // Outline blocks (define hat prototypes) need special handling
+        // Look for the content after "define " 
+        const substringStart = startCol - 1
+        const defineMatch = lineContent.substring(substringStart).match(/^define\s+/i)
+        if (defineMatch) {
+          const outlineStart = substringStart + defineMatch[0].length + 1 // 1-based
+          const outlineEnd = endCol // extends to end of block
+          child.sourceRange = {
+            start: { line: lineNum, column: outlineStart },
+            end: { line: lineNum, column: outlineEnd },
+          }
+          // Process nested blocks within the outline
+          assignBlockRangeRecursive(child, lineContent, lineNum, outlineStart, outlineEnd, bracketRanges)
+        }
+      } else {
+        // Regular nested blocks are wrapped in (), <>, or {} (for inline stack blocks)
+        // Find the next bracket that starts a block within our search range
+        let found = false
+        for (let i = searchStart; i <= searchEnd && !found; i++) {
+          const ch = lineContent[i]
+          if (ch === "(" || ch === "<" || ch === "{") {
+            const range = findBracketAt(bracketRanges, i)
+            if (range && range.end <= searchEnd) {
+              const absStart = i + 1 // 1-based
+              const absEnd = range.end + 2 // 1-based, inclusive
+              assignBlockRangeRecursive(child, lineContent, lineNum, absStart, absEnd, bracketRanges)
+              searchStart = range.end + 1
+              found = true
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Process a block and its C-block children recursively, tracking line numbers correctly.
+   * @param {Block} block - The block to process
+   * @param {number} lineNum - The 1-based line number of this block
+   * @returns {number} - The next line number after this block and all its children
+   */
+  function processBlockWithChildren(block, lineNum) {
+    const actualBlock = block.isGlow ? block.child : block
+    if (!actualBlock.isBlock) return lineNum
+
+    const lineContent = lines[lineNum - 1] || ""
+    const bracketRanges = findAllBracketRanges(lineContent)
+    const trimmedStart = lineContent.search(/\S/)
+    const start = trimmedStart >= 0 ? trimmedStart + 1 : 1
+    
+    // Assign range for this block's first line (will be updated for multi-line blocks)
+    assignBlockRangeRecursive(actualBlock, lineContent, lineNum, start, lineContent.length + 1, bracketRanges)
+
+    let nextLine = lineNum + 1
+    
+    // Check if this block has any Script children (C-blocks or stack inputs like {})
+    const scriptChildren = actualBlock.children.filter(child => child.isScript)
+    const hasScriptChildren = scriptChildren.length > 0
+    
+    // Check if there are inline {} (same line, content between { and })
+    // Inline {} means the whole {content} is on the same line as the block
+    const hasInlineBraces = lineContent.includes('{') && lineContent.includes('}')
+    const allScriptsEmpty = scriptChildren.every(s => s.blocks.length === 0)
+    
+    // Determine if scripts span multiple lines
+    // If the block's first line has both { and } and all scripts are empty or have inline content,
+    // then it's a single-line block
+    const isInlineOnly = hasInlineBraces && !actualBlock.hasScript && 
+                         (allScriptsEmpty || scriptChildren.every(s => 
+                           s.blocks.length === 1 && s.blocks[0].children.every(c => c.isLabel || c.isInput)))
+    
+    // For truly inline {} like "test {test}", don't change line numbers
+    if (isInlineOnly && scriptChildren.length > 0) {
+      // Just process inline, no line changes needed
+      // Range is already set to single line
+      return nextLine
+    }
+
+    // Handle blocks with Script children (C-blocks with hasScript, or blocks with {} inputs)
+    if (actualBlock.hasScript || hasScriptChildren) {
+      // Track if we've seen "else" to know when to add extra line
+      let sawElse = false
+      let scriptIndex = 0
+      
+      for (const child of actualBlock.children) {
+        if (child.isScript) {
+          // If we just saw "else", account for the else line
+          if (sawElse) {
+            nextLine++ // The "else" line
+            sawElse = false
+          }
+          
+          // For multiple {} scripts (not C-blocks):
+          // After the first script, there's a line like "} label {" before next script content
+          // So between scripts, the "} label {" line is shared
+          if (scriptIndex > 0 && !actualBlock.hasScript) {
+            // The previous script's content ended, then we have "} label {" on nextLine-1
+            // The next script's content starts on nextLine
+            // But wait - the "} label {" is ONE line, so we don't need to add extra
+          }
+          
+          // Process each block in the script
+          for (const innerBlock of child.blocks) {
+            nextLine = processBlockWithChildren(innerBlock, nextLine)
+          }
+          
+          // After processing this script's blocks, if there's another script coming,
+          // we need to account for the "} label {" line (which is ONE line containing both } and {)
+          // So we add 1 for the closing } (which also contains the opening { of next script)
+          if (scriptIndex < scriptChildren.length - 1 && !actualBlock.hasScript) {
+            nextLine++ // "} label {" line
+          }
+          
+          scriptIndex++
+        } else if (child.isLabel && child.value.toLowerCase() === "else") {
+          // Mark that we saw "else", will add line when we process the next Script
+          sawElse = true
+        }
+      }
+      
+      // For C-blocks (hasScript), account for the "end" line
+      // For multiline stack inputs ({}), account for the closing "}" line
+      const endLineNum = nextLine
+      if (actualBlock.hasScript) {
+        nextLine++ // "end" line for C-blocks
+      } else if (hasScriptChildren) {
+        nextLine++ // final "}" line for stack inputs
+      }
+      
+      // Update block's sourceRange to span from first line to end line
+      // This ensures else, end, and } lines are included in the block's range
+      const endLineContent = lines[endLineNum - 1] || ""
+      actualBlock.sourceRange = {
+        start: { line: lineNum, column: start },
+        end: { line: endLineNum, column: endLineContent.length + 1 },
+      }
+    }
+
+    return nextLine
+  }
+
+  /**
+   * Process a script, handling all blocks and their children.
+   */
+  function processScript(script, startLine) {
+    let currentLine = startLine
+    
+    for (const block of script.blocks) {
+      currentLine = processBlockWithChildren(block, currentLine)
+    }
+    
+    return currentLine
+  }
+
+  // Process all scripts
+  let currentLine = 1
+  for (const script of doc.scripts) {
+    // Skip empty lines before the script
+    while (currentLine <= lines.length && lines[currentLine - 1].trim() === "") {
+      currentLine++
+    }
+    
+    currentLine = processScript(script, currentLine)
+    
+    // Skip empty lines between scripts
+    while (currentLine <= lines.length && lines[currentLine - 1]?.trim() === "") {
+      currentLine++
+    }
+  }
+}
+
 export function parse(code, options) {
   options = {
     inline: false,
@@ -897,5 +1226,12 @@ export function parse(code, options) {
   const f = parseLines(code, languages)
   const scripts = parseScripts(f)
   recogniseStuff(scripts)
-  return new Document(scripts)
+
+  const doc = new Document(scripts)
+
+  // Assign block paths and source ranges for highlighting support
+  assignBlockPaths(doc)
+  assignSourceRanges(doc, code)
+
+  return doc
 }
