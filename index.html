@@ -172,6 +172,36 @@ function download(filename, content) {
   document.body.removeChild(elem);
 }
 
+function getCursorPosition(textarea) {
+    const text = textarea.value;
+    const pos = textarea.selectionStart;
+
+    const beforeCursor = text.substring(0, pos);
+
+    // Line number (counting from 1!)
+    const lineNum = beforeCursor.split('\n').length;
+
+    // Column number (the position within the current line, counting from 1)
+    const lastNewline = beforeCursor.lastIndexOf('\n');
+    const colNum = pos - lastNewline;
+
+    return { line: lineNum, column: colNum };
+}
+
+function OnCursorPositionChanged() {
+  scratchblocks.clearHighlight(window.view2);
+  scratchblocks.clearHighlight(window.view3);
+  scratchblocks.clearHighlight(window.view3hc);
+  const cursorPos = getCursorPosition(editor);
+  scratchblocks.highlightBlockAtCursor(window.view2, cursorPos.line, cursorPos.column);
+  scratchblocks.highlightBlockAtCursor(window.view3, cursorPos.line, cursorPos.column);
+  scratchblocks.highlightBlockAtCursor(window.view3hc, cursorPos.line, cursorPos.column);
+}
+
+['input', 'keyup', 'click', 'select'].forEach(event => {
+  editor.addEventListener(event, OnCursorPositionChanged);
+});
+
 function objUpdated() {
   // set hash
   if (obj.lang) {
@@ -222,15 +252,15 @@ function objUpdated() {
   // });
 
   console.log(scratchblocks.stringify(doc));
-  var docView3HighContrast = scratchblocks.newView(doc, {
+  var docView3HighContrast = window.view3hc = scratchblocks.newView(doc, {
     style: "scratch3-high-contrast",
     scale: 0.675
   });
-  var docView3 = scratchblocks.newView(doc, {
+  var docView3 = window.view3 = scratchblocks.newView(doc, {
     style: "scratch3",
     scale: 0.675
   });
-  var docView2 = scratchblocks.newView(doc, {
+  var docView2 = window.view2 = scratchblocks.newView(doc, {
     style: "scratch2",
     scale: 1
   });

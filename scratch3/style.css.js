@@ -22,6 +22,31 @@ const common = `
 .sb3-diff-del {
   stroke-width: 3px;
 }
+
+/* Block highlight styles */
+/* Classic highlight mode (default): yellow fill */
+.sb3-highlight:not(.sb3-blink):not(.sb3-highlight-colorShift) {
+  fill: #FBF883 !important;
+}
+
+/* ColorShift highlight mode: uses alternate style colors, defined per style in create() */
+
+/* Blinking animation for jump-to-block */
+.sb3-blink {
+  animation: sb3-blink-animation 0.5s 3;
+}
+
+@keyframes sb3-blink-animation {
+  0% {
+    fill: #FBF883;
+  }
+  50% {
+    fill: #FBF883;
+    animation-timing-function: step-start;
+  }
+  100% {
+  }
+}
 `
 
 // These override colors defined per style
@@ -56,7 +81,15 @@ svg${name} .sb3-${category}-dark {
 }
 `
 
-const create = (name, style) => `
+// Create highlight rule for colorShift mode using the alternate style's colors
+const createHighlightRule = (category, name, alternateStyle) => `
+svg${name} .sb3-highlight.sb3-highlight-colorShift:not(.sb3-blink).sb3-${category} {
+  fill: ${alternateStyle[category + "Primary"]} !important;
+  stroke: ${alternateStyle[category + "Tertiary"]} !important;
+}
+`
+
+const create = (name, style, alternateStyle) => `
 ${createRule("motion", name, style)}
 ${createRule("looks", name, style)}
 ${createRule("sound", name, style)}
@@ -70,6 +103,20 @@ ${createRule("custom", name, style)}
 ${createRule("extension", name, style)}
 ${createRule("obsolete", name, style)}
 ${createRule("grey", name, style)}
+
+${createHighlightRule("motion", name, alternateStyle)}
+${createHighlightRule("looks", name, alternateStyle)}
+${createHighlightRule("sound", name, alternateStyle)}
+${createHighlightRule("control", name, alternateStyle)}
+${createHighlightRule("events", name, alternateStyle)}
+${createHighlightRule("sensing", name, alternateStyle)}
+${createHighlightRule("operators", name, alternateStyle)}
+${createHighlightRule("variables", name, alternateStyle)}
+${createHighlightRule("list", name, alternateStyle)}
+${createHighlightRule("custom", name, alternateStyle)}
+${createHighlightRule("extension", name, alternateStyle)}
+${createHighlightRule("obsolete", name, alternateStyle)}
+${createHighlightRule("grey", name, alternateStyle)}
 
 svg${name} .sb3-label {
   fill: ${style.label};
@@ -224,6 +271,6 @@ const highContrastStyle = {
 }
 
 export default common +
-  create("", originalStyle) +
-  create(".scratchblocks-style-scratch3-high-contrast", highContrastStyle) +
+  create("", originalStyle, highContrastStyle) +
+  create(".scratchblocks-style-scratch3-high-contrast", highContrastStyle, originalStyle) +
   commonOverride

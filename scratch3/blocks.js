@@ -284,6 +284,9 @@ class BlockView {
     this.comment = this.comment ? newView(this.comment) : null
     this.isRound = this.isReporter
 
+    // Store the original block for path reference
+    this.block = block
+
     // Avoid accidental mutation
     this.info = { ...block.info }
     if (
@@ -618,7 +621,16 @@ class BlockView {
       })
     }
 
-    return SVG.group(objects)
+    const group = SVG.group(objects)
+
+    // Add data-block-path attribute for highlighting support
+    if (this.block && this.block.blockPath) {
+      SVG.setProps(group, {
+        "data-block-path": this.block.blockPath,
+      })
+    }
+
+    return group
   }
 }
 
@@ -777,12 +789,18 @@ class DocumentView {
     Object.assign(this, doc)
     this.scripts = doc.scripts.map(newView)
 
+    // Store reference to original document for block lookup
+    this.doc = doc
+
     this.width = null
     this.height = null
     this.el = null
     this.defs = null
     this.scale = options.scale
     this.iconStyle = options.style.replace("scratch3-", "")
+
+    // Map of blockPath -> { el, rect } for highlighting
+    this.elementMap = new Map()
   }
 
   measure() {
@@ -834,7 +852,106 @@ class DocumentView {
       }),
     )
     this.el = svg
+
+    // Build element map after rendering
+    this._buildElementMap()
+
     return svg
+  }
+
+  /**
+   * Build the element map by finding all elements with data-block-path
+   */
+  _buildElementMap() {
+    if (!this.el) return
+
+    this.elementMap.clear()
+    const blocks = this.el.querySelectorAll("[data-block-path]")
+    blocks.forEach(el => {
+      const path = el.getAttribute("data-block-path")
+      if (path) {
+        this.elementMap.set(path, { el })
+      }
+    })
+  }
+
+  /**
+   * Get the SVG element for a block by its path
+   * @param {string} path - Block path (e.g., "1.2.1")
+   * @returns {SVGElement|null}
+   */
+  getElementByPath(path) {
+    const entry = this.elementMap.get(path)
+    return entry ? entry.el : null
+  }
+
+  /**
+   * Highlight a block by its path
+   * @param {string} path - Block path
+   * @param {Object} options - { blink: boolean, colorShift: boolean }
+   *   - blink: if true, the block will blink
+   *   - colorShift: if true, uses alternate style colors instead of yellow
+   */
+  highlightBlock(path, options = {}) {
+    const el = this.getElementByPath(path)
+    if (!el) return false
+
+    // Add highlight class to the first child (the shape element)
+    const shapeEl = el.firstElementChild
+    if (shapeEl) {
+      // Clear any existing highlight classes first
+      shapeEl.classList.remove("sb3-highlight", "sb3-highlight-colorShift", "sb3-blink")
+      // Force browser reflow to reset animation (note: path element does not have offsetWidth)
+      void shapeEl.getBBox()
+      
+      // Now add the new highlight classes
+      shapeEl.classList.add("sb3-highlight")
+      if (options.colorShift) {
+        shapeEl.classList.add("sb3-highlight-colorShift")
+      }
+      if (options.blink) {
+        shapeEl.classList.add("sb3-blink")
+      }
+    }
+    return true
+  }
+
+  /**
+   * Clear highlight from a block
+   * @param {string} path - Block path, or null to clear all
+   */
+  clearHighlight(path = null) {
+    if (path) {
+      const el = this.getElementByPath(path)
+      if (el) {
+        const shapeEl = el.firstElementChild
+        if (shapeEl) {
+          shapeEl.classList.remove("sb3-highlight", "sb3-highlight-colorShift", "sb3-blink")
+        }
+      }
+    } else {
+      // Clear all highlights
+      const highlighted = this.el.querySelectorAll(".sb3-highlight")
+      highlighted.forEach(el => {
+        el.classList.remove("sb3-highlight", "sb3-highlight-colorShift", "sb3-blink")
+      })
+    }
+  }
+
+  /**
+   * Highlight block at cursor position
+   * @param {number} line - 1-based line number
+   * @param {number} column - 1-based column number
+   * @param {Object} options - { blink: boolean, colorShift: boolean }
+   * @returns {string|null} - The path of the highlighted block, or null
+   */
+  highlightBlockAtCursor(line, column, options = {}) {
+    const block = this.doc.getBlockAtCursor(line, column)
+    if (block && block.blockPath) {
+      this.highlightBlock(block.blockPath, options)
+      return block.blockPath
+    }
+    return null
   }
 
   /* Export SVG image as XML string */

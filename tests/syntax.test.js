@@ -839,3 +839,225 @@ describe("misc regression test", () => {
 })
 
 // TODO test { } handling
+
+/* Block path and cursor highlighting tests */
+
+describe("block paths", () => {
+  test("simple block gets path", () => {
+    const doc = parse("say [hello]")
+    expect(doc.blockMap.size).toBeGreaterThan(0)
+    const block = doc.blockMap.get("1.1")
+    expect(block).toBeDefined()
+    expect(block.blockPath).toBe("1.1")
+  })
+
+  test("nested reporter blocks get paths", () => {
+    const doc = parse("say (answer)")
+    expect(doc.blockMap.get("1.1")).toBeDefined()
+    expect(doc.blockMap.get("1.1.1")).toBeDefined()
+  })
+
+  test("deeply nested blocks get correct paths", () => {
+    const doc = parse("ask (join [hello] (answer))")
+    expect(doc.blockMap.get("1.1")).toBeDefined()
+    expect(doc.blockMap.get("1.1.1")).toBeDefined()
+    expect(doc.blockMap.get("1.1.1.1")).toBeDefined()
+  })
+
+  test("c-block children get correct paths", () => {
+    const doc = parse(`repeat (10)
+  move (10) steps
+end`)
+    expect(doc.blockMap.get("1.1")).toBeDefined() // repeat
+    expect(doc.blockMap.get("1.1.1.1")).toBeDefined() // move inside repeat
+  })
+
+  test("if-else children get correct paths", () => {
+    const doc = parse(`if <> then
+  say [hello]
+else
+  say [world]
+end`)
+    expect(doc.blockMap.get("1.1")).toBeDefined() // if block
+    expect(doc.blockMap.get("1.1.1.1")).toBeDefined() // say hello in if branch
+    expect(doc.blockMap.get("1.1.2.1")).toBeDefined() // say world in else branch
+  })
+
+  test("multiple scripts get separate path prefixes", () => {
+    const doc = parse(`say [hello]
+
+say [world]`)
+    expect(doc.blockMap.get("1.1")).toBeDefined() // first script
+    expect(doc.blockMap.get("2.1")).toBeDefined() // second script
+  })
+})
+
+describe("source ranges", () => {
+  test("simple block has source range", () => {
+    const doc = parse("say [hello]")
+    const block = doc.blockMap.get("1.1")
+    expect(block.sourceRange).toBeDefined()
+    expect(block.sourceRange.start.line).toBe(1)
+    expect(block.sourceRange.start.column).toBe(1)
+  })
+
+  test("nested block has correct source range", () => {
+    const doc = parse("say (answer)")
+    const outerBlock = doc.blockMap.get("1.1")
+    const innerBlock = doc.blockMap.get("1.1.1")
+    expect(outerBlock.sourceRange).toBeDefined()
+    expect(innerBlock.sourceRange).toBeDefined()
+    // Inner block should start after "say ("
+    expect(innerBlock.sourceRange.start.column).toBeGreaterThan(1)
+  })
+
+  test("c-block spans multiple lines", () => {
+    const doc = parse(`repeat (10)
+  move (10) steps
+end`)
+    const repeatBlock = doc.blockMap.get("1.1")
+    expect(repeatBlock.sourceRange.start.line).toBe(1)
+    expect(repeatBlock.sourceRange.end.line).toBe(3) // includes "end" line
+  })
+})
+
+describe("getBlockAtCursor", () => {
+  test("returns outer block for cursor on label", () => {
+    const doc = parse("say (answer)")
+    const block = doc.getBlockAtCursor(1, 1) // "s" of say
+    expect(block).toBeDefined()
+    expect(block.blockPath).toBe("1.1")
+  })
+
+  test("returns inner block for cursor inside parentheses", () => {
+    const doc = parse("say (answer)")
+    const block = doc.getBlockAtCursor(1, 6) // "a" of answer
+    expect(block).toBeDefined()
+    expect(block.blockPath).toBe("1.1.1")
+  })
+
+  test("returns most precise match for deeply nested blocks", () => {
+    const doc = parse("ask (join [hello] (answer))")
+    // Cursor on "a" of inner (answer)
+    const block = doc.getBlockAtCursor(1, 20)
+    expect(block).toBeDefined()
+    expect(block.blockPath).toBe("1.1.1.1")
+  })
+
+  test("returns correct block in c-block body", () => {
+    const doc = parse(`repeat (10)
+  move (10) steps
+end`)
+    const block = doc.getBlockAtCursor(2, 3) // inside repeat body
+    expect(block).toBeDefined()
+    expect(block.blockPath).toBe("1.1.1.1") // move block
+  })
+
+  test("returns parent block for cursor on end line", () => {
+    const doc = parse(`repeat (10)
+  move (10) steps
+end`)
+    const block = doc.getBlockAtCursor(3, 1) // "e" of end
+    expect(block).toBeDefined()
+    expect(block.blockPath).toBe("1.1") // repeat block
+  })
+
+  test("returns parent block for cursor on else line", () => {
+    const doc = parse(`if <> then
+  say [hello]
+else
+  say [world]
+end`)
+    const block = doc.getBlockAtCursor(3, 1) // "e" of else
+    expect(block).toBeDefined()
+    expect(block.blockPath).toBe("1.1") // if block
+  })
+
+  test("returns inner block for cursor in leading whitespace on same line", () => {
+    const doc = parse(`forever
+    show
+end`)
+    // Cursor in leading whitespace before "show"
+    const block = doc.getBlockAtCursor(2, 1)
+    expect(block).toBeDefined()
+    expect(block.blockPath).toBe("1.1.1.1") // show block
+  })
+})
+
+describe("getBlockByPath", () => {
+  test("returns block for valid path", () => {
+    const doc = parse("say [hello]")
+    const block = doc.getBlockByPath("1.1")
+    expect(block).toBeDefined()
+    expect(block.blockPath).toBe("1.1")
+  })
+
+  test("returns null for invalid path", () => {
+    const doc = parse("say [hello]")
+    const block = doc.getBlockByPath("99.99")
+    expect(block).toBeNull()
+  })
+
+  test("returns nested block for nested path", () => {
+    const doc = parse("say (answer)")
+    const block = doc.getBlockByPath("1.1.1")
+    expect(block).toBeDefined()
+    expect(block.info.category).toBe("sensing")
+  })
+})
+
+describe("input parsing for highlight tests", () => {
+  test("block with string and number inputs", () => {
+    const b = parseBlock("say [hello] for (2) secs")
+    const labels = b.children.filter(c => c.isLabel)
+    const inputs = b.children.filter(c => c.isInput)
+    expect(labels.length).toBeGreaterThan(0)
+    expect(inputs.length).toBe(2) // [hello] and (2)
+  })
+
+  test("block with dropdown input", () => {
+    const b = parseBlock("set [x v] to (10)")
+    const inputs = b.children.filter(c => c.isInput)
+    expect(inputs.some(i => i.shape === "dropdown")).toBe(true)
+    expect(inputs.some(i => i.shape === "number")).toBe(true)
+  })
+
+  test("block with nested reporter", () => {
+    const doc = parse("say (join [a] [b])")
+    const outerBlock = doc.blockMap.get("1.1")
+    const innerBlock = doc.blockMap.get("1.1.1")
+    expect(outerBlock).toBeDefined()
+    expect(innerBlock).toBeDefined()
+    expect(innerBlock.info.selector).toBe("concatenate:with:")
+  })
+})
+
+describe("stack input {} handling", () => {
+  test("inline {} creates nested block", () => {
+    const doc = parse("test {test}")
+    expect(doc.blockMap.get("1.1")).toBeDefined()
+    expect(doc.blockMap.get("1.1.1")).toBeDefined()
+  })
+
+  test("multiline {} creates nested blocks", () => {
+    const doc = parse(`run {
+  move (10) steps
+} :: control`)
+    expect(doc.blockMap.get("1.1")).toBeDefined() // run block
+    expect(doc.blockMap.get("1.1.1.1")).toBeDefined() // move block inside {}
+  })
+
+  test("multiple {} inputs create separate paths", () => {
+    const doc = parse(`test {
+    test
+} test {
+    test
+} test {
+    test
+}`)
+    expect(doc.blockMap.get("1.1")).toBeDefined() // parent
+    expect(doc.blockMap.get("1.1.1.1")).toBeDefined() // first {} child
+    expect(doc.blockMap.get("1.1.2.1")).toBeDefined() // second {} child
+    expect(doc.blockMap.get("1.1.3.1")).toBeDefined() // third {} child
+  })
+})
