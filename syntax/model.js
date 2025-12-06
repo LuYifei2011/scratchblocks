@@ -458,18 +458,25 @@ export class Document {
       }
 
       const { start, end } = range
-      
+
       // Track blocks that start on the same line (for handling leading whitespace)
       if (start.line === line && end.line === line) {
         // Single-line block on the cursor's line
-        if (!blockOnSameLine || (end.column - start.column) < (blockOnSameLine.sourceRange.end.column - blockOnSameLine.sourceRange.start.column)) {
+        if (
+          !blockOnSameLine ||
+          end.column - start.column <
+            blockOnSameLine.sourceRange.end.column -
+              blockOnSameLine.sourceRange.start.column
+        ) {
           blockOnSameLine = block
         }
       }
-      
+
       // Check if cursor is within this block's range
-      const afterStart = line > start.line || (line === start.line && column >= start.column)
-      const beforeEnd = line < end.line || (line === end.line && column <= end.column)
+      const afterStart =
+        line > start.line || (line === start.line && column >= start.column)
+      const beforeEnd =
+        line < end.line || (line === end.line && column <= end.column)
 
       if (afterStart && beforeEnd) {
         // Calculate the span of this block (smaller span = more precise match)
@@ -494,9 +501,11 @@ export class Document {
     if (blockOnSameLine && bestMatch) {
       const bestRange = bestMatch.sourceRange
       // If bestMatch is a multi-line block and cursor is before the single-line block on this line
-      if (bestRange.start.line !== bestRange.end.line && 
-          blockOnSameLine.sourceRange.start.line === line &&
-          column < blockOnSameLine.sourceRange.start.column) {
+      if (
+        bestRange.start.line !== bestRange.end.line &&
+        blockOnSameLine.sourceRange.start.line === line &&
+        column < blockOnSameLine.sourceRange.start.column
+      ) {
         return blockOnSameLine
       }
     }

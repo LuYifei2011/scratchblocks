@@ -778,7 +778,7 @@ class DocumentView {
       shapeEl.classList.remove("sb-highlight", "sb-blink")
       // Force browser reflow to reset animation
       void shapeEl.getBBox()
-      
+
       // Now add the new highlight classes
       shapeEl.classList.add("sb-highlight")
       if (options.blink) {

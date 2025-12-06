@@ -60,7 +60,9 @@ function paintBlock(info, children, languages) {
       info.isRTL = rtlLanguages.includes(lang.code)
 
       if (
-      type.shape === "ring" ? info.shape === "reporter" : info.shape === "stack"
+        type.shape === "ring"
+          ? info.shape === "reporter"
+          : info.shape === "stack"
       ) {
         info.shape = type.shape
       }
@@ -117,7 +119,9 @@ function paintBlock(info, children, languages) {
               (child.shape === "string" || child.shape === "number")
             ) {
               // Convert string inputs to string arguments, number inputs to number arguments.
-            const labels = child.value.split(/ +/g).map(word => new Label(word))
+              const labels = child.value
+                .split(/ +/g)
+                .map(word => new Label(word))
               child = paintBlock(
                 {
                   shape: "reporter",
@@ -886,9 +890,17 @@ function assignBlockPaths(doc) {
         for (const innerBlock of child.blocks) {
           innerBlockIndex++
           if (innerBlock.isBlock) {
-            processBlock(innerBlock, `${basePath}.${childBlockIndex}.${innerBlockIndex}`, blockMap)
+            processBlock(
+              innerBlock,
+              `${basePath}.${childBlockIndex}.${innerBlockIndex}`,
+              blockMap,
+            )
           } else if (innerBlock.isGlow) {
-            processGlow(innerBlock, `${basePath}.${childBlockIndex}.${innerBlockIndex}`, blockMap)
+            processGlow(
+              innerBlock,
+              `${basePath}.${childBlockIndex}.${innerBlockIndex}`,
+              blockMap,
+            )
           }
         }
       } else if (child.isGlow) {
@@ -998,7 +1010,14 @@ function assignSourceRanges(doc, code) {
    * @param {number} endCol - The 1-based ending column of the block
    * @param {Array} bracketRanges - Pre-computed bracket ranges for the line
    */
-  function assignBlockRangeRecursive(block, lineContent, lineNum, startCol, endCol, bracketRanges) {
+  function assignBlockRangeRecursive(
+    block,
+    lineContent,
+    lineNum,
+    startCol,
+    endCol,
+    bracketRanges,
+  ) {
     const actualBlock = block.isGlow ? block.child : block
     if (!actualBlock.isBlock) return
 
@@ -1009,20 +1028,22 @@ function assignSourceRanges(doc, code) {
 
     // Find all block children (excluding Script children which are on different lines)
     const blockChildren = actualBlock.children.filter(c => c.isBlock)
-    
+
     // For each child block, find its position in the source
     // searchStart is 0-based index into lineContent
     // Start searching from inside the current block (after the opening bracket if any)
     let searchStart = startCol // 0-based position, skipping opening bracket
     // searchEnd is also 0-based, exclude the closing bracket
     const searchEnd = endCol - 2
-    
+
     for (const child of blockChildren) {
       if (child.isOutline) {
         // Outline blocks (define hat prototypes) need special handling
-        // Look for the content after "define " 
+        // Look for the content after "define "
         const substringStart = startCol - 1
-        const defineMatch = lineContent.substring(substringStart).match(/^define\s+/i)
+        const defineMatch = lineContent
+          .substring(substringStart)
+          .match(/^define\s+/i)
         if (defineMatch) {
           const outlineStart = substringStart + defineMatch[0].length + 1 // 1-based
           const outlineEnd = endCol // extends to end of block
@@ -1031,7 +1052,14 @@ function assignSourceRanges(doc, code) {
             end: { line: lineNum, column: outlineEnd },
           }
           // Process nested blocks within the outline
-          assignBlockRangeRecursive(child, lineContent, lineNum, outlineStart, outlineEnd, bracketRanges)
+          assignBlockRangeRecursive(
+            child,
+            lineContent,
+            lineNum,
+            outlineStart,
+            outlineEnd,
+            bracketRanges,
+          )
         }
       } else {
         // Regular nested blocks are wrapped in (), <>, or {} (for inline stack blocks)
@@ -1044,7 +1072,14 @@ function assignSourceRanges(doc, code) {
             if (range && range.end <= searchEnd) {
               const absStart = i + 1 // 1-based
               const absEnd = range.end + 2 // 1-based, inclusive
-              assignBlockRangeRecursive(child, lineContent, lineNum, absStart, absEnd, bracketRanges)
+              assignBlockRangeRecursive(
+                child,
+                lineContent,
+                lineNum,
+                absStart,
+                absEnd,
+                bracketRanges,
+              )
               searchStart = range.end + 1
               found = true
             }
@@ -1078,28 +1113,42 @@ function assignSourceRanges(doc, code) {
     const bracketRanges = findAllBracketRanges(lineContent)
     const trimmedStart = lineContent.search(/\S/)
     const start = trimmedStart >= 0 ? trimmedStart + 1 : 1
-    
+
     // Assign range for this block's first line (will be updated for multi-line blocks)
-    assignBlockRangeRecursive(actualBlock, lineContent, lineNum, start, lineContent.length + 1, bracketRanges)
+    assignBlockRangeRecursive(
+      actualBlock,
+      lineContent,
+      lineNum,
+      start,
+      lineContent.length + 1,
+      bracketRanges,
+    )
 
     let nextLine = lineNum + 1
-    
+
     // Check if this block has any Script children (C-blocks or stack inputs like {})
     const scriptChildren = actualBlock.children.filter(child => child.isScript)
     const hasScriptChildren = scriptChildren.length > 0
-    
+
     // Check if there are inline {} (same line, content between { and })
     // Inline {} means the whole {content} is on the same line as the block
-    const hasInlineBraces = lineContent.includes('{') && lineContent.includes('}')
+    const hasInlineBraces =
+      lineContent.includes("{") && lineContent.includes("}")
     const allScriptsEmpty = scriptChildren.every(s => s.blocks.length === 0)
-    
+
     // Determine if scripts span multiple lines
     // If the block's first line has both { and } and all scripts are empty or have inline content,
     // then it's a single-line block
-    const isInlineOnly = hasInlineBraces && !actualBlock.hasScript && 
-                         (allScriptsEmpty || scriptChildren.every(s => 
-                           s.blocks.length === 1 && s.blocks[0].children.every(c => c.isLabel || c.isInput)))
-    
+    const isInlineOnly =
+      hasInlineBraces &&
+      !actualBlock.hasScript &&
+      (allScriptsEmpty ||
+        scriptChildren.every(
+          s =>
+            s.blocks.length === 1 &&
+            s.blocks[0].children.every(c => c.isLabel || c.isInput),
+        ))
+
     // For truly inline {} like "test {test}", don't change line numbers
     if (isInlineOnly && scriptChildren.length > 0) {
       // Just process inline, no line changes needed
@@ -1112,7 +1161,7 @@ function assignSourceRanges(doc, code) {
       // Track if we've seen "else" to know when to add extra line
       let sawElse = false
       let scriptIndex = 0
-      
+
       for (const child of actualBlock.children) {
         if (child.isScript) {
           // If we just saw "else", account for the else line
@@ -1120,7 +1169,7 @@ function assignSourceRanges(doc, code) {
             nextLine++ // The "else" line
             sawElse = false
           }
-          
+
           // For multiple {} scripts (not C-blocks):
           // After the first script, there's a line like "} label {" before next script content
           // So between scripts, the "} label {" line is shared
@@ -1129,26 +1178,29 @@ function assignSourceRanges(doc, code) {
             // The next script's content starts on nextLine
             // But wait - the "} label {" is ONE line, so we don't need to add extra
           }
-          
+
           // Process each block in the script
           for (const innerBlock of child.blocks) {
             nextLine = processBlockWithChildren(innerBlock, nextLine)
           }
-          
+
           // After processing this script's blocks, if there's another script coming,
           // we need to account for the "} label {" line (which is ONE line containing both } and {)
           // So we add 1 for the closing } (which also contains the opening { of next script)
-          if (scriptIndex < scriptChildren.length - 1 && !actualBlock.hasScript) {
+          if (
+            scriptIndex < scriptChildren.length - 1 &&
+            !actualBlock.hasScript
+          ) {
             nextLine++ // "} label {" line
           }
-          
+
           scriptIndex++
         } else if (child.isLabel && child.value.toLowerCase() === "else") {
           // Mark that we saw "else", will add line when we process the next Script
           sawElse = true
         }
       }
-      
+
       // For C-blocks (hasScript), account for the "end" line
       // For multiline stack inputs ({}), account for the closing "}" line
       const endLineNum = nextLine
@@ -1157,7 +1209,7 @@ function assignSourceRanges(doc, code) {
       } else if (hasScriptChildren) {
         nextLine++ // final "}" line for stack inputs
       }
-      
+
       // Update block's sourceRange to span from first line to end line
       // This ensures else, end, and } lines are included in the block's range
       const endLineContent = lines[endLineNum - 1] || ""
@@ -1175,11 +1227,11 @@ function assignSourceRanges(doc, code) {
    */
   function processScript(script, startLine) {
     let currentLine = startLine
-    
+
     for (const block of script.blocks) {
       currentLine = processBlockWithChildren(block, currentLine)
     }
-    
+
     return currentLine
   }
 
@@ -1187,14 +1239,20 @@ function assignSourceRanges(doc, code) {
   let currentLine = 1
   for (const script of doc.scripts) {
     // Skip empty lines before the script
-    while (currentLine <= lines.length && lines[currentLine - 1].trim() === "") {
+    while (
+      currentLine <= lines.length &&
+      lines[currentLine - 1].trim() === ""
+    ) {
       currentLine++
     }
-    
+
     currentLine = processScript(script, currentLine)
-    
+
     // Skip empty lines between scripts
-    while (currentLine <= lines.length && lines[currentLine - 1]?.trim() === "") {
+    while (
+      currentLine <= lines.length &&
+      lines[currentLine - 1]?.trim() === ""
+    ) {
       currentLine++
     }
   }

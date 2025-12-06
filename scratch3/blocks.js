@@ -900,10 +900,14 @@ class DocumentView {
     const shapeEl = el.firstElementChild
     if (shapeEl) {
       // Clear any existing highlight classes first
-      shapeEl.classList.remove("sb3-highlight", "sb3-highlight-colorShift", "sb3-blink")
+      shapeEl.classList.remove(
+        "sb3-highlight",
+        "sb3-highlight-colorShift",
+        "sb3-blink",
+      )
       // Force browser reflow to reset animation (note: path element does not have offsetWidth)
       void shapeEl.getBBox()
-      
+
       // Now add the new highlight classes
       shapeEl.classList.add("sb3-highlight")
       if (options.colorShift) {
@@ -926,14 +930,22 @@ class DocumentView {
       if (el) {
         const shapeEl = el.firstElementChild
         if (shapeEl) {
-          shapeEl.classList.remove("sb3-highlight", "sb3-highlight-colorShift", "sb3-blink")
+          shapeEl.classList.remove(
+            "sb3-highlight",
+            "sb3-highlight-colorShift",
+            "sb3-blink",
+          )
         }
       }
     } else {
       // Clear all highlights
       const highlighted = this.el.querySelectorAll(".sb3-highlight")
       highlighted.forEach(el => {
-        el.classList.remove("sb3-highlight", "sb3-highlight-colorShift", "sb3-blink")
+        el.classList.remove(
+          "sb3-highlight",
+          "sb3-highlight-colorShift",
+          "sb3-blink",
+        )
       })
     }
   }
