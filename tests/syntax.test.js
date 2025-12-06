@@ -982,6 +982,30 @@ end`)
     expect(block.blockPath).toBe("1.1.1.1") // show block
   })
 
+  test("supports cursor lookup on glow lines", () => {
+    const doc = parse("+ say (answer)")
+
+    const outer = doc.getBlockAtCursor(1, 3) // "s" of say
+    expect(outer).toBeDefined()
+    expect(outer.info.category).toBe("looks")
+
+    const inner = doc.getBlockAtCursor(1, 8) // "a" of answer
+    expect(inner).toBeDefined()
+    expect(inner.info.category).toBe("sensing")
+  })
+
+  test("supports cursor lookup on removed lines", () => {
+    const doc = parse("- say (answer)")
+
+    const outer = doc.getBlockAtCursor(1, 3) // "s" of say
+    expect(outer).toBeDefined()
+    expect(outer.info.category).toBe("looks")
+
+    const inner = doc.getBlockAtCursor(1, 8) // "a" of answer
+    expect(inner).toBeDefined()
+    expect(inner.info.category).toBe("sensing")
+  })
+
   test("returns block for cursor inside matrix literal", () => {
     const doc = parse(`display ({010,
           101,
