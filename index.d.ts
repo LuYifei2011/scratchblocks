@@ -178,8 +178,8 @@ export interface DocumentView {
   
   measure(): void
   render(): SVGElement
-  highlightBlock(path: string, options?: { blink?: boolean }): boolean
-  highlightBlockAtCursor(line: number, column: number, options?: { blink?: boolean }): string | null
+  highlightBlock(path: string, options?: HighlightOptions): boolean
+  highlightBlockAtCursor(line: number, column: number, options?: HighlightOptions): string | null
   clearHighlight(path?: string | null): void
   getElementByPath(path: string): SVGElement | null
   exportSVGString(): string
@@ -200,6 +200,14 @@ export interface RenderOptions {
   parse?: (code: string, options: RenderOptions) => Document
   render?: (doc: Document, options: RenderOptions) => SVGElement
   replace?: (el: HTMLElement, svg: SVGElement, doc: Document, options: RenderOptions) => void
+}
+
+/**
+ * Options for highlighting blocks
+ */
+export interface HighlightOptions {
+  blink?: boolean
+  colorShift?: boolean
 }
 
 /**
@@ -244,8 +252,8 @@ export interface ScratchblocksAPI {
   Document: typeof Document
 
   // Highlight API
-  highlightBlock(view: DocumentView, path: string, options?: { blink?: boolean }): boolean
-  highlightBlockAtCursor(view: DocumentView, line: number, column: number, options?: { blink?: boolean }): string | null
+  highlightBlock(view: DocumentView, path: string, options?: HighlightOptions): boolean
+  highlightBlockAtCursor(view: DocumentView, line: number, column: number, options?: HighlightOptions): string | null
   clearHighlight(view: DocumentView, path?: string | null): void
   getBlockByPath(doc: Document, path: string): Block | null
   getBlockAtCursor(doc: Document, line: number, column: number): Block | null
