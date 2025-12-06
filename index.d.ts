@@ -214,8 +214,24 @@ export interface HighlightOptions {
  * Language data object containing dropdowns and block information
  */
 export interface LanguageData {
-  dropdowns: Record<string, { value: string }>
+  code?: string
+  commands: Record<string, string>
+  dropdowns: Record<string, { value: string; parents?: string[] }>
+  aliases?: Record<string, string>
+  renamedBlocks?: Record<string, string>
+  definePrefix?: string[]
+  defineSuffix?: string[]
+  ignorelt?: string[]
+  math?: string[]
+  name?: string
+  faceParts?: string[]
+  soundEffects?: string[]
+  microbitWhen?: string[]
+  osis?: string[]
   categories?: Record<string, string>
+  blocksByHash?: Record<string, BlockInfo[]>
+  nativeAliases?: Record<string, string[]>
+  nativeDropdowns?: Record<string, Array<{ id: string; parents?: string[] }>>
   [key: string]: any
 }
 
