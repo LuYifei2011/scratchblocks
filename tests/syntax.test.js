@@ -991,15 +991,15 @@ move (10) steps`)
     const block1 = doc.getBlockAtCursor(1, 12) // "0" inside matrix row on first line
     expect(block1).toBeDefined()
     expect(block1.blockPath).toBe("1.1")
-    
+
     const block2 = doc.getBlockAtCursor(2, 11) // "1" inside matrix row on second line
     expect(block2).toBeDefined()
     expect(block2.blockPath).toBe("1.1")
-    
+
     const block3 = doc.getBlockAtCursor(3, 15) // "0" inside matrix row on third line
     expect(block3).toBeDefined()
     expect(block3.blockPath).toBe("1.1")
-    
+
     // Next block should not be affected
     const block4 = doc.getBlockAtCursor(4, 1) // "m" of move
     expect(block4).toBeDefined()
