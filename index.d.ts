@@ -204,10 +204,9 @@ export interface ScratchblocksAPI {
 }
 
 /**
- * Initializes scratchblocks with a window object
- * @param window The browser window object
- * @returns The scratchblocks API
+ * Initializes scratchblocks with a window object and returns the scratchblocks API
+ * When imported from npm, this is the default export
  */
-declare function scratchblocks(window: Window): ScratchblocksAPI
+declare const scratchblocks: ScratchblocksAPI
 
 export default scratchblocks
