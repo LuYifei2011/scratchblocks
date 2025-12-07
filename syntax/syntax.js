@@ -327,6 +327,14 @@ function parseLines(code, languages) {
           }
         // fallthrough
         default:
+          if (
+            tok === undefined ||
+            tok === "\n" ||
+            tok === "\t" ||
+            tok === " "
+          ) {
+            break
+          }
           if (!label) {
             children.push((label = new Label("")))
           }
