@@ -1280,6 +1280,19 @@ function assignSourceRanges(doc, code) {
 
     let nextLine = lineNum + 1
 
+    // Check if this block contains a multi-line matrix
+    const matrixLines = countMatrixLines(actualBlock, lineNum)
+    if (matrixLines > 1) {
+      // Matrix spans multiple lines - update sourceRange to cover all lines
+      const endLineNum = lineNum + matrixLines - 1
+      const endLineContent = lines[endLineNum - 1] || ""
+      actualBlock.sourceRange = {
+        start: { line: lineNum, column: start },
+        end: { line: endLineNum, column: endLineContent.length },
+      }
+      return lineNum + matrixLines
+    }
+
     // Check if this block has any Script children (C-blocks or stack inputs like {})
     const scriptChildren = actualBlock.children.filter(child => child.isScript)
     const hasScriptChildren = scriptChildren.length > 0
