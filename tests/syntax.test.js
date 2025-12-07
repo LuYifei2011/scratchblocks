@@ -897,7 +897,7 @@ describe("source ranges", () => {
     const block = doc.blockMap.get("1.1")
     expect(block.sourceRange).toBeDefined()
     expect(block.sourceRange.start.line).toBe(1)
-    expect(block.sourceRange.start.column).toBe(1)
+    expect(block.sourceRange.start.column).toBe(0)
   })
 
   test("nested block has correct source range", () => {
@@ -907,7 +907,7 @@ describe("source ranges", () => {
     expect(outerBlock.sourceRange).toBeDefined()
     expect(innerBlock.sourceRange).toBeDefined()
     // Inner block should start after "say ("
-    expect(innerBlock.sourceRange.start.column).toBeGreaterThan(1)
+    expect(innerBlock.sourceRange.start.column).toBeGreaterThan(0)
   })
 
   test("c-block spans multiple lines", () => {
@@ -923,14 +923,14 @@ end`)
 describe("getBlockAtCursor", () => {
   test("returns outer block for cursor on label", () => {
     const doc = parse("say (answer)")
-    const block = doc.getBlockAtCursor(1, 1) // "s" of say
+    const block = doc.getBlockAtCursor(1, 0) // "s" of say
     expect(block).toBeDefined()
     expect(block.blockPath).toBe("1.1")
   })
 
   test("returns inner block for cursor inside parentheses", () => {
     const doc = parse("say (answer)")
-    const block = doc.getBlockAtCursor(1, 6) // "a" of answer
+    const block = doc.getBlockAtCursor(1, 5) // "a" of answer
     expect(block).toBeDefined()
     expect(block.blockPath).toBe("1.1.1")
   })
@@ -938,7 +938,7 @@ describe("getBlockAtCursor", () => {
   test("returns most precise match for deeply nested blocks", () => {
     const doc = parse("ask (join [hello] (answer))")
     // Cursor on "a" of inner (answer)
-    const block = doc.getBlockAtCursor(1, 20)
+    const block = doc.getBlockAtCursor(1, 19)
     expect(block).toBeDefined()
     expect(block.blockPath).toBe("1.1.1.1")
   })
@@ -947,7 +947,7 @@ describe("getBlockAtCursor", () => {
     const doc = parse(`repeat (10)
   move (10) steps
 end`)
-    const block = doc.getBlockAtCursor(2, 3) // inside repeat body
+    const block = doc.getBlockAtCursor(2, 2) // inside repeat body
     expect(block).toBeDefined()
     expect(block.blockPath).toBe("1.1.1.1") // move block
   })
@@ -956,7 +956,7 @@ end`)
     const doc = parse(`repeat (10)
   move (10) steps
 end`)
-    const block = doc.getBlockAtCursor(3, 1) // "e" of end
+    const block = doc.getBlockAtCursor(3, 0) // "e" of end
     expect(block).toBeDefined()
     expect(block.blockPath).toBe("1.1") // repeat block
   })
@@ -967,7 +967,7 @@ end`)
 else
   say [world]
 end`)
-    const block = doc.getBlockAtCursor(3, 1) // "e" of else
+    const block = doc.getBlockAtCursor(3, 0) // "e" of else
     expect(block).toBeDefined()
     expect(block.blockPath).toBe("1.1") // if block
   })
@@ -977,7 +977,7 @@ end`)
     show
 end`)
     // Cursor in leading whitespace before "show"
-    const block = doc.getBlockAtCursor(2, 1)
+    const block = doc.getBlockAtCursor(2, 0)
     expect(block).toBeDefined()
     expect(block.blockPath).toBe("1.1.1.1") // show block
   })
@@ -985,11 +985,11 @@ end`)
   test("supports cursor lookup on glow lines", () => {
     const doc = parse("+ say (answer)")
 
-    const outer = doc.getBlockAtCursor(1, 3) // "s" of say
+    const outer = doc.getBlockAtCursor(1, 2) // "s" of say
     expect(outer).toBeDefined()
     expect(outer.info.category).toBe("looks")
 
-    const inner = doc.getBlockAtCursor(1, 8) // "a" of answer
+    const inner = doc.getBlockAtCursor(1, 7) // "a" of answer
     expect(inner).toBeDefined()
     expect(inner.info.category).toBe("sensing")
   })
@@ -997,11 +997,11 @@ end`)
   test("supports cursor lookup on removed lines", () => {
     const doc = parse("- say (answer)")
 
-    const outer = doc.getBlockAtCursor(1, 3) // "s" of say
+    const outer = doc.getBlockAtCursor(1, 2) // "s" of say
     expect(outer).toBeDefined()
     expect(outer.info.category).toBe("looks")
 
-    const inner = doc.getBlockAtCursor(1, 8) // "a" of answer
+    const inner = doc.getBlockAtCursor(1, 7) // "a" of answer
     expect(inner).toBeDefined()
     expect(inner.info.category).toBe("sensing")
   })
