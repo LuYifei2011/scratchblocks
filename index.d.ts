@@ -7,7 +7,7 @@ export class Label {
   cls: string
   el: SVGElement | null
   height: number
-  metrics: any | null
+  metrics: { width: number } | null
   x: number
   readonly isLabel: true
   stringify(): string
@@ -23,6 +23,22 @@ export class Icon {
   readonly isIcon: true
   static icons: Record<string, boolean>
   stringify(): string
+}
+
+/**
+ * Source code position
+ */
+export interface SourcePosition {
+  line: number
+  column: number
+}
+
+/**
+ * Source code range for a block
+ */
+export interface SourceRange {
+  start: SourcePosition
+  end: SourcePosition
 }
 
 /**
@@ -91,9 +107,9 @@ export class Block {
   info: BlockInfo
   children: (Label | Icon | Input | Block | Script | Comment | Glow)[]
   comment: Comment | null
-  diff: any | null
+  diff: "+" | "-" | null
   blockPath: string | null
-  sourceRange: any | null
+  sourceRange: SourceRange | null
   readonly isBlock: true
   isHat: boolean
   hasPuzzle: boolean
