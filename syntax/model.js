@@ -441,7 +441,7 @@ export class Document {
   /**
    * Get the block at the given cursor position
    * @param {number} line - 1-based line number
-   * @param {number} column - 1-based column number
+   * @param {number} column - 0-based column number
    * @returns {Block|null} - The most precisely matching block at the cursor position.
    *   If cursor is within a nested block's brackets, returns the nested block.
    *   If cursor is outside all nested blocks but within the parent, returns the parent.

@@ -1006,8 +1006,8 @@ function assignSourceRanges(doc, code) {
    * @param {Block} block - The block to process
    * @param {string} lineContent - The content of the current line
    * @param {number} lineNum - The 1-based line number
-   * @param {number} startCol - The 1-based starting column of the block
-   * @param {number} endCol - The 1-based ending column of the block
+   * @param {number} startCol - The 0-based starting column of the block
+   * @param {number} endCol - The 0-based ending column of the block (exclusive)
    * @param {Array} bracketRanges - Pre-computed bracket ranges for the line
    */
   function assignBlockRangeRecursive(
@@ -1032,20 +1032,20 @@ function assignSourceRanges(doc, code) {
     // For each child block, find its position in the source
     // searchStart is 0-based index into lineContent
     // Start searching from inside the current block (after the opening bracket if any)
-    let searchStart = startCol // 0-based position, skipping opening bracket
-    // searchEnd is also 0-based, exclude the closing bracket
-    const searchEnd = endCol - 2
+    let searchStart = startCol // 0-based position
+    // searchEnd is also 0-based, the last index to search (inclusive)
+    const searchEnd = endCol - 1
 
     for (const child of blockChildren) {
       if (child.isOutline) {
         // Outline blocks (define hat prototypes) need special handling
         // Look for the content after "define "
-        const substringStart = startCol - 1
+        const substringStart = startCol
         const defineMatch = lineContent
           .substring(substringStart)
           .match(/^define\s+/i)
         if (defineMatch) {
-          const outlineStart = substringStart + defineMatch[0].length + 1 // 1-based
+          const outlineStart = substringStart + defineMatch[0].length // 0-based
           const outlineEnd = endCol // extends to end of block
           child.sourceRange = {
             start: { line: lineNum, column: outlineStart },
@@ -1070,8 +1070,8 @@ function assignSourceRanges(doc, code) {
           if (ch === "(" || ch === "<" || ch === "{") {
             const range = findBracketAt(bracketRanges, i)
             if (range && range.end <= searchEnd) {
-              const absStart = i + 1 // 1-based
-              const absEnd = range.end + 2 // 1-based, inclusive
+              const absStart = i + 1 // 0-based, 内容起始位置（跳过开括号）
+              const absEnd = range.end // 0-based exclusive, 内容结束位置（不包括闭括号）
               assignBlockRangeRecursive(
                 child,
                 lineContent,
@@ -1112,7 +1112,7 @@ function assignSourceRanges(doc, code) {
     const lineContent = lines[lineNum - 1] || ""
     const bracketRanges = findAllBracketRanges(lineContent)
     const trimmedStart = lineContent.search(/\S/)
-    const start = trimmedStart >= 0 ? trimmedStart + 1 : 1
+    const start = trimmedStart >= 0 ? trimmedStart : 0
 
     // Assign range for this block's first line (will be updated for multi-line blocks)
     assignBlockRangeRecursive(
@@ -1120,7 +1120,7 @@ function assignSourceRanges(doc, code) {
       lineContent,
       lineNum,
       start,
-      lineContent.length + 1,
+      lineContent.length,
       bracketRanges,
     )
 
@@ -1215,7 +1215,7 @@ function assignSourceRanges(doc, code) {
       const endLineContent = lines[endLineNum - 1] || ""
       actualBlock.sourceRange = {
         start: { line: lineNum, column: start },
-        end: { line: endLineNum, column: endLineContent.length + 1 },
+        end: { line: endLineNum, column: endLineContent.length },
       }
     }
 
