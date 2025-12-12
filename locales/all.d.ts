@@ -17,6 +17,7 @@ interface LocaleData {
   osis: string[]
   palette: Record<string, string>
   percentTranslated: number
+  categories: Record<string, string>
 }
 
 /**
