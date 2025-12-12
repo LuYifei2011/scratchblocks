@@ -4,18 +4,19 @@
 interface LocaleData {
   commands: Record<string, string>
   dropdowns: Record<string, { value: string; parents?: string[] }>
-  aliases?: Record<string, string>
-  renamedBlocks?: Record<string, string>
-  definePrefix?: string[]
-  defineSuffix?: string[]
-  ignorelt?: string[]
-  math?: string[]
-  name?: string
-  faceParts?: string[]
-  soundEffects?: string[]
-  microbitWhen?: string[]
-  osis?: string[]
-  [key: string]: any
+  aliases: Record<string, string>
+  renamedBlocks: Record<string, string>
+  definePrefix: string[]
+  defineSuffix: string[]
+  ignorelt: string[]
+  math: string[]
+  name: string
+  faceParts: string[]
+  soundEffects: string[]
+  microbitWhen: string[]
+  osis: string[]
+  palette: Record<string, string>
+  percentTranslated: number
 }
 
 /**

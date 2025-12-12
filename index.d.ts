@@ -57,9 +57,13 @@ export interface BlockInfo {
   argument?: "boolean" | "number" | "string"
   call?: string
   names?: string[]
+  color?: string
+  diff?: "+" | "-"
+  hash?: string
+  isReset?: boolean
+  shapeIsDefault?: boolean
   language?: LanguageData
   isRTL?: boolean
-  [key: string]: any
 }
 
 /**
@@ -122,7 +126,7 @@ export class Block {
   hasScript: boolean
   isElse: boolean
   isEnd: boolean
-  stringify(extras?: any): string
+  stringify(extras?: string): string
   translate(lang: LanguageData): void
 }
 
@@ -179,11 +183,20 @@ export class Document {
   translate(lang: LanguageData): void
 }
 
+export interface ScriptView extends Script {
+  blocks: Array<Block | Glow>
+  width: number
+  height: number
+  y: number
+  draw(iconStyle: string, inside?: boolean): SVGElement
+  measure(): void
+}
+
 /**
  * A view of a rendered document
  */
 export interface DocumentView {
-  scripts: any[]
+  scripts: ScriptView[]
   doc: Document
   width: number | null
   height: number | null
@@ -233,22 +246,23 @@ export interface LanguageData {
   code?: string
   commands: Record<string, string>
   dropdowns: Record<string, { value: string; parents?: string[] }>
-  aliases?: Record<string, string>
-  renamedBlocks?: Record<string, string>
-  definePrefix?: string[]
-  defineSuffix?: string[]
-  ignorelt?: string[]
-  math?: string[]
-  name?: string
-  faceParts?: string[]
-  soundEffects?: string[]
-  microbitWhen?: string[]
-  osis?: string[]
-  categories?: Record<string, string>
+  aliases: Record<string, string>
+  renamedBlocks: Record<string, string>
+  definePrefix: string[]
+  defineSuffix: string[]
+  ignorelt: string[]
+  math: string[]
+  name: string
+  faceParts: string[]
+  soundEffects: string[]
+  microbitWhen: string[]
+  osis: string[]
+  palette: Record<string, string>
+  percentTranslated: number
+  categories: Record<string, string>
   blocksByHash?: Record<string, BlockInfo[]>
   nativeAliases?: Record<string, string[]>
   nativeDropdowns?: Record<string, Array<{ id: string; parents?: string[] }>>
-  [key: string]: any
 }
 
 /**
