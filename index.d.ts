@@ -183,8 +183,12 @@ export class Document {
   translate(lang: LanguageData): void
 }
 
-export interface ScriptView extends Script {
+export interface ScriptView {
   blocks: Array<Block | Glow>
+  isEmpty: boolean
+  isFinal: boolean
+  scriptIndex: number | null
+  readonly isScript: true
   width: number
   height: number
   y: number
