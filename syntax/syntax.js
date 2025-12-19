@@ -1296,8 +1296,6 @@ function assignSourceRanges(doc, code) {
     const trimmedStart = lineContent.search(/\S/)
     const start = trimmedStart >= 0 ? trimmedStart : 0
 
-      
-
     // Assign range for this block's first line (will be updated for multi-line blocks)
     assignBlockRangeRecursive(
       actualBlock,
@@ -1307,8 +1305,6 @@ function assignSourceRanges(doc, code) {
       lineContent.length,
       bracketRanges,
     )
-
-      
 
     let nextLine = lineNum + 1
 
@@ -1358,15 +1354,16 @@ function assignSourceRanges(doc, code) {
     // Handle blocks with Script children (C-blocks with hasScript, or blocks with {} inputs)
     if (actualBlock.hasScript || hasScriptChildren) {
       // Count script children to detect else branch robustly
-      const scriptChildren = actualBlock.children.filter(child => child.isScript)
+      const scriptChildren = actualBlock.children.filter(
+        child => child.isScript,
+      )
       const scriptChildCount = scriptChildren.length
       let sawElse = false // legacy path when label order matches
       let scriptIndex = 0
 
-        // Debug
-        if (lineNum >= 19 && lineNum <= 22) {
-          
-        }
+      // Debug
+      if (lineNum >= 19 && lineNum <= 22) {
+      }
 
       for (const child of actualBlock.children) {
         if (child.isScript) {
