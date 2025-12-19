@@ -923,8 +923,10 @@ function recogniseStuff(scripts) {
     eachBlock(script, block => {
       if (
         block.info &&
-        block.info.categoryIsDefault &&
-        block.info.category === "obsolete"
+        // Recognise custom calls even if user applied :: custom override.
+        // Accept either default 'obsolete' category or explicit 'custom' with no selector set.
+        ((block.info.categoryIsDefault && block.info.category === "obsolete") ||
+          (block.info.category === "custom" && !block.info.selector))
       ) {
         // custom blocks
         const info = customBlocksByHash[block.info.hash]
@@ -1294,6 +1296,8 @@ function assignSourceRanges(doc, code) {
     const trimmedStart = lineContent.search(/\S/)
     const start = trimmedStart >= 0 ? trimmedStart : 0
 
+      
+
     // Assign range for this block's first line (will be updated for multi-line blocks)
     assignBlockRangeRecursive(
       actualBlock,
@@ -1303,6 +1307,8 @@ function assignSourceRanges(doc, code) {
       lineContent.length,
       bracketRanges,
     )
+
+      
 
     let nextLine = lineNum + 1
 
@@ -1351,14 +1357,21 @@ function assignSourceRanges(doc, code) {
 
     // Handle blocks with Script children (C-blocks with hasScript, or blocks with {} inputs)
     if (actualBlock.hasScript || hasScriptChildren) {
-      // Track if we've seen "else" to know when to add extra line
-      let sawElse = false
+      // Count script children to detect else branch robustly
+      const scriptChildren = actualBlock.children.filter(child => child.isScript)
+      const scriptChildCount = scriptChildren.length
+      let sawElse = false // legacy path when label order matches
       let scriptIndex = 0
+
+        // Debug
+        if (lineNum >= 19 && lineNum <= 22) {
+          
+        }
 
       for (const child of actualBlock.children) {
         if (child.isScript) {
-          // If we just saw "else", account for the else line
-          if (sawElse) {
+          // Account for the else line. If there are two scripts, we have an else branch.
+          if ((scriptIndex > 0 && scriptChildCount > 1) || sawElse) {
             nextLine++ // The "else" line
             sawElse = false
           }
