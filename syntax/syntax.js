@@ -1136,20 +1136,20 @@ function assignSourceRanges(doc, code) {
       end: { line: lineNum, column: endCol },
     }
 
-    // Find all block children (excluding Script children which are on different lines)
-    const blockChildren = actualBlock.children.filter(c => c.isBlock)
+    // Iterate children in source order, skipping inputs so block children align
+    const inlineChildren = actualBlock.children.filter(c => !c.isScript)
 
-    // For each child block, find its position in the source
+    // For each child (inputs and blocks), walk bracket pairs left-to-right.
+    // This ensures that a lone block child after an input (e.g., (180)) maps to the
+    // next bracketed segment (e.g., (direction)) rather than the first one.
     // searchStart is 0-based index into lineContent
-    // Start searching from inside the current block (after the opening bracket if any)
     let searchStart = startCol // 0-based position
     // searchEnd is also 0-based, the last index to search (inclusive)
     const searchEnd = endCol - 1
 
-    for (const child of blockChildren) {
+    for (const child of inlineChildren) {
       if (child.isOutline) {
         // Outline blocks (define hat prototypes) need special handling
-        // Look for the content after "define "
         const substringStart = startCol
         const defineMatch = lineContent
           .substring(substringStart)
@@ -1171,17 +1171,26 @@ function assignSourceRanges(doc, code) {
             bracketRanges,
           )
         }
-      } else {
-        // Regular nested blocks are wrapped in (), <>, or {} (for inline stack blocks)
-        // Find the next bracket that starts a block within our search range
-        let found = false
-        for (let i = searchStart; i <= searchEnd && !found; i++) {
-          const ch = lineContent[i]
-          if (ch === "(" || ch === "<" || ch === "{") {
-            const range = findBracketAt(bracketRanges, i)
-            if (range && range.end <= searchEnd) {
-              const absStart = i + 1 // 0-based, content start position (skip opening bracket)
-              const absEnd = range.end // 0-based exclusive, content end position (excluding closing bracket)
+        continue
+      }
+
+      // For labels (plain text), nothing to do here
+      if (child.isLabel) {
+        continue
+      }
+
+      // Find the next bracketed segment within our search window
+      let found = false
+      for (let i = searchStart; i <= searchEnd && !found; i++) {
+        const ch = lineContent[i]
+        if (ch === "(" || ch === "<" || ch === "{" || ch === "[") {
+          const range = findBracketAt(bracketRanges, i)
+          if (range && range.end <= searchEnd) {
+            const absStart = i + 1 // content start (skip opening bracket)
+            const absEnd = range.end // content end (position of closing bracket)
+
+            // If this child is a nested block, recurse to assign its own children.
+            if (child.isBlock) {
               assignBlockRangeRecursive(
                 child,
                 lineContent,
@@ -1190,9 +1199,16 @@ function assignSourceRanges(doc, code) {
                 absEnd,
                 bracketRanges,
               )
-              searchStart = range.end + 1
-              found = true
+            } else {
+              // For inputs, just advance the cursor past this bracketed segment
+              child.sourceRange = {
+                start: { line: lineNum, column: absStart },
+                end: { line: lineNum, column: absEnd },
+              }
             }
+
+            searchStart = range.end + 1
+            found = true
           }
         }
       }

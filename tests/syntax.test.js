@@ -1057,6 +1057,23 @@ move (10) steps`)
     expect(block4).toBeDefined()
     expect(block4.blockPath).toBe("1.2")
   })
+
+  test("handles nested reporter in point towards subtraction", () => {
+    const code = "point towards ((180) - (direction))"
+    const doc = parse(code)
+
+    // Cursor on 'd' of direction should return the inner reporter block
+    const dirCol = code.indexOf("direction")
+    const inner = doc.getBlockAtCursor(1, dirCol)
+    expect(inner).toBeDefined()
+    expect(inner.blockPath).toBe("1.1.1.1")
+
+    // Cursor on '1' of 180 should return the subtraction reporter, not a child block
+    const numCol = code.indexOf("180")
+    const subtract = doc.getBlockAtCursor(1, numCol)
+    expect(subtract).toBeDefined()
+    expect(subtract.blockPath).toBe("1.1.1")
+  })
 })
 
 describe("getBlockByPath", () => {
