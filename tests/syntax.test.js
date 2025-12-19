@@ -972,6 +972,34 @@ end`)
     expect(block.blockPath).toBe("1.1") // if block
   })
 
+  test("returns c-block for cursor on blank line in empty body", () => {
+    const doc = parse(`forever
+
+end`)
+    const blankLine = doc.getBlockAtCursor(2, 0)
+    expect(blankLine).toBeDefined()
+    expect(blankLine.blockPath).toBe("1.1")
+
+    const endLine = doc.getBlockAtCursor(3, 0)
+    expect(endLine).toBeDefined()
+    expect(endLine.blockPath).toBe("1.1")
+  })
+
+  test("returns correct blocks when body follows a blank line", () => {
+    const doc = parse(`forever
+
+show
+end`)
+
+    const parentOnBlank = doc.getBlockAtCursor(2, 0)
+    expect(parentOnBlank).toBeDefined()
+    expect(parentOnBlank.blockPath).toBe("1.1")
+
+    const inner = doc.getBlockAtCursor(3, 0) // "s" of show
+    expect(inner).toBeDefined()
+    expect(inner.blockPath).toBe("1.1.1.1")
+  })
+
   test("returns inner block for cursor in leading whitespace on same line", () => {
     const doc = parse(`forever
     show
