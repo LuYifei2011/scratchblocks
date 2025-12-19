@@ -1104,6 +1104,16 @@ function assignSourceRanges(doc, code) {
     return ranges.find(r => r.start === pos)
   }
 
+  function skipEmptyLines(lineNum) {
+    while (
+      lineNum <= lines.length &&
+      (lines[lineNum - 1] || "").trim() === ""
+    ) {
+      lineNum++
+    }
+    return lineNum
+  }
+
   /**
    * Recursively assign source ranges to a block and its nested children on a single line.
    * @param {Block} block - The block to process
@@ -1340,6 +1350,9 @@ function assignSourceRanges(doc, code) {
             sawElse = false
           }
 
+          // Skip any blank lines before the script content
+          nextLine = skipEmptyLines(nextLine)
+
           // For multiple {} scripts (not C-blocks):
           // After the first script, there's a line like "} label {" before next script content
           // So between scripts, the "} label {" line is shared
@@ -1351,8 +1364,13 @@ function assignSourceRanges(doc, code) {
 
           // Process each block in the script
           for (const innerBlock of child.blocks) {
+            // Skip blank lines between blocks inside the script
+            nextLine = skipEmptyLines(nextLine)
             nextLine = processBlockWithChildren(innerBlock, nextLine)
           }
+
+          // Skip blank lines between script content and closing markers / next script
+          nextLine = skipEmptyLines(nextLine)
 
           // After processing this script's blocks, if there's another script coming,
           // we need to account for the "} label {" line (which is ONE line containing both } and {)
@@ -1370,6 +1388,9 @@ function assignSourceRanges(doc, code) {
           sawElse = true
         }
       }
+
+      // Skip any trailing blank lines before the closing line (end or })
+      nextLine = skipEmptyLines(nextLine)
 
       // For C-blocks (hasScript), account for the "end" line
       // For multiline stack inputs ({}), account for the closing "}" line
