@@ -219,7 +219,1367 @@
     "boost.getTiltAngle": "sekamisa enkele %1",
     "boost.setLightHue": "tshuma lebone la mmala go %1"
   },
-  "dropdowns": {},
+  "dropdowns": {
+    "MOTION_GOTO_POINTER": {
+      "value": "maose wa tshupetso",
+      "parents": [
+        "MOTION_GOTO"
+      ]
+    },
+    "MOTION_GOTO_RANDOM": {
+      "value": "maemo mangwe le mangwe",
+      "parents": [
+        "MOTION_GOTO"
+      ]
+    },
+    "MOTION_GLIDETO_POINTER": {
+      "value": "maose wa tshupetso",
+      "parents": [
+        "MOTION_GLIDETO"
+      ]
+    },
+    "MOTION_GLIDETO_RANDOM": {
+      "value": "maemo mangwe le mangwe",
+      "parents": [
+        "MOTION_GLIDETO"
+      ]
+    },
+    "MOTION_POINTTOWARDS_POINTER": {
+      "value": "maose wa tshupetso",
+      "parents": [
+        "MOTION_POINTTOWARDS"
+      ]
+    },
+    "MOTION_POINTTOWARDS_RANDOM": {
+      "value": "kaelo nngwe le nngwe",
+      "parents": [
+        "MOTION_POINTTOWARDS"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_LEFTRIGHT": {
+      "value": "molema-moja",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_DONTROTATE": {
+      "value": "o se dikologe",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_ALLAROUND": {
+      "value": "tsotlhe",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "LOOKS_NEXTBACKDROP": {
+      "value": "tatlhelomorago e e latelang",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_PREVIOUSBACKDROP": {
+      "value": "tatlhelomorago e e fitileng",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_RANDOMBACKDROP": {
+      "value": "tatlhelomorago nngwe le nngwe",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_EFFECT_COLOR": {
+      "value": "mmala",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_FISHEYE": {
+      "value": "leitlho la tlhapi",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_WHIRL": {
+      "value": "dikologa",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_PIXELATE": {
+      "value": "dira setshwantsho",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_MOSAIC": {
+      "value": "setshwantsho sa maje",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_BRIGHTNESS": {
+      "value": "phatshimo",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_GHOST": {
+      "value": "sepoko",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_GOTOFRONTBACK_FRONT": {
+      "value": "fa pele",
+      "parents": [
+        "LOOKS_GOTOFRONTBACK"
+      ]
+    },
+    "LOOKS_GOTOFRONTBACK_BACK": {
+      "value": "kwa morago",
+      "parents": [
+        "LOOKS_GOTOFRONTBACK"
+      ]
+    },
+    "LOOKS_GOFORWARDBACKWARDLAYERS_FORWARD": {
+      "value": "fetisa",
+      "parents": [
+        "LOOKS_GOFORWARDBACKWARDLAYERS"
+      ]
+    },
+    "LOOKS_GOFORWARDBACKWARDLAYERS_BACKWARD": {
+      "value": "kwa morago",
+      "parents": [
+        "LOOKS_GOFORWARDBACKWARDLAYERS"
+      ]
+    },
+    "LOOKS_NUMBERNAME_NUMBER": {
+      "value": "palo",
+      "parents": [
+        "LOOKS_COSTUMENUMBERNAME",
+        "LOOKS_BACKDROPNUMBERNAME"
+      ]
+    },
+    "LOOKS_NUMBERNAME_NAME": {
+      "value": "leina",
+      "parents": [
+        "LOOKS_COSTUMENUMBERNAME",
+        "LOOKS_BACKDROPNUMBERNAME"
+      ]
+    },
+    "SOUND_EFFECTS_PITCH": {
+      "value": "segalo",
+      "parents": [
+        "SOUND_CHANGEEFFECTBY",
+        "SOUND_SETEFFECTO"
+      ]
+    },
+    "SOUND_EFFECTS_PAN": {
+      "value": "letswela la molema/moja",
+      "parents": [
+        "SOUND_CHANGEEFFECTBY",
+        "SOUND_SETEFFECTO"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_SPACE": {
+      "value": "phatlhamagareng",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_LEFT": {
+      "value": "tshupo molema",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_RIGHT": {
+      "value": "tshupo moja",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_DOWN": {
+      "value": "tshupo tlase",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_UP": {
+      "value": "tshupo godimo",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_ANY": {
+      "value": "sengwe",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED"
+      ]
+    },
+    "EVENT_WHENGREATERTHAN_TIMER": {
+      "value": "sekayanako",
+      "parents": [
+        "EVENT_WHENGREATERTHAN"
+      ]
+    },
+    "EVENT_WHENGREATERTHAN_LOUDNESS": {
+      "value": "modumo",
+      "parents": [
+        "EVENT_WHENGREATERTHAN"
+      ]
+    },
+    "CONTROL_STOP_ALL": {
+      "value": "tsotlhe",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_STOP_THIS": {
+      "value": "mokwalo o",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_STOP_OTHER": {
+      "value": "makwalo a mangwe mo go sprite",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_CREATECLONEOF_MYSELF": {
+      "value": "nna",
+      "parents": [
+        "CONTROL_CREATECLONEOF"
+      ]
+    },
+    "SENSING_TOUCHINGOBJECT_POINTER": {
+      "value": "maose wa tshupetso",
+      "parents": [
+        "SENSING_TOUCHINGOBJECT"
+      ]
+    },
+    "SENSING_TOUCHINGOBJECT_EDGE": {
+      "value": "losi",
+      "parents": [
+        "SENSING_TOUCHINGOBJECT"
+      ]
+    },
+    "SENSING_DISTANCETO_POINTER": {
+      "value": "maose wa tshupetso",
+      "parents": [
+        "SENSING_DISTANCETO"
+      ]
+    },
+    "SENSING_SETDRAGMODE_DRAGGABLE": {
+      "value": "e a gogega",
+      "parents": [
+        "SENSING_SETDRAGMODE"
+      ]
+    },
+    "SENSING_SETDRAGMODE_NOTDRAGGABLE": {
+      "value": "ga e gogege",
+      "parents": [
+        "SENSING_SETDRAGMODE"
+      ]
+    },
+    "SENSING_OF_XPOSITION": {
+      "value": "boemo jwa x",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_YPOSITION": {
+      "value": "boemo jwa y",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_DIRECTION": {
+      "value": "kaelo",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_COSTUMENUMBER": {
+      "value": "seaparo #",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_COSTUMENAME": {
+      "value": "leina la seaparo",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_SIZE": {
+      "value": "bogolo",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_VOLUME": {
+      "value": "maemo a modumo",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_BACKDROPNUMBER": {
+      "value": "tatlhelo morago #",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_BACKDROPNAME": {
+      "value": "leina la tatlhelo morago",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_STAGE": {
+      "value": "Serala",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_CURRENT_YEAR": {
+      "value": "ngwaga",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_MONTH": {
+      "value": "kgwedi",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_DATE": {
+      "value": "letlha",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_DAYOFWEEK": {
+      "value": "letsatsi la beke",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_HOUR": {
+      "value": "ura",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_MINUTE": {
+      "value": "motsotso",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_SECOND": {
+      "value": "motsotswana",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "OPERATORS_MATHOP_ABS": {
+      "value": "abs",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_FLOOR": {
+      "value": "boalo",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_CEILING": {
+      "value": "Ceiling",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_SQRT": {
+      "value": "sqrt",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_SIN": {
+      "value": "sin",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_COS": {
+      "value": "cos",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_TAN": {
+      "value": "tan",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ASIN": {
+      "value": "asin",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ACOS": {
+      "value": "acos",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ATAN": {
+      "value": "atan",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_LN": {
+      "value": "gare",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_LOG": {
+      "value": "log",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_EEXP": {
+      "value": "e ^",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_10EXP": {
+      "value": "10 ^",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "music.drumSnare": {
+      "value": "(1) Moropa wa Senare",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumBass": {
+      "value": "(2) Moropa wa Base",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumSideStick": {
+      "value": "(3) Thobane ya fa Tlhakoreng",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCrashCymbal": {
+      "value": "(4) Semebala e e opanngwang",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumOpenHiHat": {
+      "value": "(5) Bula Hi-Hat",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumClosedHiHat": {
+      "value": "(6) Hi-Hat e etswalegileng",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumTambourine": {
+      "value": "(7) Moropana",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumHandClap": {
+      "value": "(8) Opa Seatla",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumClaves": {
+      "value": "(9) tsa dikotana",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumWoodBlock": {
+      "value": "(10) Sesane",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCowbell": {
+      "value": "(11) Tleloko ya kgomo",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumTriangle": {
+      "value": "(12) Khutlotharo",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumBongo": {
+      "value": "(13) Bongo",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumConga": {
+      "value": "(14) Conga",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCabasa": {
+      "value": "(15) Cabasa",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumGuiro": {
+      "value": "(16) Guiro",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumVibraslap": {
+      "value": "(17) seletswa sa lerapo la motlhagare",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCuica": {
+      "value": "(18) Cuica",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.instrumentPiano": {
+      "value": "(1) Piano",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentElectricPiano": {
+      "value": "(2) Piano ya Motlakase",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentOrgan": {
+      "value": "(3) Okene",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentGuitar": {
+      "value": "(4) Katara",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentElectricGuitar": {
+      "value": "(5) Katara ya Motlakase",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentBass": {
+      "value": "(6) Base",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentPizzicato": {
+      "value": "(7) Pizzicato",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentCello": {
+      "value": "(8) Seletswa sa Cello",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentTrombone": {
+      "value": "(9) Trombone",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentClarinet": {
+      "value": "(10) Kelarinete",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSaxophone": {
+      "value": "(11) Sekesefone",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentFlute": {
+      "value": "(12) Fulutu",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentWoodenFlute": {
+      "value": "(13) Fulutu ya legong",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentBassoon": {
+      "value": "(14) Bassoon",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentChoir": {
+      "value": "(15) Khwaere",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentVibraphone": {
+      "value": "(16) Vibraphone",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentMusicBox": {
+      "value": "(17) Lebokoso la Mmino",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSteelDrum": {
+      "value": "(18) Moropa wa Tshipi",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentMarimba": {
+      "value": "(19) Marimba",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSynthLead": {
+      "value": "(20) motlhabeletsi",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSynthPad": {
+      "value": "(21) motseeletsi",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "pen.colorMenu.color": {
+      "value": "mmala",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.saturation": {
+      "value": "Go tlala",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.brightness": {
+      "value": "phatshimo",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.transparency": {
+      "value": "bosengbofitlha",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "videoSensing.direction": {
+      "value": "kaelo",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.motion": {
+      "value": "tshikinyego",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.sprite": {
+      "value": "sprite",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.stage": {
+      "value": "kgato",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.off": {
+      "value": "timile",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "videoSensing.on": {
+      "value": "tshubile",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "videoSensing.onFlipped": {
+      "value": "timile",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "text2speech.alto": {
+      "value": "lentswe la bobedi",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.tenor": {
+      "value": "lentswe la boraro",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.squeak": {
+      "value": "lela",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.giant": {
+      "value": "seganka",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.kitten": {
+      "value": "katsana",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "makeymakey.upArrowShort": {
+      "value": "godimo",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.downArrowShort": {
+      "value": "tlase",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.leftArrowShort": {
+      "value": "molema",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.rightArrowShort": {
+      "value": "moja",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "microbit.buttonsMenu.any": {
+      "value": "sengwe",
+      "parents": [
+        "microbit.whenButtonPressed",
+        "microbit.isButtonPressed"
+      ]
+    },
+    "microbit.gesturesMenu.jumped": {
+      "value": "tloletse",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.gesturesMenu.moved": {
+      "value": "sutisitswe",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.gesturesMenu.shaken": {
+      "value": "reketlisiwa",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.tiltDirectionMenu.any": {
+      "value": "sengwe",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted"
+      ]
+    },
+    "microbit.tiltDirectionMenu.back": {
+      "value": "kwa morago",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.front": {
+      "value": "fa pele",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.left": {
+      "value": "molema",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.right": {
+      "value": "moja",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "boost.motorDirection.backward": {
+      "value": "ka tsela ele",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.motorDirection.forward": {
+      "value": "ka tsela e",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.motorDirection.reverse": {
+      "value": "busetsa morago",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.color.any": {
+      "value": "mmala mongwe le mongwe",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.black": {
+      "value": "ntsho",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.blue": {
+      "value": "botala jwa loapi",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.green": {
+      "value": "tala",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.red": {
+      "value": "khibidu",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.white": {
+      "value": "tshweu",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.yellow": {
+      "value": "serolwana",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.tiltDirection.any": {
+      "value": "sengwe",
+      "parents": [
+        "boost.whenTilted"
+      ]
+    },
+    "boost.tiltDirection.up": {
+      "value": "godimo",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.down": {
+      "value": "tlase",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.left": {
+      "value": "molema",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.right": {
+      "value": "moja",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "wedo2.motorId.a": {
+      "value": "motšhini A",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.b": {
+      "value": "motšhini B",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.all": {
+      "value": "metšhini yotlhe",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.default": {
+      "value": "motšhini",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.forward": {
+      "value": "ka tsela e",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.backward": {
+      "value": "ka tsela ele",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.reverse": {
+      "value": "busetswa kwa morago",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.tiltDirection.any": {
+      "value": "nngwe le nngwe",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted"
+      ]
+    },
+    "wedo2.tiltDirection.up": {
+      "value": "godimo",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.down": {
+      "value": "tlase",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.left": {
+      "value": "molema",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.right": {
+      "value": "moja",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "gdxfor.pulled": {
+      "value": "gogilwe",
+      "parents": [
+        "gdxfor.whenForcePushedOrPulled"
+      ]
+    },
+    "gdxfor.pushed": {
+      "value": "kgarameletsa",
+      "parents": [
+        "gdxfor.whenForcePushedOrPulled"
+      ]
+    },
+    "gdxfor.shaken": {
+      "value": "reketlisiwa",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.startedFalling": {
+      "value": "simolola go wa",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.turnedFaceDown": {
+      "value": "fetoletse sefatlhego kwa tlase",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.turnedFaceUp": {
+      "value": "fetoletse sefatlhego kwa godimo",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.front": {
+      "value": "fa pele",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.back": {
+      "value": "kwa morago",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.left": {
+      "value": "molema",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.right": {
+      "value": "moja",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.any": {
+      "value": "sengwe",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted"
+      ]
+    },
+    "makeymakey.sequence.0": {
+      "value": "molema godimo moja",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.1": {
+      "value": "moja godimo molema",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.2": {
+      "value": "molema moja",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.3": {
+      "value": "moja molema",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.4": {
+      "value": "godimo tlase",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.5": {
+      "value": "tlase godimo",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.6": {
+      "value": "godimo moja tlase molema",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.7": {
+      "value": "godimo molema tlase moja",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.8": {
+      "value": "godimo godimo tlase tlase molema moja molema moja",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "text2speech.language.ar": {
+      "value": "العربية",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.cy": {
+      "value": "Cymraeg",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.da": {
+      "value": "Dansk",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.de": {
+      "value": "Deutsch",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.en": {
+      "value": "English",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.es": {
+      "value": "Español (España)",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.es-419": {
+      "value": "Español Latinoamericano",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.fr": {
+      "value": "Français",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ko": {
+      "value": "한국어",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.hi": {
+      "value": "हिंदी",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.is": {
+      "value": "Íslenska",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.it": {
+      "value": "Italiano",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.nl": {
+      "value": "Nederlands",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ja": {
+      "value": "日本語",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.nb": {
+      "value": "Norsk Bokmål",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pl": {
+      "value": "Polski",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pt": {
+      "value": "Português",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pt-br": {
+      "value": "Português Brasileiro",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ro": {
+      "value": "Română",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ru": {
+      "value": "Русский",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.sv": {
+      "value": "Svenska",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.tr": {
+      "value": "Türkçe",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.zh-cn": {
+      "value": "简体中文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    }
+  },
   "ignorelt": [],
   "soundEffects": [
     "segalo",

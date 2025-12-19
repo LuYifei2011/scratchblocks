@@ -219,7 +219,1367 @@
     "boost.getTiltAngle": "%1 burilish burchagi",
     "boost.setLightHue": "ochiq rangni %1 ga o'rnatish"
   },
-  "dropdowns": {},
+  "dropdowns": {
+    "MOTION_GOTO_POINTER": {
+      "value": "sichqon-ko'rsatkichi",
+      "parents": [
+        "MOTION_GOTO"
+      ]
+    },
+    "MOTION_GOTO_RANDOM": {
+      "value": "tasodifiy joyi",
+      "parents": [
+        "MOTION_GOTO"
+      ]
+    },
+    "MOTION_GLIDETO_POINTER": {
+      "value": "sichqon-ko'rsatkichi",
+      "parents": [
+        "MOTION_GLIDETO"
+      ]
+    },
+    "MOTION_GLIDETO_RANDOM": {
+      "value": "tasodifiy joy",
+      "parents": [
+        "MOTION_GLIDETO"
+      ]
+    },
+    "MOTION_POINTTOWARDS_POINTER": {
+      "value": "sichqon-ko'rsatkichi",
+      "parents": [
+        "MOTION_POINTTOWARDS"
+      ]
+    },
+    "MOTION_POINTTOWARDS_RANDOM": {
+      "value": "tasodifiy yo'nalish",
+      "parents": [
+        "MOTION_POINTTOWARDS"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_LEFTRIGHT": {
+      "value": "chapga-o'ngga",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_DONTROTATE": {
+      "value": "aylanishni taqiqlash",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_ALLAROUND": {
+      "value": "aylanish",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "LOOKS_NEXTBACKDROP": {
+      "value": "keyingi fon",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_PREVIOUSBACKDROP": {
+      "value": "oldingi fon",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_RANDOMBACKDROP": {
+      "value": "tasodifiy fon",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_EFFECT_COLOR": {
+      "value": "rang",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_FISHEYE": {
+      "value": "baliq ko'zi",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_WHIRL": {
+      "value": "aylanish",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_PIXELATE": {
+      "value": "piksellashtirish",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_MOSAIC": {
+      "value": "mozayka",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_BRIGHTNESS": {
+      "value": "yorqinlik",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_GHOST": {
+      "value": "sharpa",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_GOTOFRONTBACK_FRONT": {
+      "value": "oldinga",
+      "parents": [
+        "LOOKS_GOTOFRONTBACK"
+      ]
+    },
+    "LOOKS_GOTOFRONTBACK_BACK": {
+      "value": "orqaga",
+      "parents": [
+        "LOOKS_GOTOFRONTBACK"
+      ]
+    },
+    "LOOKS_GOFORWARDBACKWARDLAYERS_FORWARD": {
+      "value": "oldinga",
+      "parents": [
+        "LOOKS_GOFORWARDBACKWARDLAYERS"
+      ]
+    },
+    "LOOKS_GOFORWARDBACKWARDLAYERS_BACKWARD": {
+      "value": "orqaga",
+      "parents": [
+        "LOOKS_GOFORWARDBACKWARDLAYERS"
+      ]
+    },
+    "LOOKS_NUMBERNAME_NUMBER": {
+      "value": "raqam",
+      "parents": [
+        "LOOKS_COSTUMENUMBERNAME",
+        "LOOKS_BACKDROPNUMBERNAME"
+      ]
+    },
+    "LOOKS_NUMBERNAME_NAME": {
+      "value": "nomi",
+      "parents": [
+        "LOOKS_COSTUMENUMBERNAME",
+        "LOOKS_BACKDROPNUMBERNAME"
+      ]
+    },
+    "SOUND_EFFECTS_PITCH": {
+      "value": "ovoz balandligi",
+      "parents": [
+        "SOUND_CHANGEEFFECTBY",
+        "SOUND_SETEFFECTO"
+      ]
+    },
+    "SOUND_EFFECTS_PAN": {
+      "value": "ovoz manzili o'ng-chap",
+      "parents": [
+        "SOUND_CHANGEEFFECTBY",
+        "SOUND_SETEFFECTO"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_SPACE": {
+      "value": "bo'sh joy",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_LEFT": {
+      "value": "chap ko'rsatgich",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_RIGHT": {
+      "value": "o'ng ko'rsatgich",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_DOWN": {
+      "value": "past ko'rsatgich",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_UP": {
+      "value": "yuqori ko'rsatgich",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_ANY": {
+      "value": "ixtiyoriy boshqa",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED"
+      ]
+    },
+    "EVENT_WHENGREATERTHAN_TIMER": {
+      "value": "taymer",
+      "parents": [
+        "EVENT_WHENGREATERTHAN"
+      ]
+    },
+    "EVENT_WHENGREATERTHAN_LOUDNESS": {
+      "value": "tovush",
+      "parents": [
+        "EVENT_WHENGREATERTHAN"
+      ]
+    },
+    "CONTROL_STOP_ALL": {
+      "value": "hammasini",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_STOP_THIS": {
+      "value": "bu skript",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_STOP_OTHER": {
+      "value": "boshqa spraytlardagi skriptlar",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_CREATECLONEOF_MYSELF": {
+      "value": "o'zini",
+      "parents": [
+        "CONTROL_CREATECLONEOF"
+      ]
+    },
+    "SENSING_TOUCHINGOBJECT_POINTER": {
+      "value": "sichqon-ko'rsatkichi",
+      "parents": [
+        "SENSING_TOUCHINGOBJECT"
+      ]
+    },
+    "SENSING_TOUCHINGOBJECT_EDGE": {
+      "value": "qirra",
+      "parents": [
+        "SENSING_TOUCHINGOBJECT"
+      ]
+    },
+    "SENSING_DISTANCETO_POINTER": {
+      "value": "sichqon-ko'rsatkichi",
+      "parents": [
+        "SENSING_DISTANCETO"
+      ]
+    },
+    "SENSING_SETDRAGMODE_DRAGGABLE": {
+      "value": "oladigan holat",
+      "parents": [
+        "SENSING_SETDRAGMODE"
+      ]
+    },
+    "SENSING_SETDRAGMODE_NOTDRAGGABLE": {
+      "value": "bo'lmaydigan holat",
+      "parents": [
+        "SENSING_SETDRAGMODE"
+      ]
+    },
+    "SENSING_OF_XPOSITION": {
+      "value": "X koordinatasi",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_YPOSITION": {
+      "value": "Y koordinatasi",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_DIRECTION": {
+      "value": "yo'nalish",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_COSTUMENUMBER": {
+      "value": "kostyum #",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_COSTUMENAME": {
+      "value": "kostyum nomi",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_SIZE": {
+      "value": "o'lcham",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_VOLUME": {
+      "value": "ovoz",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_BACKDROPNUMBER": {
+      "value": "fonning soni",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_BACKDROPNAME": {
+      "value": "fonning nomi",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_STAGE": {
+      "value": "Sahna",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_CURRENT_YEAR": {
+      "value": "yil",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_MONTH": {
+      "value": "oy",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_DATE": {
+      "value": "sana",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_DAYOFWEEK": {
+      "value": "hafta kuni",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_HOUR": {
+      "value": "soat",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_MINUTE": {
+      "value": "daqiqa",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_SECOND": {
+      "value": "soniya",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "OPERATORS_MATHOP_ABS": {
+      "value": "modul",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_FLOOR": {
+      "value": "pol",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_CEILING": {
+      "value": "ship",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_SQRT": {
+      "value": "sqrt",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_SIN": {
+      "value": "sinus qiymati",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_COS": {
+      "value": "kosinus qiymati",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_TAN": {
+      "value": "tan qiymati",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ASIN": {
+      "value": "asinus qiymati",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ACOS": {
+      "value": "akosinus qiymati",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ATAN": {
+      "value": "atan qiymati",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_LN": {
+      "value": "Ichida",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_LOG": {
+      "value": "logarifm",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_EEXP": {
+      "value": "e ^",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_10EXP": {
+      "value": "10 ^",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "music.drumSnare": {
+      "value": "(1) Kichik baraban",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumBass": {
+      "value": "(2) Baraban",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumSideStick": {
+      "value": "(3) Side Stick",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCrashCymbal": {
+      "value": "(4) Kresh",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumOpenHiHat": {
+      "value": "(5) Ochiq hay-het",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumClosedHiHat": {
+      "value": "(6) yopiq hay-het",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumTambourine": {
+      "value": "(7) Tamburin",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumHandClap": {
+      "value": "(8) Qarsak",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumClaves": {
+      "value": "(9) Klave",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumWoodBlock": {
+      "value": "(10) Korobo'chka",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCowbell": {
+      "value": "(11) Kovbell",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumTriangle": {
+      "value": "(12) Uchburchak",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumBongo": {
+      "value": "(13) Bongo",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumConga": {
+      "value": "(14) konga",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCabasa": {
+      "value": "(15) Kabasa",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumGuiro": {
+      "value": "(16) Guiro",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumVibraslap": {
+      "value": "(17) Vibraslap",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCuica": {
+      "value": "(18) Kuika",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.instrumentPiano": {
+      "value": "(1) Pianino",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentElectricPiano": {
+      "value": "(2) Elektr pianino",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentOrgan": {
+      "value": "(3) Organ",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentGuitar": {
+      "value": "(4) Gitara",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentElectricGuitar": {
+      "value": "(5) Elektr gitara",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentBass": {
+      "value": "(6) Bass",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentPizzicato": {
+      "value": "(7) Pizzicato",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentCello": {
+      "value": "(8) Violonchel",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentTrombone": {
+      "value": "(9) Trombon",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentClarinet": {
+      "value": "(10) Klarnet",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSaxophone": {
+      "value": "(11) Saksafon",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentFlute": {
+      "value": "(12) Fleyta",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentWoodenFlute": {
+      "value": "(13) Yog'ochli Floyd",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentBassoon": {
+      "value": "(14) Fago't",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentChoir": {
+      "value": "(15) Xo'r",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentVibraphone": {
+      "value": "(16) Vibrafon",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentMusicBox": {
+      "value": "(17) Musiqa qutisi",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSteelDrum": {
+      "value": "(18) Temirli baraban",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentMarimba": {
+      "value": "(19) Marimba",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSynthLead": {
+      "value": "(20) Sentezator",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSynthPad": {
+      "value": "(21) Synth Pad",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "pen.colorMenu.color": {
+      "value": "rang",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.saturation": {
+      "value": "to'qlik",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.brightness": {
+      "value": "yorqinlik",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.transparency": {
+      "value": "tiniqlik",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "videoSensing.direction": {
+      "value": "yo'nalish",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.motion": {
+      "value": "harakat",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.sprite": {
+      "value": "sprayt",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.stage": {
+      "value": "bosqichda",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.off": {
+      "value": "o'chirish",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "videoSensing.on": {
+      "value": "yoqish",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "videoSensing.onFlipped": {
+      "value": "tirnalgan",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "text2speech.alto": {
+      "value": "Alto",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.tenor": {
+      "value": "tenor",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.squeak": {
+      "value": "g'ichirlash",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.giant": {
+      "value": "ulkan",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.kitten": {
+      "value": "mushukcha",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "makeymakey.upArrowShort": {
+      "value": "tepaga",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.downArrowShort": {
+      "value": "pastga",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.leftArrowShort": {
+      "value": "chapga",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.rightArrowShort": {
+      "value": "oʻngga",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "microbit.buttonsMenu.any": {
+      "value": "Hech narsa",
+      "parents": [
+        "microbit.whenButtonPressed",
+        "microbit.isButtonPressed"
+      ]
+    },
+    "microbit.gesturesMenu.jumped": {
+      "value": "sakragan",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.gesturesMenu.moved": {
+      "value": "harakatlangan",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.gesturesMenu.shaken": {
+      "value": "silkingan",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.tiltDirectionMenu.any": {
+      "value": "Hech narsa",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted"
+      ]
+    },
+    "microbit.tiltDirectionMenu.back": {
+      "value": "orqaga",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.front": {
+      "value": "oldinga",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.left": {
+      "value": "chapga",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.right": {
+      "value": "oʻngga",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "boost.motorDirection.backward": {
+      "value": "shu yo'l",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.motorDirection.forward": {
+      "value": "shu yo'l",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.motorDirection.reverse": {
+      "value": "teskari",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.color.any": {
+      "value": "ixtiyoriy rang",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.black": {
+      "value": "qora",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.blue": {
+      "value": "havo rang",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.green": {
+      "value": "yashil",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.red": {
+      "value": "qizil",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.white": {
+      "value": "oq",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.yellow": {
+      "value": "sariq",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.tiltDirection.any": {
+      "value": "Hech narsa",
+      "parents": [
+        "boost.whenTilted"
+      ]
+    },
+    "boost.tiltDirection.up": {
+      "value": "tepaga",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.down": {
+      "value": "pastga",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.left": {
+      "value": "chapga",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.right": {
+      "value": "oʻngga",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "wedo2.motorId.a": {
+      "value": "motor A",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.b": {
+      "value": "mator B",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.all": {
+      "value": "hamma matorlar",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.default": {
+      "value": "motor",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.forward": {
+      "value": "shu yo'l",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.backward": {
+      "value": "shu yo'l",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.reverse": {
+      "value": "teskari",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.tiltDirection.any": {
+      "value": "Hech narsa",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted"
+      ]
+    },
+    "wedo2.tiltDirection.up": {
+      "value": "tepaga",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.down": {
+      "value": "pastga",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.left": {
+      "value": "chapga",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.right": {
+      "value": "oʻngga",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "gdxfor.pulled": {
+      "value": "tortdi",
+      "parents": [
+        "gdxfor.whenForcePushedOrPulled"
+      ]
+    },
+    "gdxfor.pushed": {
+      "value": "itarib yuborishdi",
+      "parents": [
+        "gdxfor.whenForcePushedOrPulled"
+      ]
+    },
+    "gdxfor.shaken": {
+      "value": "Shoklandi",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.startedFalling": {
+      "value": "tushib ketdi",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.turnedFaceDown": {
+      "value": "yuzini pastga qaratdi",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.turnedFaceUp": {
+      "value": "yuzi yuqoriga ko'tarildi",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.front": {
+      "value": "oldinga",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.back": {
+      "value": "orqaga",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.left": {
+      "value": "chapga",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.right": {
+      "value": "oʻngga",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.any": {
+      "value": "Hech narsa",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted"
+      ]
+    },
+    "makeymakey.sequence.0": {
+      "value": "chapga tepaga oʻngga",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.1": {
+      "value": "oʻngga tepaga chapga",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.2": {
+      "value": "chapga oʻngga",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.3": {
+      "value": "oʻngga chapga",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.4": {
+      "value": "tepaga pastga",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.5": {
+      "value": "pastga tepaga",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.6": {
+      "value": "tepaga oʻngga pastga chapga",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.7": {
+      "value": "tepaga chapga pastga oʻngga",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.8": {
+      "value": "tepaga tepaga pastga pastga chapga oʻngga chapga oʻngga",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "text2speech.language.ar": {
+      "value": "العربية",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.cy": {
+      "value": "Cymraeg",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.da": {
+      "value": "Dansk",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.de": {
+      "value": "Deutsch",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.en": {
+      "value": "English",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.es": {
+      "value": "Español (España)",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.es-419": {
+      "value": "Español Latinoamericano",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.fr": {
+      "value": "Français",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ko": {
+      "value": "한국어",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.hi": {
+      "value": "हिंदी",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.is": {
+      "value": "Íslenska",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.it": {
+      "value": "Italiano",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.nl": {
+      "value": "Nederlands",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ja": {
+      "value": "日本語",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.nb": {
+      "value": "Norsk Bokmål",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pl": {
+      "value": "Polski",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pt": {
+      "value": "Português",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pt-br": {
+      "value": "Português Brasileiro",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ro": {
+      "value": "Română",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ru": {
+      "value": "Русский",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.sv": {
+      "value": "Svenska",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.tr": {
+      "value": "Türkçe",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.zh-cn": {
+      "value": "简体中文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    }
+  },
   "ignorelt": [],
   "soundEffects": [
     "ovoz balandligi",

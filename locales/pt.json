@@ -219,7 +219,1661 @@
     "boost.getTiltAngle": "o ângulo da inclinação %1",
     "boost.setLightHue": "altera a cor da luz para %1"
   },
-  "dropdowns": {},
+  "dropdowns": {
+    "MOTION_GOTO_POINTER": {
+      "value": "o ponteiro do rato",
+      "parents": [
+        "MOTION_GOTO"
+      ]
+    },
+    "MOTION_GOTO_RANDOM": {
+      "value": "uma posição ao acaso",
+      "parents": [
+        "MOTION_GOTO"
+      ]
+    },
+    "MOTION_GLIDETO_POINTER": {
+      "value": "o ponteiro do rato",
+      "parents": [
+        "MOTION_GLIDETO"
+      ]
+    },
+    "MOTION_GLIDETO_RANDOM": {
+      "value": "uma posição ao acaso",
+      "parents": [
+        "MOTION_GLIDETO"
+      ]
+    },
+    "MOTION_POINTTOWARDS_POINTER": {
+      "value": "ponteiro do rato",
+      "parents": [
+        "MOTION_POINTTOWARDS"
+      ]
+    },
+    "MOTION_POINTTOWARDS_RANDOM": {
+      "value": "uma direcção ao acaso",
+      "parents": [
+        "MOTION_POINTTOWARDS"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_LEFTRIGHT": {
+      "value": "olha apenas para a esquerda e para a direita",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_DONTROTATE": {
+      "value": "não gires",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_ALLAROUND": {
+      "value": "gira a toda a volta",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "LOOKS_NEXTBACKDROP": {
+      "value": "passa para o teu próximo cenário",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_PREVIOUSBACKDROP": {
+      "value": "o cenário anterior",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_RANDOMBACKDROP": {
+      "value": "um cenário ao acaso",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_EFFECT_COLOR": {
+      "value": "cor",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_FISHEYE": {
+      "value": "olho de peixe",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_WHIRL": {
+      "value": "remoinho",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_PIXELATE": {
+      "value": "pixelização",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_MOSAIC": {
+      "value": "mosaico",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_BRIGHTNESS": {
+      "value": "brilho",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_GHOST": {
+      "value": "fantasma",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_GOTOFRONTBACK_FRONT": {
+      "value": "frontal",
+      "parents": [
+        "LOOKS_GOTOFRONTBACK"
+      ]
+    },
+    "LOOKS_GOTOFRONTBACK_BACK": {
+      "value": "traseira",
+      "parents": [
+        "LOOKS_GOTOFRONTBACK"
+      ]
+    },
+    "LOOKS_GOFORWARDBACKWARDLAYERS_FORWARD": {
+      "value": "avança",
+      "parents": [
+        "LOOKS_GOFORWARDBACKWARDLAYERS"
+      ]
+    },
+    "LOOKS_GOFORWARDBACKWARDLAYERS_BACKWARD": {
+      "value": "recua",
+      "parents": [
+        "LOOKS_GOFORWARDBACKWARDLAYERS"
+      ]
+    },
+    "LOOKS_NUMBERNAME_NUMBER": {
+      "value": "o número",
+      "parents": [
+        "LOOKS_COSTUMENUMBERNAME",
+        "LOOKS_BACKDROPNUMBERNAME"
+      ]
+    },
+    "LOOKS_NUMBERNAME_NAME": {
+      "value": "o nome",
+      "parents": [
+        "LOOKS_COSTUMENUMBERNAME",
+        "LOOKS_BACKDROPNUMBERNAME"
+      ]
+    },
+    "SOUND_EFFECTS_PITCH": {
+      "value": "tom",
+      "parents": [
+        "SOUND_CHANGEEFFECTBY",
+        "SOUND_SETEFFECTO"
+      ]
+    },
+    "SOUND_EFFECTS_PAN": {
+      "value": "canal esquerdo/direito",
+      "parents": [
+        "SOUND_CHANGEEFFECTBY",
+        "SOUND_SETEFFECTO"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_SPACE": {
+      "value": "espaço",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_LEFT": {
+      "value": "seta para a esquerda",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_RIGHT": {
+      "value": "seta para a direita",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_DOWN": {
+      "value": "seta para baixo",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_UP": {
+      "value": "seta para cima",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_ANY": {
+      "value": "qualquer",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED"
+      ]
+    },
+    "EVENT_WHENGREATERTHAN_TIMER": {
+      "value": "o valor do cronómetro",
+      "parents": [
+        "EVENT_WHENGREATERTHAN"
+      ]
+    },
+    "EVENT_WHENGREATERTHAN_LOUDNESS": {
+      "value": "o volume no microfone",
+      "parents": [
+        "EVENT_WHENGREATERTHAN"
+      ]
+    },
+    "CONTROL_STOP_ALL": {
+      "value": "tudo",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_STOP_THIS": {
+      "value": "este guião",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_STOP_OTHER": {
+      "value": "os teus outros guiões",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_CREATECLONEOF_MYSELF": {
+      "value": "ti mesmo",
+      "parents": [
+        "CONTROL_CREATECLONEOF"
+      ]
+    },
+    "SENSING_TOUCHINGOBJECT_POINTER": {
+      "value": "o ponteiro do rato",
+      "parents": [
+        "SENSING_TOUCHINGOBJECT"
+      ]
+    },
+    "SENSING_TOUCHINGOBJECT_EDGE": {
+      "value": "a borda",
+      "parents": [
+        "SENSING_TOUCHINGOBJECT"
+      ]
+    },
+    "SENSING_DISTANCETO_POINTER": {
+      "value": "o ponteiro do rato",
+      "parents": [
+        "SENSING_DISTANCETO"
+      ]
+    },
+    "SENSING_SETDRAGMODE_DRAGGABLE": {
+      "value": "arrastável",
+      "parents": [
+        "SENSING_SETDRAGMODE"
+      ]
+    },
+    "SENSING_SETDRAGMODE_NOTDRAGGABLE": {
+      "value": "não arrastável",
+      "parents": [
+        "SENSING_SETDRAGMODE"
+      ]
+    },
+    "SENSING_OF_XPOSITION": {
+      "value": "o x da posição",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_YPOSITION": {
+      "value": "o y da posição",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_DIRECTION": {
+      "value": "a direcção",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_COSTUMENUMBER": {
+      "value": "o número do traje",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_COSTUMENAME": {
+      "value": "o nome do traje",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_SIZE": {
+      "value": "o tamanho",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_VOLUME": {
+      "value": "o volume",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_BACKDROPNUMBER": {
+      "value": "o número do cenário",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_BACKDROPNAME": {
+      "value": "o nome do cenário",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_STAGE": {
+      "value": "o palco",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_CURRENT_YEAR": {
+      "value": "o ano",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_MONTH": {
+      "value": "o mês",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_DATE": {
+      "value": "a data",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_DAYOFWEEK": {
+      "value": "o dia da semana",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_HOUR": {
+      "value": "a hora",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_MINUTE": {
+      "value": "o minuto",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_SECOND": {
+      "value": "o segundo",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "OPERATORS_MATHOP_ABS": {
+      "value": "o valor absoluto",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_FLOOR": {
+      "value": "o chão (o maior inteiro não superior)",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_CEILING": {
+      "value": "o tecto (menor inteiro não inferior)",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_SQRT": {
+      "value": "a raiz quadrada",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_SIN": {
+      "value": "o seno",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_COS": {
+      "value": "o cosseno",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_TAN": {
+      "value": "a tangente",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ASIN": {
+      "value": "o arco-seno",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ACOS": {
+      "value": "o arco-cosseno",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ATAN": {
+      "value": "o arco-tangente",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_LN": {
+      "value": "o logaritmo natural",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_LOG": {
+      "value": "o logaritmo",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_EEXP": {
+      "value": "a exponencial",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_10EXP": {
+      "value": "10 ^",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "music.drumSnare": {
+      "value": "(1) Caixa",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumBass": {
+      "value": "(2) Bombo",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumSideStick": {
+      "value": "(3) Golpe no Fuste da Tarola",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCrashCymbal": {
+      "value": "(4) Prato de Ataque",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumOpenHiHat": {
+      "value": "(5) Pratos de Choque Abertos",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumClosedHiHat": {
+      "value": "(6) Pratos de Choque Fechados",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumTambourine": {
+      "value": "(7) Pandeireta",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumHandClap": {
+      "value": "(8) Palmas",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumClaves": {
+      "value": "(9) Clavas",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumWoodBlock": {
+      "value": "(10) Bloco Sonoro",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCowbell": {
+      "value": "(11) Caneca",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumTriangle": {
+      "value": "(12) Triângulo",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumBongo": {
+      "value": "(13) Bongo",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumConga": {
+      "value": "(14) Conga",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCabasa": {
+      "value": "(15) Cabaça",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumGuiro": {
+      "value": "(16) Reco-Reco",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumVibraslap": {
+      "value": "(17) Vibraslap",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCuica": {
+      "value": "(18) Cuíca",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.instrumentPiano": {
+      "value": "(1) Piano",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentElectricPiano": {
+      "value": "(2) Piano Eléctrico",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentOrgan": {
+      "value": "(3) Órgão",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentGuitar": {
+      "value": "(4) Guitarra",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentElectricGuitar": {
+      "value": "(5) Guitarra Eléctrica",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentBass": {
+      "value": "(6) Baixo",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentPizzicato": {
+      "value": "(7) Pizzicato",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentCello": {
+      "value": "(8) Violoncelo",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentTrombone": {
+      "value": "(9) Trombone",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentClarinet": {
+      "value": "(10) Clarinete",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSaxophone": {
+      "value": "(11) Saxofone",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentFlute": {
+      "value": "(12) Flauta Transversal",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentWoodenFlute": {
+      "value": "(13) Flauta de Madeira",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentBassoon": {
+      "value": "(14) Fagote",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentChoir": {
+      "value": "(15) Coro",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentVibraphone": {
+      "value": "(16) Vibrafone",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentMusicBox": {
+      "value": "(17) Caixa de Música",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSteelDrum": {
+      "value": "(18) Tambor de Aço",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentMarimba": {
+      "value": "(19) Marimba",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSynthLead": {
+      "value": "(20) Sintetizador Melódico",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSynthPad": {
+      "value": "(21) Sintetizador de Fundo",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "pen.colorMenu.color": {
+      "value": "o matiz",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.saturation": {
+      "value": "a saturação",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.brightness": {
+      "value": "o brilho",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.transparency": {
+      "value": "a transparência",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "videoSensing.direction": {
+      "value": "a direcção",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.motion": {
+      "value": "o movimento",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.sprite": {
+      "value": "ti mesmo",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.stage": {
+      "value": "o palco",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.off": {
+      "value": "desligado",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "videoSensing.on": {
+      "value": "ligado",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "videoSensing.onFlipped": {
+      "value": "ligado e espelhado",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "text2speech.alto": {
+      "value": "alto",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.tenor": {
+      "value": "tenor",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.squeak": {
+      "value": "guincho",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.giant": {
+      "value": "gigante",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.kitten": {
+      "value": "gatinho",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "makeymakey.upArrowShort": {
+      "value": "cima",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.downArrowShort": {
+      "value": "baixo",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.leftArrowShort": {
+      "value": "esquerda",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.rightArrowShort": {
+      "value": "direita",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "microbit.buttonsMenu.any": {
+      "value": "qualquer",
+      "parents": [
+        "microbit.whenButtonPressed",
+        "microbit.isButtonPressed"
+      ]
+    },
+    "microbit.gesturesMenu.jumped": {
+      "value": "saltar",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.gesturesMenu.moved": {
+      "value": "se mover",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.gesturesMenu.shaken": {
+      "value": "for abanado",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.tiltDirectionMenu.any": {
+      "value": "para qualquer lado",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted"
+      ]
+    },
+    "microbit.tiltDirectionMenu.back": {
+      "value": "para trás",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.front": {
+      "value": "para a frente",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.left": {
+      "value": "para a esquerda",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.right": {
+      "value": "para a direita",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "boost.motorDirection.backward": {
+      "value": "para ali",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.motorDirection.forward": {
+      "value": "para aqui",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.motorDirection.reverse": {
+      "value": "ao contrário",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.color.any": {
+      "value": "de qualquer cor",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.black": {
+      "value": "preto",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.blue": {
+      "value": "azul",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.green": {
+      "value": "verde",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.red": {
+      "value": "vermelho",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.white": {
+      "value": "branco",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.yellow": {
+      "value": "amarelo",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.tiltDirection.any": {
+      "value": "para qualquer lado",
+      "parents": [
+        "boost.whenTilted"
+      ]
+    },
+    "boost.tiltDirection.up": {
+      "value": "cima",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.down": {
+      "value": "para baixo",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.left": {
+      "value": "para a esquerda",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.right": {
+      "value": "para a direita",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "wedo2.motorId.a": {
+      "value": "o motor A",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.b": {
+      "value": "o motor B",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.all": {
+      "value": "todos os motores",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.default": {
+      "value": "o motor",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.forward": {
+      "value": "para aqui",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.backward": {
+      "value": "para ali",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.reverse": {
+      "value": "para trás",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.tiltDirection.any": {
+      "value": "para qualquer lado",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted"
+      ]
+    },
+    "wedo2.tiltDirection.up": {
+      "value": "para cima",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.down": {
+      "value": "para baixo",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.left": {
+      "value": "para a esquerda",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.right": {
+      "value": "para a direita",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "gdxfor.pulled": {
+      "value": "for puxado",
+      "parents": [
+        "gdxfor.whenForcePushedOrPulled"
+      ]
+    },
+    "gdxfor.pushed": {
+      "value": "for empurrado",
+      "parents": [
+        "gdxfor.whenForcePushedOrPulled"
+      ]
+    },
+    "gdxfor.shaken": {
+      "value": "for abanado",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.startedFalling": {
+      "value": "começar a cair",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.turnedFaceDown": {
+      "value": "está com a face para baixo",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.turnedFaceUp": {
+      "value": "está com a face para cima",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.front": {
+      "value": "para a frente",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.back": {
+      "value": "para trás",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.left": {
+      "value": "para a esquerda",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.right": {
+      "value": "para a direita",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.any": {
+      "value": "para qualquer lado",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted"
+      ]
+    },
+    "makeymakey.sequence.0": {
+      "value": "esquerda cima direita",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.1": {
+      "value": "direita cima esquerda",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.2": {
+      "value": "esquerda direita",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.3": {
+      "value": "direita esquerda",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.4": {
+      "value": "cima baixo",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.5": {
+      "value": "baixo cima",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.6": {
+      "value": "cima direita baixo esquerda",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.7": {
+      "value": "cima esquerda baixo direita",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.8": {
+      "value": "cima cima baixo baixo esquerda direita esquerda direita",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "translate.language.de": {
+      "value": "Alemão",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.am": {
+      "value": "Amárico",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ar": {
+      "value": "Árabe",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.az": {
+      "value": "Azerbaijano",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.eu": {
+      "value": "Basco",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.bg": {
+      "value": "Búlgaro",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ca": {
+      "value": "Catalão",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.zh-cn": {
+      "value": "Chinês (simplificado)",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.zh-tw": {
+      "value": "Chinês (tradicional)",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ko": {
+      "value": "Coreano",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.hr": {
+      "value": "Croata",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ckb": {
+      "value": "Curdo (sorâni)",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.da": {
+      "value": "Dinamarquês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.sk": {
+      "value": "Eslovaco",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.sl": {
+      "value": "Esloveno",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.es": {
+      "value": "Espanhol",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.et": {
+      "value": "Estoniano",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.fi": {
+      "value": "Finlandês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.fr": {
+      "value": "Francês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.gd": {
+      "value": "Gaélico escocês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.gl": {
+      "value": "Galego",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.cy": {
+      "value": "Galês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.el": {
+      "value": "Grego",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.he": {
+      "value": "Hebraico",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.nl": {
+      "value": "Holandês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.hu": {
+      "value": "Húngaro",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.id": {
+      "value": "Indonésio",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.en": {
+      "value": "Inglês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ga": {
+      "value": "Irlandês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.is": {
+      "value": "Islandês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.it": {
+      "value": "Italiano",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ja": {
+      "value": "Japonês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.lv": {
+      "value": "Letão",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.lt": {
+      "value": "Lituano",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.mi": {
+      "value": "Maori",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.nb": {
+      "value": "Norueguês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.fa": {
+      "value": "Persa",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.pl": {
+      "value": "Polonês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.pt": {
+      "value": "Português",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ro": {
+      "value": "Romeno",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ru": {
+      "value": "Russo",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.sr": {
+      "value": "Sérvio",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.sv": {
+      "value": "Sueco",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.th": {
+      "value": "Tailandês",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.cs": {
+      "value": "Tcheco",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.tr": {
+      "value": "Turco",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.uk": {
+      "value": "Ucraniano",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.vi": {
+      "value": "Vietnamita",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.zu": {
+      "value": "Zulu",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "text2speech.language.ar": {
+      "value": "Árabe",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.cy": {
+      "value": "Galês",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.da": {
+      "value": "Dinamarquês",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.de": {
+      "value": "Alemão",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.en": {
+      "value": "Inglês",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.es": {
+      "value": "Espanhol",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.es-419": {
+      "value": "Espanhol (latino-americano)",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.fr": {
+      "value": "Francês",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ko": {
+      "value": "Coreano",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.hi": {
+      "value": "Hindi",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.is": {
+      "value": "Islandês",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.it": {
+      "value": "Italiano",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.nl": {
+      "value": "Holandês",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ja": {
+      "value": "Japonês",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.nb": {
+      "value": "Norueguês",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pl": {
+      "value": "Polonês",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pt": {
+      "value": "Português",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pt-br": {
+      "value": "Português (Brasileiro)",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ro": {
+      "value": "Romeno",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ru": {
+      "value": "Russo",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.sv": {
+      "value": "Sueco",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.tr": {
+      "value": "Turco",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.zh-cn": {
+      "value": "Chinês (Mandarim)",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    }
+  },
   "ignorelt": [],
   "soundEffects": [
     "tom",
