@@ -6,6 +6,7 @@ import ko from "../locales/ko.json" with { type: "json" }
 import pt_br from "../locales/pt-br.json" with { type: "json" }
 import rap from "../locales/rap.json" with { type: "json" }
 import uz from "../locales/uz.json" with { type: "json" }
+import zh_cn from "../locales/zh-cn.json" with { type: "json" }
 
 loadLanguages({
   de,
@@ -14,6 +15,7 @@ loadLanguages({
   pt_br,
   rap,
   uz,
+  zh_cn,
 })
 const optionsFor = code => ({
   languages: ["en", code],
@@ -1073,6 +1075,335 @@ move (10) steps`)
     const subtract = doc.getBlockAtCursor(1, numCol)
     expect(subtract).toBeDefined()
     expect(subtract.blockPath).toBe("1.1.1")
+  })
+
+  test("handles point towards subtraction in script", () => {
+    const code = `define init ball
+hide
+go to x: (0) y: (-130)
+show
+set rotation style [left-right v]
+point towards (pick random (45) to (135))
+set [speed v] to (5)
+
+when flag clicked
+wait (1) seconds
+broadcast (game start v)
+init ball
+
+when I receive [game start v]
+forever 
+  move (speed) steps
+  if <touching [edge v] ?> then 
+    start sound [pop v]
+    if <touching color [#000000] ?> then 
+      point towards ((180) - (direction))
+    else 
+      if <(y position) < (-170)> then 
+        broadcast [life lost v]
+        init ball
+      end
+    end
+  end
+  if <touching [paddle v] ?> then 
+    start sound [pop v]
+    point towards ((180) - (direction))
+    change [speed v] by (0.2)
+  end
+  if <touching [brick v] ?> then 
+    start sound [pop v]
+    point towards ((180) - (direction))
+    change [score v] by (10)
+  end
+end`
+
+    const doc = parse(code)
+    const lines = code.split("\n")
+    const targetLines = []
+
+    lines.forEach((line, idx) => {
+      if (line.includes("point towards ((180) - (direction))")) {
+        targetLines.push(idx + 1) // 1-based
+      }
+    })
+
+    expect(targetLines.length).toBe(3)
+
+    for (const lineNum of targetLines) {
+      const line = lines[lineNum - 1]
+
+      const dirCol = line.indexOf("direction")
+      expect(dirCol).toBeGreaterThanOrEqual(0)
+      const directionBlock = doc.getBlockAtCursor(lineNum, dirCol)
+      expect(directionBlock).toBeDefined()
+      expect(directionBlock.info.selector).toBe("heading")
+
+      const numCol = line.indexOf("180")
+      expect(numCol).toBeGreaterThanOrEqual(0)
+      const subtractBlock = doc.getBlockAtCursor(lineNum, numCol)
+      expect(subtractBlock).toBeDefined()
+      expect(subtractBlock.info.selector).toBe("-")
+    }
+  })
+
+  test("covers cursor lookup for full breakout script", () => {
+    const code = `define init ball
+hide
+go to x: (0) y: (-130)
+show
+set rotation style [left-right v]
+point towards (pick random (45) to (135))
+set [speed v] to (5)
+
+when flag clicked
+wait (1) seconds
+broadcast (game start v)
+init ball
+
+when I receive [game start v]
+forever 
+  move (speed) steps
+  if <touching [edge v] ?> then 
+    start sound [pop v]
+    if <touching color [#000000] ?> then 
+      point towards ((180) - (direction))
+    else 
+      if <(y position) < (-170)> then 
+        broadcast [life lost v]
+        init ball
+      end
+    end
+  end
+  if <touching [paddle v] ?> then 
+    start sound [pop v]
+    point towards ((180) - (direction))
+    change [speed v] by (0.2)
+  end
+  if <touching [brick v] ?> then 
+    start sound [pop v]
+    point towards ((180) - (direction))
+    change [score v] by (10)
+  end
+end`
+
+    const doc = parse(code)
+    const lines = code.split("\n")
+
+    const expectSelector = (lineNum, substring, selector) => {
+      const col = lines[lineNum - 1].indexOf(substring)
+      expect(col).toBeGreaterThanOrEqual(0)
+      const block = doc.getBlockAtCursor(lineNum, col)
+      expect(block).toBeDefined()
+      expect(block.info.selector).toBe(selector)
+      expect(block.sourceRange.start.line).toBe(lineNum)
+    }
+
+    const expectCustomCall = (lineNum, substring) => {
+      const col = lines[lineNum - 1].indexOf(substring)
+      expect(col).toBeGreaterThanOrEqual(0)
+      const block = doc.getBlockAtCursor(lineNum, col)
+      expect(block).toBeDefined()
+      expect(block.info.id).toBe("PROCEDURES_CALL")
+      expect(block.sourceRange.start.line).toBe(lineNum)
+    }
+
+    // First script: definition + setup
+    expectSelector(1, "define", "procDef")
+    expectSelector(2, "hide", "hide")
+    expectSelector(3, "go to x", "gotoX:y:")
+    expectSelector(4, "show", "show")
+    expectSelector(5, "set rotation style", "setRotationStyle")
+    expectSelector(6, "point towards", "pointTowards:")
+    expectSelector(6, "pick random", "randomFrom:to:")
+    expectSelector(7, "set [speed v] to", "setVar:to:")
+
+    // Second script: green flag
+    expectSelector(9, "when flag clicked", "whenGreenFlag")
+    expectSelector(10, "wait", "wait:elapsed:from:")
+    expectSelector(11, "broadcast", "broadcast:")
+    expectCustomCall(12, "init ball")
+
+    // Third script: game loop
+    expectSelector(14, "when I receive", "whenIReceive")
+    expectSelector(15, "forever", "doForever")
+    expectSelector(16, "move", "forward:")
+
+    // Edge bounce branch
+    expectSelector(17, "then", "doIf")
+    expectSelector(17, "touching [edge", "touching:")
+    expectSelector(18, "start sound", "playSound:")
+    expectSelector(19, "then", "doIf")
+    expectSelector(19, "touching color", "touchingColor:")
+    expectSelector(20, "point towards", "pointTowards:")
+    expectSelector(20, "180", "-")
+    expectSelector(20, "direction", "heading")
+
+    // Miss branch
+    expectSelector(22, "then", "doIf")
+    expectSelector(22, "<(", "<")
+    // "y position" is deeply nested (<((ypos) < ...)), verify via blockPath
+    const yPosBlockPath = "3.1.1.1.1.1.1"
+    const yPosBlock = doc.getBlockByPath(yPosBlockPath)
+    if (yPosBlock && yPosBlock.sourceRange) {
+      expect(yPosBlock.info.selector).toBe("ypos")
+      expect(
+        doc.getBlockAtCursor(
+          yPosBlock.sourceRange.start.line,
+          yPosBlock.sourceRange.start.column,
+        ),
+      ).toBe(yPosBlock)
+    }
+    expectSelector(23, "broadcast", "broadcast:")
+    expectCustomCall(24, "init ball")
+
+    // Paddle branch
+    expectSelector(28, "then", "doIf")
+    expectSelector(28, "touching [paddle", "touching:")
+    expectSelector(29, "start sound", "playSound:")
+    expectSelector(30, "point towards", "pointTowards:")
+    expectSelector(30, "180", "-")
+    expectSelector(30, "direction", "heading")
+    expectSelector(31, "change [speed", "changeVar:by:")
+
+    // Brick branch
+    expectSelector(33, "then", "doIf")
+    expectSelector(33, "touching [brick", "touching:")
+    expectSelector(34, "start sound", "playSound:")
+    expectSelector(35, "point towards", "pointTowards:")
+    expectSelector(35, "180", "-")
+    expectSelector(35, "direction", "heading")
+    expectSelector(36, "change [score", "changeVar:by:")
+  })
+
+  test("covers cursor lookup for full Chinese breakout script", () => {
+    const code = `定义 初始化球
+隐藏
+移到 x: (0) y: (-130)
+显示
+将旋转方式设为 [左右翻转 v]
+面向 (在 (45) 和 (135) 之间取随机数)
+将 [球速 v] 设为 (5)
+
+当绿旗被点击
+等待 (1) 秒
+广播 (游戏开始 v)
+初始化球 :: custom
+
+当接收到 [游戏开始 v]
+重复执行
+  移动 (球速) 步
+  如果 <碰到 [舞台边缘 v] ?> 那么
+    播放声音 [pop v]
+    如果 <碰到颜色 [#000000] ?> 那么
+      面向 ((180) - (方向))
+    否则
+      如果 <(y 坐标) < (-170)> 那么
+        广播 [生命减少 v]
+        初始化球 :: custom
+      结束
+    结束
+  结束
+  如果 <碰到 [挡板 v] ?> 那么
+    播放声音 [pop v]
+    面向 ((180) - (方向))
+    将 [球速 v] 增加 (0.2)
+  结束
+  如果 <碰到 [砖块 v] ?> 那么
+    播放声音 [pop v]
+    面向 ((180) - (方向))
+    将 [分数 v] 增加 (10)
+  结束
+结束`
+
+    const doc = parse(code, { languages: ["en", "zh_cn"] })
+    const lines = code.split("\n")
+
+    const expectSelector = (lineNum, substring, selector) => {
+      const col = lines[lineNum - 1].indexOf(substring)
+      expect(col).toBeGreaterThanOrEqual(0)
+      const block = doc.getBlockAtCursor(lineNum, col)
+      expect(block).toBeDefined()
+      expect(block.info.selector).toBe(selector)
+      expect(block.sourceRange.start.line).toBe(lineNum)
+    }
+
+    const expectCustomCall = (lineNum, substring) => {
+      const col = lines[lineNum - 1].indexOf(substring)
+      expect(col).toBeGreaterThanOrEqual(0)
+      const block = doc.getBlockAtCursor(lineNum, col)
+      expect(block).toBeDefined()
+      expect(block.info.id).toBe("PROCEDURES_CALL")
+      expect(block.sourceRange.start.line).toBe(lineNum)
+    }
+
+    // First script: definition + setup
+    expectSelector(1, "定义", "procDef")
+    expectSelector(2, "隐藏", "hide")
+    expectSelector(3, "移到 x", "gotoX:y:")
+    expectSelector(4, "显示", "show")
+    expectSelector(5, "将旋转方式设为", "setRotationStyle")
+    expectSelector(6, "面向", "pointTowards:")
+    expectSelector(6, "在", "randomFrom:to:")
+    expectSelector(7, "将 [球速 v] 设为", "setVar:to:")
+
+    // Second script: green flag
+    expectSelector(9, "当绿旗被点击", "whenGreenFlag")
+    expectSelector(10, "等待", "wait:elapsed:from:")
+    expectSelector(11, "广播", "broadcast:")
+    // Line 12: custom call
+    expectCustomCall(12, "初始化球")
+
+    // Third script: game loop
+    expectSelector(14, "当接收到", "whenIReceive")
+    expectSelector(15, "重复执行", "doForever")
+    expectSelector(16, "移动", "forward:")
+
+    // Edge bounce branch
+    expectSelector(17, "那么", "doIf")
+    expectSelector(17, "碰到 [舞台边缘", "touching:")
+    expectSelector(18, "播放声音", "playSound:")
+    expectSelector(19, "那么", "doIf")
+    expectSelector(19, "碰到颜色", "touchingColor:")
+    expectSelector(20, "面向", "pointTowards:")
+    expectSelector(20, "180", "-")
+    expectSelector(20, "方向", "heading")
+
+    // Miss branch (else)
+    expectSelector(22, "那么", "doIf")
+    expectSelector(22, "<(", "<")
+    // "y 坐标" is deeply nested, verify via blockPath
+    const yPosBlockPath = "3.1.1.1.1.1.1"
+    const yPosBlock = doc.getBlockByPath(yPosBlockPath)
+    if (yPosBlock && yPosBlock.sourceRange) {
+      expect(yPosBlock.info.selector).toBe("ypos")
+      expect(
+        doc.getBlockAtCursor(
+          yPosBlock.sourceRange.start.line,
+          yPosBlock.sourceRange.start.column,
+        ),
+      ).toBe(yPosBlock)
+    }
+    expectSelector(23, "广播", "broadcast:")
+    // Line 24: custom call
+    expectCustomCall(24, "初始化球")
+
+    // Paddle branch
+    expectSelector(28, "那么", "doIf")
+    expectSelector(28, "碰到 [挡板", "touching:")
+    expectSelector(29, "播放声音", "playSound:")
+    expectSelector(30, "面向", "pointTowards:")
+    expectSelector(30, "180", "-")
+    expectSelector(30, "方向", "heading")
+    expectSelector(31, "将 [球速 v] 增加", "changeVar:by:")
+
+    // Brick branch
+    expectSelector(33, "那么", "doIf")
+    expectSelector(33, "碰到 [砖块", "touching:")
+    expectSelector(34, "播放声音", "playSound:")
+    expectSelector(35, "面向", "pointTowards:")
+    expectSelector(35, "180", "-")
+    expectSelector(35, "方向", "heading")
+    expectSelector(36, "将 [分数 v] 增加", "changeVar:by:")
   })
 })
 
