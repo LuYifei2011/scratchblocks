@@ -148,6 +148,15 @@
     "CONTROL_ELSE": "否則",
     "SENSING_USERID": "用戶 ID",
     "SENSING_LOUD": "大聲？",
+    "faceSensing.goToPart": "go to %1",
+    "faceSensing.pointInFaceTiltDirection": "point in direction of face tilt",
+    "faceSensing.setSizeToFaceSize": "set size to face size",
+    "faceSensing.whenTilted": "when face tilts %1",
+    "faceSensing.whenSpriteTouchesPart": "when this sprite touches a %1",
+    "faceSensing.whenFaceDetected": "when a face is detected",
+    "faceSensing.faceDetected": "a face is detected?",
+    "faceSensing.faceTilt": "face tilt",
+    "faceSensing.faceSize": "face size",
     "text2speech.speakAndWaitBlock": "唸出 %1",
     "text2speech.setVoiceBlock": "語音設為 %1",
     "text2speech.setLanguageBlock": "語言設為 %1",
@@ -210,7 +219,1661 @@
     "boost.getTiltAngle": "傾斜角度 %1",
     "boost.setLightHue": "LED 顏色設為 %1"
   },
-  "dropdowns": {},
+  "dropdowns": {
+    "MOTION_GOTO_POINTER": {
+      "value": "鼠標",
+      "parents": [
+        "MOTION_GOTO"
+      ]
+    },
+    "MOTION_GOTO_RANDOM": {
+      "value": "隨機",
+      "parents": [
+        "MOTION_GOTO"
+      ]
+    },
+    "MOTION_GLIDETO_POINTER": {
+      "value": "鼠標",
+      "parents": [
+        "MOTION_GLIDETO"
+      ]
+    },
+    "MOTION_GLIDETO_RANDOM": {
+      "value": "隨機",
+      "parents": [
+        "MOTION_GLIDETO"
+      ]
+    },
+    "MOTION_POINTTOWARDS_POINTER": {
+      "value": "鼠標",
+      "parents": [
+        "MOTION_POINTTOWARDS"
+      ]
+    },
+    "MOTION_POINTTOWARDS_RANDOM": {
+      "value": "隨機",
+      "parents": [
+        "MOTION_POINTTOWARDS"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_LEFTRIGHT": {
+      "value": "左-右",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_DONTROTATE": {
+      "value": "不旋轉",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_ALLAROUND": {
+      "value": "不設限",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "LOOKS_NEXTBACKDROP": {
+      "value": "下一個背景",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_PREVIOUSBACKDROP": {
+      "value": "上一個背景",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_RANDOMBACKDROP": {
+      "value": "任一個背景",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_EFFECT_COLOR": {
+      "value": "顏色",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_FISHEYE": {
+      "value": "魚眼",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_WHIRL": {
+      "value": "漩渦",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_PIXELATE": {
+      "value": "像素化",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_MOSAIC": {
+      "value": "馬賽克",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_BRIGHTNESS": {
+      "value": "亮度",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_GHOST": {
+      "value": "幻影",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_GOTOFRONTBACK_FRONT": {
+      "value": "最上",
+      "parents": [
+        "LOOKS_GOTOFRONTBACK"
+      ]
+    },
+    "LOOKS_GOTOFRONTBACK_BACK": {
+      "value": "最下",
+      "parents": [
+        "LOOKS_GOTOFRONTBACK"
+      ]
+    },
+    "LOOKS_GOFORWARDBACKWARDLAYERS_FORWARD": {
+      "value": "上",
+      "parents": [
+        "LOOKS_GOFORWARDBACKWARDLAYERS"
+      ]
+    },
+    "LOOKS_GOFORWARDBACKWARDLAYERS_BACKWARD": {
+      "value": "下",
+      "parents": [
+        "LOOKS_GOFORWARDBACKWARDLAYERS"
+      ]
+    },
+    "LOOKS_NUMBERNAME_NUMBER": {
+      "value": "編號",
+      "parents": [
+        "LOOKS_COSTUMENUMBERNAME",
+        "LOOKS_BACKDROPNUMBERNAME"
+      ]
+    },
+    "LOOKS_NUMBERNAME_NAME": {
+      "value": "名稱",
+      "parents": [
+        "LOOKS_COSTUMENUMBERNAME",
+        "LOOKS_BACKDROPNUMBERNAME"
+      ]
+    },
+    "SOUND_EFFECTS_PITCH": {
+      "value": "音高",
+      "parents": [
+        "SOUND_CHANGEEFFECTBY",
+        "SOUND_SETEFFECTO"
+      ]
+    },
+    "SOUND_EFFECTS_PAN": {
+      "value": "聲道左/右",
+      "parents": [
+        "SOUND_CHANGEEFFECTBY",
+        "SOUND_SETEFFECTO"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_SPACE": {
+      "value": "空白",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_LEFT": {
+      "value": "向左",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_RIGHT": {
+      "value": "向右",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_DOWN": {
+      "value": "向下",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_UP": {
+      "value": "向上",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_ANY": {
+      "value": "任何",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED"
+      ]
+    },
+    "EVENT_WHENGREATERTHAN_TIMER": {
+      "value": "計時器",
+      "parents": [
+        "EVENT_WHENGREATERTHAN"
+      ]
+    },
+    "EVENT_WHENGREATERTHAN_LOUDNESS": {
+      "value": "聲音響度",
+      "parents": [
+        "EVENT_WHENGREATERTHAN"
+      ]
+    },
+    "CONTROL_STOP_ALL": {
+      "value": "全部",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_STOP_THIS": {
+      "value": "這個程式",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_STOP_OTHER": {
+      "value": "這個物件的其它程式",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_CREATECLONEOF_MYSELF": {
+      "value": "自己",
+      "parents": [
+        "CONTROL_CREATECLONEOF"
+      ]
+    },
+    "SENSING_TOUCHINGOBJECT_POINTER": {
+      "value": "鼠標",
+      "parents": [
+        "SENSING_TOUCHINGOBJECT"
+      ]
+    },
+    "SENSING_TOUCHINGOBJECT_EDGE": {
+      "value": "邊緣",
+      "parents": [
+        "SENSING_TOUCHINGOBJECT"
+      ]
+    },
+    "SENSING_DISTANCETO_POINTER": {
+      "value": "鼠標",
+      "parents": [
+        "SENSING_DISTANCETO"
+      ]
+    },
+    "SENSING_SETDRAGMODE_DRAGGABLE": {
+      "value": "可拖曳",
+      "parents": [
+        "SENSING_SETDRAGMODE"
+      ]
+    },
+    "SENSING_SETDRAGMODE_NOTDRAGGABLE": {
+      "value": "不可拖曳",
+      "parents": [
+        "SENSING_SETDRAGMODE"
+      ]
+    },
+    "SENSING_OF_XPOSITION": {
+      "value": "x 座標",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_YPOSITION": {
+      "value": "y 座標",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_DIRECTION": {
+      "value": "方向",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_COSTUMENUMBER": {
+      "value": "造型編號",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_COSTUMENAME": {
+      "value": "造型名稱",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_SIZE": {
+      "value": "尺寸",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_VOLUME": {
+      "value": "音量",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_BACKDROPNUMBER": {
+      "value": "背景編號",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_BACKDROPNAME": {
+      "value": "背景名稱",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_STAGE": {
+      "value": "舞台",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_CURRENT_YEAR": {
+      "value": "年",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_MONTH": {
+      "value": "月",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_DATE": {
+      "value": "日",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_DAYOFWEEK": {
+      "value": "週",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_HOUR": {
+      "value": "時",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_MINUTE": {
+      "value": "分",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_SECOND": {
+      "value": "秒",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "OPERATORS_MATHOP_ABS": {
+      "value": "絕對值",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_FLOOR": {
+      "value": "無條件捨去",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_CEILING": {
+      "value": "無條件進位",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_SQRT": {
+      "value": "平方根",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_SIN": {
+      "value": "sin",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_COS": {
+      "value": "cos",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_TAN": {
+      "value": "tan",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ASIN": {
+      "value": "asin",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ACOS": {
+      "value": "acos",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ATAN": {
+      "value": "atan",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_LN": {
+      "value": "ln",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_LOG": {
+      "value": "log",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_EEXP": {
+      "value": "e ^",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_10EXP": {
+      "value": "10 ^",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "music.drumSnare": {
+      "value": "(1) 軍鼓",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumBass": {
+      "value": "(2) 低音鼓",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumSideStick": {
+      "value": "(3) 鼓邊敲擊",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCrashCymbal": {
+      "value": "(4) 碎音鈸",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumOpenHiHat": {
+      "value": "(5) 打開的腳踏鈸",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumClosedHiHat": {
+      "value": "(6) 合起的腳踏鈸",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumTambourine": {
+      "value": "(7) 鈴鼓",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumHandClap": {
+      "value": "(8) 拍掌",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumClaves": {
+      "value": "(9) 梆子",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumWoodBlock": {
+      "value": "(10) 木魚",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCowbell": {
+      "value": "(11) 牛鈴",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumTriangle": {
+      "value": "(12) 三角鐵",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumBongo": {
+      "value": "(13) 邦加鼓",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumConga": {
+      "value": "(14) 康加鼓",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCabasa": {
+      "value": "(15) 鐵沙鈴",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumGuiro": {
+      "value": "(16) 刮瓜",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumVibraslap": {
+      "value": "(17) 振盪器",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCuica": {
+      "value": "(18) 庫加鼓",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.instrumentPiano": {
+      "value": "(1) 鋼琴",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentElectricPiano": {
+      "value": "(2) 電子琴",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentOrgan": {
+      "value": "(3) 風琴",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentGuitar": {
+      "value": "(4) 吉他",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentElectricGuitar": {
+      "value": "(5) 電吉他",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentBass": {
+      "value": "(6) 貝斯",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentPizzicato": {
+      "value": "(7) 撥奏",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentCello": {
+      "value": "(8) 大提琴",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentTrombone": {
+      "value": "(9) 長號",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentClarinet": {
+      "value": "(10) 單簧管",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSaxophone": {
+      "value": "(11) 薩克斯風",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentFlute": {
+      "value": "(12) 長笛",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentWoodenFlute": {
+      "value": "(13) 木笛",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentBassoon": {
+      "value": "(14) 低音管",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentChoir": {
+      "value": "(15) 人聲合唱",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentVibraphone": {
+      "value": "(16) 顫音琴",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentMusicBox": {
+      "value": "(17) 音樂盒",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSteelDrum": {
+      "value": "(18) 鋼鼓",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentMarimba": {
+      "value": "(19) 馬林巴",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSynthLead": {
+      "value": "(20) 合成主音",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSynthPad": {
+      "value": "(21) 合成柔音",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "pen.colorMenu.color": {
+      "value": "顏色",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.saturation": {
+      "value": "彩度",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.brightness": {
+      "value": "亮度",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.transparency": {
+      "value": "透明度",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "videoSensing.direction": {
+      "value": "方向",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.motion": {
+      "value": "動作",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.sprite": {
+      "value": "角色",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.stage": {
+      "value": "舞台",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.off": {
+      "value": "關閉",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "videoSensing.on": {
+      "value": "開啟",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "videoSensing.onFlipped": {
+      "value": "翻轉",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "text2speech.alto": {
+      "value": "alto",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.tenor": {
+      "value": "tenor",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.squeak": {
+      "value": "尖細",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.giant": {
+      "value": "低沉",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.kitten": {
+      "value": "小貓",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "makeymakey.upArrowShort": {
+      "value": "向上",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.downArrowShort": {
+      "value": "向下",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.leftArrowShort": {
+      "value": "向左",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.rightArrowShort": {
+      "value": "向右",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "microbit.buttonsMenu.any": {
+      "value": "任何",
+      "parents": [
+        "microbit.whenButtonPressed",
+        "microbit.isButtonPressed"
+      ]
+    },
+    "microbit.gesturesMenu.jumped": {
+      "value": "跳動",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.gesturesMenu.moved": {
+      "value": "移動",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.gesturesMenu.shaken": {
+      "value": "晃動",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.tiltDirectionMenu.any": {
+      "value": "任何",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted"
+      ]
+    },
+    "microbit.tiltDirectionMenu.back": {
+      "value": "向下",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.front": {
+      "value": "向上",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.left": {
+      "value": "向左",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.right": {
+      "value": "向右",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "boost.motorDirection.backward": {
+      "value": "逆時針",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.motorDirection.forward": {
+      "value": "順時針",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.motorDirection.reverse": {
+      "value": "相反",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.color.any": {
+      "value": "任何顏色",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.black": {
+      "value": "黑色",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.blue": {
+      "value": "藍色",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.green": {
+      "value": "綠色",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.red": {
+      "value": "紅色",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.white": {
+      "value": "白色",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.yellow": {
+      "value": "黃色",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.tiltDirection.any": {
+      "value": "任何",
+      "parents": [
+        "boost.whenTilted"
+      ]
+    },
+    "boost.tiltDirection.up": {
+      "value": "向上",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.down": {
+      "value": "向下",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.left": {
+      "value": "向左",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.right": {
+      "value": "向右",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "wedo2.motorId.a": {
+      "value": "馬達 A",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.b": {
+      "value": "馬達 B",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.all": {
+      "value": "馬達 A 與 B",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.default": {
+      "value": "馬達",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.forward": {
+      "value": "順時針",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.backward": {
+      "value": "逆時針",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.reverse": {
+      "value": "相反",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.tiltDirection.any": {
+      "value": "任何",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted"
+      ]
+    },
+    "wedo2.tiltDirection.up": {
+      "value": "向上",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.down": {
+      "value": "向下",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.left": {
+      "value": "向左",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.right": {
+      "value": "向右",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "gdxfor.pulled": {
+      "value": "向外拉",
+      "parents": [
+        "gdxfor.whenForcePushedOrPulled"
+      ]
+    },
+    "gdxfor.pushed": {
+      "value": "向內推",
+      "parents": [
+        "gdxfor.whenForcePushedOrPulled"
+      ]
+    },
+    "gdxfor.shaken": {
+      "value": "晃動",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.startedFalling": {
+      "value": "開始掉落",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.turnedFaceDown": {
+      "value": "背面朝上",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.turnedFaceUp": {
+      "value": "正面朝上",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.front": {
+      "value": "向上",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.back": {
+      "value": "向下",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.left": {
+      "value": "向左",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.right": {
+      "value": "向右",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.any": {
+      "value": "任何",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted"
+      ]
+    },
+    "makeymakey.sequence.0": {
+      "value": "向左 向上 向右",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.1": {
+      "value": "向右 向上 向左",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.2": {
+      "value": "向左 向右",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.3": {
+      "value": "向右 向左",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.4": {
+      "value": "向上 向下",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.5": {
+      "value": "向下 向上",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.6": {
+      "value": "向上 向右 向下 向左",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.7": {
+      "value": "向上 向左 向下 向右",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.8": {
+      "value": "向上 向上 向下 向下 向左 向右 向左 向右",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "translate.language.tr": {
+      "value": "土耳其文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.zh-tw": {
+      "value": "中文 (繁體)",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.zh-cn": {
+      "value": "中文 (簡體)",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.da": {
+      "value": "丹麥文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.eu": {
+      "value": "巴斯克文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ja": {
+      "value": "日文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.mi": {
+      "value": "毛利文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.gl": {
+      "value": "加里西亞文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ca": {
+      "value": "加泰隆尼亞文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.lt": {
+      "value": "立陶宛文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.is": {
+      "value": "冰島文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.hu": {
+      "value": "匈牙利文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.id": {
+      "value": "印尼文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.es": {
+      "value": "西班牙文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.hr": {
+      "value": "克羅埃西亞文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.he": {
+      "value": "希伯來文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.el": {
+      "value": "希臘文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.az": {
+      "value": "亞塞拜然文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.lv": {
+      "value": "拉脫維亞文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.fr": {
+      "value": "法文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.fa": {
+      "value": "波斯文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.pl": {
+      "value": "波蘭文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.fi": {
+      "value": "芬蘭文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.am": {
+      "value": "阿姆哈拉文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ar": {
+      "value": "阿拉伯文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ru": {
+      "value": "俄文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.bg": {
+      "value": "保加利亞文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.zu": {
+      "value": "南非祖魯文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.cy": {
+      "value": "威爾斯文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.en": {
+      "value": "英文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ckb": {
+      "value": "庫德文 (索拉尼文)",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.nb": {
+      "value": "挪威文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.th": {
+      "value": "泰文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.uk": {
+      "value": "烏克蘭文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.cs": {
+      "value": "捷克文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.nl": {
+      "value": "荷蘭文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.sk": {
+      "value": "斯洛伐克文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.sl": {
+      "value": "斯洛維尼亞文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.vi": {
+      "value": "越南文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.sr": {
+      "value": "塞爾維亞文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.et": {
+      "value": "愛沙尼亞文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ga": {
+      "value": "愛爾蘭文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.sv": {
+      "value": "瑞典文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.it": {
+      "value": "義大利文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.pt": {
+      "value": "葡萄牙文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.de": {
+      "value": "德文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ko": {
+      "value": "韓文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ro": {
+      "value": "羅馬尼亞文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.gd": {
+      "value": "蘇格蘭蓋爾文",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "text2speech.language.ar": {
+      "value": "阿拉伯文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.cy": {
+      "value": "威爾斯文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.da": {
+      "value": "丹麥文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.de": {
+      "value": "德文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.en": {
+      "value": "英文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.es": {
+      "value": "西班牙文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.es-419": {
+      "value": "西班牙語（拉丁美洲）",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.fr": {
+      "value": "法文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ko": {
+      "value": "韓文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.hi": {
+      "value": "印地語",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.is": {
+      "value": "冰島文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.it": {
+      "value": "義大利文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.nl": {
+      "value": "荷蘭文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ja": {
+      "value": "日文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.nb": {
+      "value": "挪威文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pl": {
+      "value": "波蘭文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pt": {
+      "value": "葡萄牙文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pt-br": {
+      "value": "葡萄牙語（巴西）",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ro": {
+      "value": "羅馬尼亞文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ru": {
+      "value": "俄文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.sv": {
+      "value": "瑞典文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.tr": {
+      "value": "土耳其文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.zh-cn": {
+      "value": "中文",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    }
+  },
   "ignorelt": [],
   "soundEffects": [
     "音高",

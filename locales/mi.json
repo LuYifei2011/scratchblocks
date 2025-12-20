@@ -148,6 +148,15 @@
     "CONTROL_ELSE": "kē atu",
     "SENSING_USERID": "tohu tuakiri",
     "SENSING_LOUD": "hoihoi?",
+    "faceSensing.goToPart": "go to %1",
+    "faceSensing.pointInFaceTiltDirection": "point in direction of face tilt",
+    "faceSensing.setSizeToFaceSize": "set size to face size",
+    "faceSensing.whenTilted": "when face tilts %1",
+    "faceSensing.whenSpriteTouchesPart": "when this sprite touches a %1",
+    "faceSensing.whenFaceDetected": "when a face is detected",
+    "faceSensing.faceDetected": "a face is detected?",
+    "faceSensing.faceTilt": "face tilt",
+    "faceSensing.faceSize": "face size",
     "text2speech.speakAndWaitBlock": "kīia %1",
     "text2speech.setVoiceBlock": "tautuhia te reo ki %1",
     "text2speech.setLanguageBlock": "tautuhia te reo kia%1",
@@ -210,7 +219,1661 @@
     "boost.getTiltAngle": "tilt angle %1",
     "boost.setLightHue": "set light color to %1"
   },
-  "dropdowns": {},
+  "dropdowns": {
+    "MOTION_GOTO_POINTER": {
+      "value": "atatohu-kiore",
+      "parents": [
+        "MOTION_GOTO"
+      ]
+    },
+    "MOTION_GOTO_RANDOM": {
+      "value": "tūnga matapōkere",
+      "parents": [
+        "MOTION_GOTO"
+      ]
+    },
+    "MOTION_GLIDETO_POINTER": {
+      "value": "atatohu-kiore",
+      "parents": [
+        "MOTION_GLIDETO"
+      ]
+    },
+    "MOTION_GLIDETO_RANDOM": {
+      "value": "tūnga matapōkere",
+      "parents": [
+        "MOTION_GLIDETO"
+      ]
+    },
+    "MOTION_POINTTOWARDS_POINTER": {
+      "value": "atatohu-kiore",
+      "parents": [
+        "MOTION_POINTTOWARDS"
+      ]
+    },
+    "MOTION_POINTTOWARDS_RANDOM": {
+      "value": "ahunga matapōkere",
+      "parents": [
+        "MOTION_POINTTOWARDS"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_LEFTRIGHT": {
+      "value": "mauī-ki-katau",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_DONTROTATE": {
+      "value": "kaua e takahuri",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "MOTION_SETROTATIONSTYLE_ALLAROUND": {
+      "value": "huri noa",
+      "parents": [
+        "MOTION_SETROTATIONSTYLE"
+      ]
+    },
+    "LOOKS_NEXTBACKDROP": {
+      "value": "ārai tuarongo panuku",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_PREVIOUSBACKDROP": {
+      "value": "ārai tuarongo o mua",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_RANDOMBACKDROP": {
+      "value": "ārai tuarongo matapōkere",
+      "parents": [
+        "LOOKS_SWITCHBACKDROPTO"
+      ]
+    },
+    "LOOKS_EFFECT_COLOR": {
+      "value": "tae",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_FISHEYE": {
+      "value": "karu ika",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_WHIRL": {
+      "value": "kōriporipo",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_PIXELATE": {
+      "value": "whakatongitongi",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_MOSAIC": {
+      "value": "toi rōpinepine",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_BRIGHTNESS": {
+      "value": "pīataata",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_EFFECT_GHOST": {
+      "value": "kēhua",
+      "parents": [
+        "LOOKS_SETEFFECTTO",
+        "LOOKS_CHANGEEFFECTBY"
+      ]
+    },
+    "LOOKS_GOTOFRONTBACK_FRONT": {
+      "value": "mua",
+      "parents": [
+        "LOOKS_GOTOFRONTBACK"
+      ]
+    },
+    "LOOKS_GOTOFRONTBACK_BACK": {
+      "value": "muri",
+      "parents": [
+        "LOOKS_GOTOFRONTBACK"
+      ]
+    },
+    "LOOKS_GOFORWARDBACKWARDLAYERS_FORWARD": {
+      "value": "ki mua",
+      "parents": [
+        "LOOKS_GOFORWARDBACKWARDLAYERS"
+      ]
+    },
+    "LOOKS_GOFORWARDBACKWARDLAYERS_BACKWARD": {
+      "value": "ki muri",
+      "parents": [
+        "LOOKS_GOFORWARDBACKWARDLAYERS"
+      ]
+    },
+    "LOOKS_NUMBERNAME_NUMBER": {
+      "value": "nama",
+      "parents": [
+        "LOOKS_COSTUMENUMBERNAME",
+        "LOOKS_BACKDROPNUMBERNAME"
+      ]
+    },
+    "LOOKS_NUMBERNAME_NAME": {
+      "value": "ingoa",
+      "parents": [
+        "LOOKS_COSTUMENUMBERNAME",
+        "LOOKS_BACKDROPNUMBERNAME"
+      ]
+    },
+    "SOUND_EFFECTS_PITCH": {
+      "value": "hauoro",
+      "parents": [
+        "SOUND_CHANGEEFFECTBY",
+        "SOUND_SETEFFECTO"
+      ]
+    },
+    "SOUND_EFFECTS_PAN": {
+      "value": "huri whakatemauī/whakatekatau",
+      "parents": [
+        "SOUND_CHANGEEFFECTBY",
+        "SOUND_SETEFFECTO"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_SPACE": {
+      "value": "mokowā",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_LEFT": {
+      "value": "pere mauī",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_RIGHT": {
+      "value": "pere katau",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_DOWN": {
+      "value": "pere whakararo",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_UP": {
+      "value": "pere whakarunga",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED",
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "EVENT_WHENKEYPRESSED_ANY": {
+      "value": "noa",
+      "parents": [
+        "EVENT_WHENKEYPRESSED",
+        "SENSING_KEYPRESSED"
+      ]
+    },
+    "EVENT_WHENGREATERTHAN_TIMER": {
+      "value": "taima",
+      "parents": [
+        "EVENT_WHENGREATERTHAN"
+      ]
+    },
+    "EVENT_WHENGREATERTHAN_LOUDNESS": {
+      "value": "hoihoi",
+      "parents": [
+        "EVENT_WHENGREATERTHAN"
+      ]
+    },
+    "CONTROL_STOP_ALL": {
+      "value": "katoa",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_STOP_THIS": {
+      "value": "tēnei hōtuhi",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_STOP_OTHER": {
+      "value": "hōtuhi kē i roto i te parehe",
+      "parents": [
+        "CONTROL_STOP"
+      ]
+    },
+    "CONTROL_CREATECLONEOF_MYSELF": {
+      "value": "ahau anō",
+      "parents": [
+        "CONTROL_CREATECLONEOF"
+      ]
+    },
+    "SENSING_TOUCHINGOBJECT_POINTER": {
+      "value": "atatohu-kiore",
+      "parents": [
+        "SENSING_TOUCHINGOBJECT"
+      ]
+    },
+    "SENSING_TOUCHINGOBJECT_EDGE": {
+      "value": "taitapa",
+      "parents": [
+        "SENSING_TOUCHINGOBJECT"
+      ]
+    },
+    "SENSING_DISTANCETO_POINTER": {
+      "value": "atatohu-kiore",
+      "parents": [
+        "SENSING_DISTANCETO"
+      ]
+    },
+    "SENSING_SETDRAGMODE_DRAGGABLE": {
+      "value": "ka taea te tō",
+      "parents": [
+        "SENSING_SETDRAGMODE"
+      ]
+    },
+    "SENSING_SETDRAGMODE_NOTDRAGGABLE": {
+      "value": "kāore e taea te tō",
+      "parents": [
+        "SENSING_SETDRAGMODE"
+      ]
+    },
+    "SENSING_OF_XPOSITION": {
+      "value": "tūnga x",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_YPOSITION": {
+      "value": "tūnga y",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_DIRECTION": {
+      "value": "ahunga",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_COSTUMENUMBER": {
+      "value": "kākahu #",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_COSTUMENAME": {
+      "value": "ingoa kākahu",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_SIZE": {
+      "value": "rahi",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_VOLUME": {
+      "value": "kahaoro",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_BACKDROPNUMBER": {
+      "value": "ārai tuarongo #",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_BACKDROPNAME": {
+      "value": "ingoa ārai tuarongo",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_OF_STAGE": {
+      "value": "Atamira",
+      "parents": [
+        "SENSING_OF"
+      ]
+    },
+    "SENSING_CURRENT_YEAR": {
+      "value": "tau",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_MONTH": {
+      "value": "marama",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_DATE": {
+      "value": "te rā",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_DAYOFWEEK": {
+      "value": "te rangi o te wiki",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_HOUR": {
+      "value": "haora",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_MINUTE": {
+      "value": "miniti",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "SENSING_CURRENT_SECOND": {
+      "value": "hēkona",
+      "parents": [
+        "SENSING_CURRENT"
+      ]
+    },
+    "OPERATORS_MATHOP_ABS": {
+      "value": "abs",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_FLOOR": {
+      "value": "papa",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_CEILING": {
+      "value": "tuanui",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_SQRT": {
+      "value": "sqrt",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_SIN": {
+      "value": "sin",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_COS": {
+      "value": "cos",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_TAN": {
+      "value": "tan",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ASIN": {
+      "value": "asin",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ACOS": {
+      "value": "acos",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_ATAN": {
+      "value": "atan",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_LN": {
+      "value": "ln",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_LOG": {
+      "value": "log",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_EEXP": {
+      "value": "e ^",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "OPERATORS_MATHOP_10EXP": {
+      "value": "10 ^",
+      "parents": [
+        "OPERATORS_MATHOP"
+      ]
+    },
+    "music.drumSnare": {
+      "value": "(1) Pahū Rarā",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumBass": {
+      "value": "(2) Pahū Nguru",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumSideStick": {
+      "value": "(3) Rākau Taha Pahū",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCrashCymbal": {
+      "value": "(4) Tīwēwē Wheoro",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumOpenHiHat": {
+      "value": "(5) Hi-Hat kua Huakina",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumClosedHiHat": {
+      "value": "(6) Hi-Hat kua Katia",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumTambourine": {
+      "value": "(7) Tatangi",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumHandClap": {
+      "value": "(8) Pakipaki-ā-ringa",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumClaves": {
+      "value": "(9) Poro rākau",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumWoodBlock": {
+      "value": "(10) Paraka Rākau",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCowbell": {
+      "value": "(11) Pere-kau",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumTriangle": {
+      "value": "(12) Tapatoru",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumBongo": {
+      "value": "(13) Pahū tamarua",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumConga": {
+      "value": "(14) Conga",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCabasa": {
+      "value": "(15) Cabasa",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumGuiro": {
+      "value": "(16) Guiro",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumVibraslap": {
+      "value": "(17) Vibraslap",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.drumCuica": {
+      "value": "(18) Cuica",
+      "parents": [
+        "music.playDrumForBeats"
+      ]
+    },
+    "music.instrumentPiano": {
+      "value": "(1) Piana",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentElectricPiano": {
+      "value": "(2) Piana Hiko",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentOrgan": {
+      "value": "(3) Ōkena",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentGuitar": {
+      "value": "(4) Kitā",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentElectricGuitar": {
+      "value": "(5) Kitā Hiko",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentBass": {
+      "value": "(6) Reo Nguru",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentPizzicato": {
+      "value": "(7) Pizzicato",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentCello": {
+      "value": "(8) Whiranui",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentTrombone": {
+      "value": "(9) Pūkumekume",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentClarinet": {
+      "value": "(10) Rehu Matangi",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSaxophone": {
+      "value": "(11) Pūtohe",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentFlute": {
+      "value": "(12) Pūtōrino",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentWoodenFlute": {
+      "value": "(13) Pūtorino",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentBassoon": {
+      "value": "(14) Pūhoru",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentChoir": {
+      "value": "(15) Tira Waiata",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentVibraphone": {
+      "value": "(16) Vibraphone",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentMusicBox": {
+      "value": "(17) Pouaka Puoro",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSteelDrum": {
+      "value": "(18) Pahū Rino",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentMarimba": {
+      "value": "(19) Pakakau",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSynthLead": {
+      "value": "(20) Kōtui Arataki",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "music.instrumentSynthPad": {
+      "value": "(21) Kōtui Papatū",
+      "parents": [
+        "music.setInstrument"
+      ]
+    },
+    "pen.colorMenu.color": {
+      "value": "tae",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.saturation": {
+      "value": "waiwai",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.brightness": {
+      "value": "pīataata",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "pen.colorMenu.transparency": {
+      "value": "pūatatata",
+      "parents": [
+        "pen.setColorParam",
+        "pen.changeColorParam"
+      ]
+    },
+    "videoSensing.direction": {
+      "value": "ahunga",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.motion": {
+      "value": "nekenekehanga",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.sprite": {
+      "value": "parehe",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.stage": {
+      "value": "atamira",
+      "parents": [
+        "videoSensing.videoOn"
+      ]
+    },
+    "videoSensing.off": {
+      "value": "weto",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "videoSensing.on": {
+      "value": "kā",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "videoSensing.onFlipped": {
+      "value": "ina whakawhitia",
+      "parents": [
+        "videoSensing.videoToggle"
+      ]
+    },
+    "text2speech.alto": {
+      "value": "reo pekerangi",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.tenor": {
+      "value": "reo iere",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.squeak": {
+      "value": "koekoe",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.giant": {
+      "value": "kākarepō",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "text2speech.kitten": {
+      "value": "punua ngeru",
+      "parents": [
+        "text2speech.setVoiceBlock"
+      ]
+    },
+    "makeymakey.upArrowShort": {
+      "value": "ki runga",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.downArrowShort": {
+      "value": "ki raro",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.leftArrowShort": {
+      "value": "mauī",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "makeymakey.rightArrowShort": {
+      "value": "katau",
+      "parents": [
+        "makeymakey.whenKeyPressed"
+      ]
+    },
+    "microbit.buttonsMenu.any": {
+      "value": "noa",
+      "parents": [
+        "microbit.whenButtonPressed",
+        "microbit.isButtonPressed"
+      ]
+    },
+    "microbit.gesturesMenu.jumped": {
+      "value": "i peke",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.gesturesMenu.moved": {
+      "value": "i neke",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.gesturesMenu.shaken": {
+      "value": "i rūrū",
+      "parents": [
+        "microbit.whenGesture"
+      ]
+    },
+    "microbit.tiltDirectionMenu.any": {
+      "value": "noa",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted"
+      ]
+    },
+    "microbit.tiltDirectionMenu.back": {
+      "value": "muri",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.front": {
+      "value": "mua",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.left": {
+      "value": "mauī",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "microbit.tiltDirectionMenu.right": {
+      "value": "katau",
+      "parents": [
+        "microbit.whenTilted",
+        "microbit.isTilted",
+        "microbit.tiltAngle"
+      ]
+    },
+    "boost.motorDirection.backward": {
+      "value": "that way",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.motorDirection.forward": {
+      "value": "this way",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.motorDirection.reverse": {
+      "value": "reverse",
+      "parents": [
+        "boost.setMotorDirection"
+      ]
+    },
+    "boost.color.any": {
+      "value": "any color",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.black": {
+      "value": "black",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.blue": {
+      "value": "blue",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.green": {
+      "value": "green",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.red": {
+      "value": "red",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.white": {
+      "value": "white",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.color.yellow": {
+      "value": "yellow",
+      "parents": [
+        "boost.whenColor",
+        "boost.seeingColor"
+      ]
+    },
+    "boost.tiltDirection.any": {
+      "value": "any",
+      "parents": [
+        "boost.whenTilted"
+      ]
+    },
+    "boost.tiltDirection.up": {
+      "value": "up",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.down": {
+      "value": "down",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.left": {
+      "value": "left",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "boost.tiltDirection.right": {
+      "value": "right",
+      "parents": [
+        "boost.whenTilted",
+        "boost.getTiltAngle"
+      ]
+    },
+    "wedo2.motorId.a": {
+      "value": "pūkaha A",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.b": {
+      "value": "pūkaha B",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.all": {
+      "value": "ngā pūkaha katoa",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorId.default": {
+      "value": "pūkaha",
+      "parents": [
+        "wedo2.motorOnFor",
+        "wedo2.motorOn",
+        "wedo2.motorOff",
+        "wedo2.startMotorPower",
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.forward": {
+      "value": "tēnei ahunga",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.backward": {
+      "value": "tērā ahunga",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.motorDirection.reverse": {
+      "value": "ahu whakamuri",
+      "parents": [
+        "wedo2.setMotorDirection"
+      ]
+    },
+    "wedo2.tiltDirection.any": {
+      "value": "noa",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted"
+      ]
+    },
+    "wedo2.tiltDirection.up": {
+      "value": "ki runga",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.down": {
+      "value": "ki raro",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.left": {
+      "value": "mauī",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "wedo2.tiltDirection.right": {
+      "value": "katau",
+      "parents": [
+        "wedo2.whenTilted",
+        "wedo2.isTilted",
+        "wedo2.getTiltAngle"
+      ]
+    },
+    "gdxfor.pulled": {
+      "value": "pulled",
+      "parents": [
+        "gdxfor.whenForcePushedOrPulled"
+      ]
+    },
+    "gdxfor.pushed": {
+      "value": "pushed",
+      "parents": [
+        "gdxfor.whenForcePushedOrPulled"
+      ]
+    },
+    "gdxfor.shaken": {
+      "value": "shaken",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.startedFalling": {
+      "value": "started falling",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.turnedFaceDown": {
+      "value": "turned face down",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.turnedFaceUp": {
+      "value": "turned face up",
+      "parents": [
+        "gdxfor.whenGesture"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.front": {
+      "value": "front",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.back": {
+      "value": "back",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.left": {
+      "value": "left",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.right": {
+      "value": "right",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted",
+        "gdxfor.getTilt"
+      ]
+    },
+    "gdxfor.tiltDirectionMenu.any": {
+      "value": "any",
+      "parents": [
+        "gdxfor.whenTilted",
+        "gdxfor.isTilted"
+      ]
+    },
+    "makeymakey.sequence.0": {
+      "value": "mauī ki runga katau",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.1": {
+      "value": "katau ki runga mauī",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.2": {
+      "value": "mauī katau",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.3": {
+      "value": "katau mauī",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.4": {
+      "value": "ki runga ki raro",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.5": {
+      "value": "ki raro ki runga",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.6": {
+      "value": "ki runga katau ki raro mauī",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.7": {
+      "value": "ki runga mauī ki raro katau",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "makeymakey.sequence.8": {
+      "value": "ki runga ki runga ki raro ki raro mauī katau mauī katau",
+      "parents": [
+        "makeymakey.whenKeysPressedInOrder"
+      ]
+    },
+    "translate.language.az": {
+      "value": "Ahepaitani",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ga": {
+      "value": "Airihi",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.am": {
+      "value": "Amariki",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ar": {
+      "value": "Arapi",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.et": {
+      "value": "Etōnia",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.zh-tw": {
+      "value": "Haina (Onamata)",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.zh-cn": {
+      "value": "Hainamana (Kua whakamāmātia)",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.hu": {
+      "value": "Hanekeria",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ja": {
+      "value": "Hapanihi",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.sr": {
+      "value": "Herepia",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.fi": {
+      "value": "Hinerangi",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.he": {
+      "value": "Hiperu",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.sk": {
+      "value": "Horowākia",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.sl": {
+      "value": "Horowinia",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.sv": {
+      "value": "Huitene",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.zu": {
+      "value": "Huru",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.en": {
+      "value": "Ingarihi",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.id": {
+      "value": "Initonīhia",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.it": {
+      "value": "Itāriana",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.gl": {
+      "value": "Karihia",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ca": {
+      "value": "Katarāna",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.el": {
+      "value": "Kiriki",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ko": {
+      "value": "Kōreana",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.hr": {
+      "value": "Koroātiana",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.tr": {
+      "value": "Korukoru",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ckb": {
+      "value": "Kūrihi (Horani)",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.mi": {
+      "value": "Māori",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.nb": {
+      "value": "Nōwei",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.eu": {
+      "value": "Pākihi",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.es": {
+      "value": "Pāniora",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.fa": {
+      "value": "Perēhia",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.pl": {
+      "value": "Pōrana",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.pt": {
+      "value": "Potukīhi",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.bg": {
+      "value": "Purukāriana",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.lv": {
+      "value": "Rāwhiana",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.lt": {
+      "value": "Rituānia",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ro": {
+      "value": "Romānia",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.ru": {
+      "value": "Rūhia",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.th": {
+      "value": "Tai",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.nl": {
+      "value": "Tati",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.da": {
+      "value": "Tenemāka",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.de": {
+      "value": "Tiamana",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.cs": {
+      "value": "Tieke",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.is": {
+      "value": "Tiorangi",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.gd": {
+      "value": "Tuauri Kotarangi",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.uk": {
+      "value": "Ūkareiana",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.cy": {
+      "value": "Wēra",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.vi": {
+      "value": "Whitināmu",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "translate.language.fr": {
+      "value": "Wīwī",
+      "parents": [
+        "translate.translateBlock"
+      ]
+    },
+    "text2speech.language.ar": {
+      "value": "Arapi",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.cy": {
+      "value": "Wēra",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.da": {
+      "value": "Tenemāka",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.de": {
+      "value": "Tiamana",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.en": {
+      "value": "Ingarihi",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.es": {
+      "value": "Pāniora",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.es-419": {
+      "value": "Paniora (Amerika Raina)",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.fr": {
+      "value": "Wīwī",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ko": {
+      "value": "Kōreana",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.hi": {
+      "value": "Hindi",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.is": {
+      "value": "Tiorangi",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.it": {
+      "value": "Itāriana",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.nl": {
+      "value": "Tati",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ja": {
+      "value": "Hapanihi",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.nb": {
+      "value": "Nōwei",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pl": {
+      "value": "Pōrana",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pt": {
+      "value": "Potukīhi",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.pt-br": {
+      "value": "Potiti (Brazilian)",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ro": {
+      "value": "Romānia",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.ru": {
+      "value": "Rūhia",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.sv": {
+      "value": "Huitene",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.tr": {
+      "value": "Korukoru",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    },
+    "text2speech.language.zh-cn": {
+      "value": "Hainamana (Māriki)",
+      "parents": [
+        "text2speech.setLanguageBlock"
+      ]
+    }
+  },
   "ignorelt": [],
   "soundEffects": [
     "hauoro",
