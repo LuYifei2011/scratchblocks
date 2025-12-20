@@ -15,8 +15,6 @@ Make pictures of Scratch blocks from text.
 
 **scratchblocks-plus** is compatible with **scratchblocks**, so you can use it as a drop-in replacement.
 
-**scratchblocks-plus** is not published on NPM yet, but it will be soon.
-
 ---
 
 **scratchblocks-plus** is used to write Scratch scripts:
@@ -127,7 +125,6 @@ window.scratchblocks.loadLanguages({
 })
 ```
 
-<!--
 ## NPM
 
 The `scratchblocks-plus` package is published on NPM, and you can use it with browserify and other bundlers, if you're into that sort of thing.
@@ -151,7 +148,6 @@ loadTranslations(scratchblocks);
 
 // window.scratchblocks is NOT available!
 ```
--->
 
 # Languages
 
