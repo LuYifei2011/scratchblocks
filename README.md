@@ -1,24 +1,33 @@
 Make pictures of Scratch blocks from text.
 
+<!--
 [![Screenshot](https://scratchblocks.github.io/screenshot.png)](https://scratchblocks.github.io/#when%20flag%20clicked%0Aclear%0Aforever%0Apen%20down%0Aif%20%3C%3Cmouse%20down%3F%3E%20and%20%3Ctouching%20%5Bmouse-pointer%20v%5D%3F%3E%3E%20then%0Aswitch%20costume%20to%20%5Bbutton%20v%5D%0Aelse%0Aadd%20(x%20position)%20to%20%5Blist%20v%5D%0Aend%0Amove%20(foo)%20steps%0Aturn%20ccw%20(9)%20degrees)
 
 **[Try it out!](https://scratchblocks.github.io/)**
+-->
 
 ---
 
-**scratchblocks** is used to write Scratch scripts:
+**scratchblocks-plus** is a fork of **scratchblocks**, and adds the following features:
+- basic TypeScript support
+- Matrix support (issue: [scratchblocks#509](https://github.com/scratchblocks/scratchblocks/issues/509), PR: [scratchblocks#573](https://github.com/scratchblocks/scratchblocks/pull/573))
+- block highlight
 
-- in [Scratch Forum](https://scratch.mit.edu/discuss/topic/14772/) posts
-- in [Scratch Wiki](https://en.scratch-wiki.info/wiki/Block_Plugin) articles
-- in the [Code Club](https://www.codeclub.org.uk) project guides
+**scratchblocks-plus** is compatible with **scratchblocks**, so you can use it as a drop-in replacement.
+
+**scratchblocks-plus** is not published on NPM yet, but it will be soon.
+
+---
+
+**scratchblocks-plus** is used to write Scratch scripts:
 
 It's MIT licensed, so you can use it in your projects.
-(But do send me a link [on Twitter](https://twitter.com/blob8108)!)
 
 For the full guide to the syntax, see [the wiki](https://en.scratch-wiki.info/wiki/Block_Plugin/Syntax).
 
 # Usage
 
+<!--
 ## MediaWiki
 
 Use [the MediaWiki plugin](https://github.com/InternationalScratchWiki/mw-ScratchBlocks4).
@@ -35,14 +44,15 @@ Code Club use their own [lesson_format](https://github.com/CodeClub/lesson_forma
 It uses the [pandoc_scratchblocks](https://github.com/CodeClub/pandoc_scratchblocks) plugin they wrote to make pictures of Scratch scripts.
 
 This would probably be a good way to write a Scratch book.
+-->
 
 ## HTML
 
-You'll need to include a copy of the scratchblocks JS file on your webpage.
+You'll need to include a copy of the scratchblocks-plus JS file on your webpage.
 There are a few ways of getting one:
 
-* Download it from the <https://github.com/scratchblocks/scratchblocks/releases> page
-* If you have a fancy JS build system, you might like to include the `scratchblocks` package from NPM
+* Download it from the <https://github.com/LuYifei2011/scratchblocks-plus/releases> page
+<!--* If you have a fancy JS build system, you might like to include the `scratchblocks-plus` package from NPM-->
 * You could clone this repository and build it yourself using Node 16.14.0+ (`npm run build`).
 
 ```html
@@ -117,29 +127,31 @@ window.scratchblocks.loadLanguages({
 })
 ```
 
+<!--
 ## NPM
 
-The `scratchblocks` package is published on NPM, and you can use it with browserify and other bundlers, if you're into that sort of thing.
+The `scratchblocks-plus` package is published on NPM, and you can use it with browserify and other bundlers, if you're into that sort of thing.
 
 Once you've got browserify set up to build a client-side bundle from your app
-code, you can just add `scratchblocks` to your dependencies, and everything
+code, you can just add `scratchblocks-plus` to your dependencies, and everything
 should Just Work™.
 
 ```js
-var scratchblocks = require('scratchblocks');
+var scratchblocks = require('scratchblocks-plus');
 scratchblocks.renderMatching('pre.blocks');
 ```
 
 ## ESM Support
-Since version 3.6.0, scratchblocks can be properly loaded as an ESM module. The ESM version, instead of defining `window.scratchblocks`, default-exports the `scratchblocks` object. Similarly, the JavaScript translation files default-exports a function to load the translations.
+Since version 3.6.0, scratchblocks-plus can be properly loaded as an ESM module. The ESM version, instead of defining `window.scratchblocks`, default-exports the `scratchblocks` object. Similarly, the JavaScript translation files default-exports a function to load the translations.
 
 ```js
-import scratchblocks from "./scratchblocks-es-min.js";
+import scratchblocks from "./scratchblocks-plus-es-min.js";
 import loadTranslations from "./translations-all-es.js";
 loadTranslations(scratchblocks);
 
 // window.scratchblocks is NOT available!
 ```
+-->
 
 # Languages
 
@@ -151,7 +163,7 @@ npm run locales
 
 ## Adding a language
 
-Each language **requires** some [additional words](https://github.com/scratchblocks/scratchblocks/blob/master/locales-src/extra_aliases.js) which aren't in Scratch itself (mainly the words used for the flag and arrow images).
+Each language **requires** some [additional words](https://github.com/LuYifei2011/scratchblocks-plus/blob/master/locales-src/extra_aliases.js) which aren't in Scratch itself (mainly the words used for the flag and arrow images).
 I'd be happy to accept pull requests for those! You'll need to rebuild the translations with `npm run locales` after editing the aliases.
 
 # Development
@@ -165,15 +177,17 @@ npm start
 
 Then open <http://localhost:8000/> :-)
 
-For more details, see [`CONTRIBUTING.md`](https://github.com/scratchblocks/scratchblocks/blob/master/.github/CONTRIBUTING.md).
+For more details, see [`CONTRIBUTING.md`](https://github.com/LuYifei2011/scratchblocks-plus/blob/master/.github/CONTRIBUTING.md).
 
 
 # Credits
 
-Many, many thanks to the [contributors](https://github.com/scratchblocks/scratchblocks/graphs/contributors)!
+Many, many thanks to the [contributors](https://github.com/LuYifei2011/scratchblocks-plus/graphs/contributors)!
 
-* Authored by [tjvr](https://github.com/tjvr)
-* Maintained by tjvr and [apple502j](https://github.com/apple502j)
+* Authored by [LuYifei2011](https://github.com/LuYifei2011)
+* This is a fork of [scratchblocks](https://github.com/scratchblocks/scratchblocks), so all the credit there still applies here.
+* Original scratchblocks library by [tjvr](https://github.com/tjvr)
+* Original scratchblocks library maintained by tjvr and [apple502j](https://github.com/apple502j)
 * Icons derived from [Scratch Blocks](https://github.com/scratchfoundation/scratch-blocks) (Apache License 2.0)
 * Scratch 2 SVG proof-of-concept, shapes & filters by [as-com](https://github.com/as-com)
 * Anna helped with a formula, and pointed out that I can't read graphs
