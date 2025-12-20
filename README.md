@@ -44,6 +44,10 @@ It uses the [pandoc_scratchblocks](https://github.com/CodeClub/pandoc_scratchblo
 This would probably be a good way to write a Scratch book.
 -->
 
+# React
+
+Use the [scratchblocks-plus-react](https://github.com/LuYifei2011/scratchblocks-plus-react) package to render scratchblocks in React.
+
 ## HTML
 
 You'll need to include a copy of the scratchblocks-plus JS file on your webpage.
