@@ -79,21 +79,6 @@ export default function (window) {
   }
 
   /**
-   * Highlight the block at a cursor position
-   * @param {DocumentView} view - The rendered view from newView()
-   * @param {number} line - 1-based line number
-   * @param {number} column - 1-based column number
-   * @param {Object} options - { blink: boolean }
-   * @returns {string|null} - The path of the highlighted block, or null if not found
-   */
-  function highlightBlockAtCursor(view, line, column, options = {}) {
-    if (view && typeof view.highlightBlockAtCursor === "function") {
-      return view.highlightBlockAtCursor(line, column, options)
-    }
-    return null
-  }
-
-  /**
    * Clear highlight from a block or all blocks
    * @param {DocumentView} view - The rendered view from newView()
    * @param {string|null} path - Block path to clear, or null to clear all highlights
@@ -113,20 +98,6 @@ export default function (window) {
   function getBlockByPath(doc, path) {
     if (doc && typeof doc.getBlockByPath === "function") {
       return doc.getBlockByPath(path)
-    }
-    return null
-  }
-
-  /**
-   * Get the block at cursor position from the parsed document
-   * @param {Document} doc - The parsed document from parse()
-   * @param {number} line - 1-based line number
-   * @param {number} column - 1-based column number
-   * @returns {Block|null}
-   */
-  function getBlockAtCursor(doc, line, column) {
-    if (doc && typeof doc.getBlockAtCursor === "function") {
-      return doc.getBlockAtCursor(line, column)
     }
     return null
   }
@@ -251,10 +222,8 @@ export default function (window) {
 
     // Highlight API
     highlightBlock: highlightBlock,
-    highlightBlockAtCursor: highlightBlockAtCursor,
     clearHighlight: clearHighlight,
     getBlockByPath: getBlockByPath,
-    getBlockAtCursor: getBlockAtCursor,
     getElementByPath: getElementByPath,
   }
 }

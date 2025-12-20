@@ -26,22 +26,6 @@ export class Icon {
 }
 
 /**
- * Source code position
- */
-export interface SourcePosition {
-  line: number
-  column: number
-}
-
-/**
- * Source code range for a block
- */
-export interface SourceRange {
-  start: SourcePosition
-  end: SourcePosition
-}
-
-/**
  * Block information object
  */
 export interface BlockInfo {
@@ -109,7 +93,6 @@ export class Block {
   comment: Comment | null
   diff: "+" | "-" | null
   blockPath: string | null
-  sourceRange: SourceRange | null
   readonly isBlock: true
   isHat: boolean
   hasPuzzle: boolean
@@ -174,7 +157,6 @@ export class Document {
   scripts: Script[]
   blockMap: Map<string, Block>
   getBlockByPath(path: string): Block | null
-  getBlockAtCursor(line: number, column: number): Block | null
   stringify(): string
   translate(lang: LanguageData): void
 }
@@ -195,7 +177,6 @@ export interface DocumentView {
   measure(): void
   render(): SVGElement
   highlightBlock(path: string, options?: HighlightOptions): boolean
-  highlightBlockAtCursor(line: number, column: number, options?: HighlightOptions): string | null
   clearHighlight(path?: string | null): void
   getElementByPath(path: string): SVGElement | null
   exportSVGString(): string
@@ -284,10 +265,8 @@ export interface ScratchblocksAPI {
 
   // Highlight API
   highlightBlock(view: DocumentView, path: string, options?: HighlightOptions): boolean
-  highlightBlockAtCursor(view: DocumentView, line: number, column: number, options?: HighlightOptions): string | null
   clearHighlight(view: DocumentView, path?: string | null): void
   getBlockByPath(doc: Document, path: string): Block | null
-  getBlockAtCursor(doc: Document, line: number, column: number): Block | null
   getElementByPath(view: DocumentView, path: string): SVGElement | null
 }
 

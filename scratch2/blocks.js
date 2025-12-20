@@ -922,22 +922,6 @@ class DocumentView {
     }
   }
 
-  /**
-   * Highlight block at cursor position
-   * @param {number} line - 1-based line number
-   * @param {number} column - 1-based column number
-   * @param {Object} options - { blink: boolean }
-   * @returns {string|null} - The path of the highlighted block, or null
-   */
-  highlightBlockAtCursor(line, column, options = {}) {
-    const block = this.doc.getBlockAtCursor(line, column)
-    if (block && block.blockPath) {
-      this.highlightBlock(block.blockPath, options)
-      return block.blockPath
-    }
-    return null
-  }
-
   /* Export SVG image as XML string */
   exportSVGString() {
     if (this.el == null) {
